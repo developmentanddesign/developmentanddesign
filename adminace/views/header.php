@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>ACE Channel</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -104,8 +104,9 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="addvideo.php"><i class="fa fa-circle-o"></i>Add Album</a></li>
-            <li><a href="allvideos.php"><i class="fa fa-circle-o"></i>All Albums</a></li>
+            <li><a href="addalbum.php"><i class="fa fa-circle-o"></i>Add Album</a></li>
+            <li><a href="allalbum.php"><i class="fa fa-circle-o"></i>All Albums</a></li>
+            <li><a href="allalbum.php"><i class="fa fa-circle-o"></i>All Album Images</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -122,12 +123,23 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
-            <span>Contact Management</span>
+            <span>Advertisement</span>
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="addcdetail.php"><i class="fa fa-circle-o"></i>Add Details</a></li>
-            <li><a href="allcdetails.php"><i class="fa fa-circle-o"></i>All Details</a></li>
+            <li><a href="addbanner.php"><i class="fa fa-circle-o"></i>New Advertisement</a></li>
+            <li><a href="allbanners.php"><i class="fa fa-circle-o"></i>All Advertisements</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>About Us</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="adddetail.php"><i class="fa fa-circle-o"></i>Add Details</a></li>
+            <li><a href="alldetails.php"><i class="fa fa-circle-o"></i>All Details</a></li>
           </ul>
         </li>
         <li class="treeview">

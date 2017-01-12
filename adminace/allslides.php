@@ -81,7 +81,7 @@
                 						<button class="btn btn-success"><i class="fa fa-pencil-square-o"></i></button>
                 						</a>
                 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
-                						<button id="<?php echo $id; ?>" class="btn btn-danger delete" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></td>
+                						<button id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="allslides.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></td>
                           </tr>
                           <?php $sr++;	}?>
         

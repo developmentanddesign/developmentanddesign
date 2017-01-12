@@ -86,59 +86,59 @@ if(isset($_POST['submit'])){
                 <div class="box-body">
                   <?php global $msg; echo $msg;?>
         					<?php	$id=$_GET['id'];
-					$q="select * from slider where id='$id'";
-					$r=mysqli_query($conn,$q);
-					while($ro=mysqli_fetch_array($r)){
-				?>
-    					<div Class="form-group">
-    						<label for="image_name">Image</label>
-    						<input type="file" name="image_name" id="image_name" value="">
-    						<i>If Empty Remains the Last One</i>
-    					</div>
-    					<div Class="form-group">
-    						<label for="image_alt">Image ALT *</label>
-    						<input type="text" name="image_alt" id="image_alt" value="<?php echo $ro['image_alt'];?>" class="form-control" required>
-    					</div>
-    					<div Class="form-group">
-    						<label for="image_title">Image Title *</label>
-    						<input type="text" name="image_title" id="image_title" value="<?php echo $ro['image_title'];?>" class="form-control" required>
-    					</div>
-    					<div Class="form-group">
-    						<label for="image_cap">Caption</label>
-    						<input type="text" name="image_caption" id="image_cap" value="<?php echo $ro['image_caption'];?>" class="form-control">
-    					</div>
-    					<div Class="form-group">
-    						<label for="btn_text">Button Text</label>
-    						<input type="text" name="btn_text" id="btn_text" value="<?php echo $ro['btn_text'];?>" class="form-control">
-    						<i><small>Optional</small></i>
-    					</div>
-    					<div Class="form-group">
-    						<label for="destination_url">Start Date *</label>
-    						<input type="text" name="s_date" value="<?php echo date('d-m-Y',strtotime($ro['s_date']));?>" data-date-format="dd-mm-yyyy" class="form-control" id="s_date"  required>
-    					</div>
-    					<div Class="form-group">
-    						<label for="destination_url">End Date *</label>
-    						<input type="text" name="e_date" value="<?php echo date('d-m-Y',strtotime($ro['e_date']));?>" data-date-format="dd-mm-yyyy" class="form-control" id="e_date"  required>
-    					</div>
-    					<div Class="form-group">
-    						<label for="destination_url">Priority *</label>
-    						<input type="text" name="priority" id="priority" value="<?php echo $ro['priority'];?>" class="form-control">
-    					</div>
-    					<div Class="form-group">
-    						<label for="status" class="col-sm-4 no-padding">Status: *</label>
-    						<label for="active" class="col-sm-4"><input type="radio" name="status" id="active" value="1" class="radio-control" <?php if($ro['status']==1){?>checked="checked" <?php } ?>> Active</label>
-    						<label for="inactive" class="col-sm-4"><input type="radio" name="status" id="inactive" value="0" class="radio-control" <?php if($ro['status']==0){?>checked="checked" <?php } ?>> Inactive</label>
-    					</div>
-    					<div Class="form-group">
-    						<label for="timer" class="col-sm-4 no-padding">Show Timer:</label>
-    						<label for="active1" class="col-sm-4"><input type="radio" name="timer" id="active1" value="1" class="radio-control" <?php if($ro['timer']==1){?>checked="checked" <?php } ?>> Yes</label>
-    						<label for="inactive1" class="col-sm-4"><input type="radio" name="timer" id="inactive1" value="0" class="radio-control" <?php if($ro['timer']==0){?>checked="checked" <?php } ?>> No</label>
-    					</div>
-    					<div Class="form-group">
-    						<label for="destination_url">Destination URL</label>
-    						<input type="text" name="destination_url" id="destination_url" value="<?php echo $ro['destination_url'];?>" class="form-control">
-    					</div>
-    					<?php } ?>
+        					$q="select * from slider where id='$id'";
+        					$r=mysqli_query($conn,$q);
+        					while($ro=mysqli_fetch_array($r)){
+        				?>
+            					<div Class="form-group">
+            						<label for="image_name">Image</label>
+            						<input type="file" name="image_name" id="image_name" value="">
+            						<i>If Empty Remains the Last One</i>
+            					</div>
+            					<div Class="form-group">
+            						<label for="image_alt">Image ALT *</label>
+            						<input type="text" name="image_alt" id="image_alt" value="<?php echo $ro['image_alt'];?>" class="form-control" required>
+            					</div>
+            					<div Class="form-group">
+            						<label for="image_title">Image Title *</label>
+            						<input type="text" name="image_title" id="image_title" value="<?php echo $ro['image_title'];?>" class="form-control" required>
+            					</div>
+            					<div Class="form-group">
+            						<label for="image_cap">Caption</label>
+            						<input type="text" name="image_caption" id="image_cap" value="<?php echo $ro['image_caption'];?>" class="form-control">
+            					</div>
+            					<div Class="form-group">
+            						<label for="btn_text">Button Text</label>
+            						<input type="text" name="btn_text" id="btn_text" value="<?php echo $ro['btn_text'];?>" class="form-control">
+            						<i><small>Optional</small></i>
+            					</div>
+            					<div Class="form-group">
+            						<label for="destination_url">Start Date *</label>
+            						<input type="text" name="s_date" value="<?php echo date('d-m-Y',strtotime($ro['s_date']));?>" data-date-format="dd-mm-yyyy" class="form-control" id="s_date"  required>
+            					</div>
+            					<div Class="form-group">
+            						<label for="destination_url">End Date *</label>
+            						<input type="text" name="e_date" value="<?php echo date('d-m-Y',strtotime($ro['e_date']));?>" data-date-format="dd-mm-yyyy" class="form-control" id="e_date"  required>
+            					</div>
+            					<div Class="form-group">
+            						<label for="destination_url">Priority *</label>
+            						<input type="text" name="priority" id="priority" value="<?php echo $ro['priority'];?>" class="form-control">
+            					</div>
+            					<div Class="form-group">
+            						<label for="status" class="col-sm-4 no-padding">Status: *</label>
+            						<label for="active" class="col-sm-4"><input type="radio" name="status" id="active" value="1" class="radio-control" <?php if($ro['status']==1){?>checked="checked" <?php } ?>> Active</label>
+            						<label for="inactive" class="col-sm-4"><input type="radio" name="status" id="inactive" value="0" class="radio-control" <?php if($ro['status']==0){?>checked="checked" <?php } ?>> Inactive</label>
+            					</div>
+            					<div Class="form-group">
+            						<label for="timer" class="col-sm-4 no-padding">Show Timer:</label>
+            						<label for="active1" class="col-sm-4"><input type="radio" name="timer" id="active1" value="1" class="radio-control" <?php if($ro['timer']==1){?>checked="checked" <?php } ?>> Yes</label>
+            						<label for="inactive1" class="col-sm-4"><input type="radio" name="timer" id="inactive1" value="0" class="radio-control" <?php if($ro['timer']==0){?>checked="checked" <?php } ?>> No</label>
+            					</div>
+            					<div Class="form-group">
+            						<label for="destination_url">Destination URL</label>
+            						<input type="text" name="destination_url" id="destination_url" value="<?php echo $ro['destination_url'];?>" class="form-control">
+            					</div>
+            					<?php } ?>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">

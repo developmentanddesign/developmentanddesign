@@ -22,10 +22,10 @@
 <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap.min.js"></script>
-<script src="js/plugins.js"></script>
-<script src="js/functions.js"></script>
 <!-- AdminLTE App -->
 <script src="js/app.min.js"></script>
+<script src="js/functions.js"></script>
+<script src="js/plugins.js"></script>
 
 </body>
 </html>

@@ -14,10 +14,10 @@
     </section>
 <?php	if(isset($_GET['del'])){
 					$id=$_GET['del'];
-					$query="delete from videos where id='".mysqli_real_escape_string($conn,$id)."'";
+					$query="delete from aboutus where id='".mysqli_real_escape_string($conn,$id)."'";
 					$run=mysqli_query($conn,$query);
 					if($run){ $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-						<span class=\"bold\">Success: </span>  Video Deleted. </div>";
+						<span class=\"bold\">Success: </span>  Details Deleted. </div>";
 					}else{
 						$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
 						<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
@@ -38,33 +38,39 @@
                         <thead>
                         <tr>
                           <th>Sr.</th>
-                          <th>Thumbnail</th>
-                          <th>URL</th>
-                          <th>Action</th>
+                          <th>Title</th>
+                          <th>Description</th>
+                          <th>Meta Title</th>
+                          <th>Meta Description</th>
+                          <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
                        <?php 
                             //insert query//
-                            $r="select * from videos";
+                            $r="select * from aboutus";
                             $sr=1;
                             $result=mysqli_query($conn,$r) or die (mysql_error());
                             while($row=mysqli_fetch_array($result,MYSQL_ASSOC)){
                                 $id=$row['id'];
                             	$title=$row['title'];
-                            	$URL=$row['url'];
+                            	$desc=$row['description'];
+                            	$mtitle=$row['meta_title'];
+                            	$mdesc=$row['meta_desc'];
                             	
                             ?>
                             <tr>
                               <td><?php echo $sr;?></td>
-                              <td class="text-center"><img src="<?php getYoutubeImage($URL)?>" height="50px" width="50px" /></td>
-                              <td><?php echo $URL;?></td>
-                              <td>  <a href="editvideo.php?id=<?php echo $id; ?>">
+                              <td><?php echo $title;?></td>
+                              <td><?php echo wordwrap($desc,35,"<br>\n");?></td>
+                              <td><?php echo $mtitle;?></td>
+                              <td><?php echo wordwrap($mdesc,35,"<br>\n");?></td>
+                              <td>  <a href="editdetail.php?id=<?php echo $id; ?>">
             						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             						<button class="btn btn-success"><i class="fa fa-pencil-square-o"></i></button>
             						</a>
             						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
-            						<button id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="allvideos.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></td>
+            						<button id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="alldetails.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></td>
                             </tr>
         				<?php $sr++;}?>
 

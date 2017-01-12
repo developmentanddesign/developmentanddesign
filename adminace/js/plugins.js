@@ -13,4 +13,6 @@ $(function () {
 	 $('#e_date').datepicker({
       autoclose: true
     });
+    CKEDITOR.replace('editor1');
+    
 });
