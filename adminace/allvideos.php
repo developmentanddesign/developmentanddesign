@@ -43,50 +43,58 @@
                         <thead>
                         <tr>
                           <th>Sr.</th>
-                          <th>Image</th>
-                          <th>Image ALT</th>
-                          <th>Image Title</th>
-                          <th>Detination URL</th>
-                				  <th>Status</th>
-                				  <th>Priority</th>
-                				  <th>Actions</th>
+                          <th>Thumnnail</th>
+                          <th>URL</th>
                         </tr>
                         </thead>
                         <tbody>
                        <?php 
                             //insert query//
-                            $r="select * from slider";
+                            $r="select * from videos";
                             $sr=1;
                             $result=mysqli_query($conn,$r) or die (mysql_error());
                             while($row=mysqli_fetch_array($result,MYSQL_ASSOC)){
-                            	$id=$row['id'];
-                            	$image_name=$row['image_name'];
-                            	$image_alt=$row['image_alt'];
-                            	$image_title=$row['image_title'];
-                            	$status=$row['status'];
-                            	$priority=$row['priority'];
-                            	$destination_url=$row['destination_url'];
+                                $id=$row['id'];
+                            	$title=$row['title'];
+                            	$URL=$row['url'];
                             	
                             ?>
-                        <tr>
-                          <td><?php echo $sr;?></td>
-                          <td><img src="../images/slides/<?php echo $image_name;?>" height="50px" width="50px" /></td>
-                          <td><?php echo $image_alt;?></td>
-                				  <td><?php echo $image_title;?></td>
-                				  <td><?php echo $destination_url;?></td>
-                				  <td><?php echo $status;?></td>
-                				  <td><?php echo $priority;?></td>
-                          <td>  <a href="editslide.php?id=<?php echo $id; ?>">
-                						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                						<button class="btn btn-success"><i class="fa fa-pencil-square-o"></i></button>
-                						</a>
-                						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
-                						<button id="<?php echo $id; ?>" class="btn btn-danger delete" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></td>
-                          </tr>
-                          <?php $sr++;	}?>
-        
+                            <tr>
+                              <td><?php echo $sr;?></td>
+                              <td class="text-center"><img src="<?php getYoutubeImage($URL)?>" height="50px" width="50px" /></td>
+                              <td><?php echo $URL;?></td>
+                              <td>  <a href="editvideo.php?id=<?php echo $id; ?>">
+            						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            						<button class="btn btn-success"><i class="fa fa-pencil-square-o"></i></button>
+            						</a>
+            						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+            						<button id="<?php echo $id; ?>" class="btn btn-danger delete" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></td>
+                            </tr>
+        				<?php $sr++;}?>
+
                         </tbody>
                    </table>
+                   
+
+                            <?php
+                                    function getYoutubeImage($e){
+                                    //GET THE URL
+                                    $url = $e;
+                            
+                                    $queryString = parse_url($url, PHP_URL_QUERY);
+                            
+                                    parse_str($queryString, $params);
+                            
+                                    $v = $params['v'];  
+                                    //DISPLAY THE IMAGE
+                                    if(strlen($v)>0){
+                                        echo "http://img.youtube.com/vi/$v/0.jpg";
+                                    }
+                                }
+                            ?>
+                            
+
+
                 </div>
                 <!-- /.box-body -->
                  <!-- Modal -->
@@ -120,3 +128,4 @@
   <!-- /.content-wrapper -->
   
 <?php include_once('views/footer.php');?>
+

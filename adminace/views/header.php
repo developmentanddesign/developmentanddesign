@@ -97,6 +97,72 @@
             <li><a href="allslides.php"><i class="fa fa-circle-o"></i>All Slides</a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Albums Management</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="addvideo.php"><i class="fa fa-circle-o"></i>Add Album</a></li>
+            <li><a href="allvideos.php"><i class="fa fa-circle-o"></i>All Albums</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Video Management</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="addvideo.php"><i class="fa fa-circle-o"></i>Add Video URL</a></li>
+            <li><a href="allvideos.php"><i class="fa fa-circle-o"></i>All Videos URL</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Contact Management</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="addcdetail.php"><i class="fa fa-circle-o"></i>Add Details</a></li>
+            <li><a href="allcdetails.php"><i class="fa fa-circle-o"></i>All Details</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Terms & Conditions</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="addterms.php"><i class="fa fa-circle-o"></i>Add Term</a></li>
+            <li><a href="allterms.php"><i class="fa fa-circle-o"></i>All Terms</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Privacy Policies</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="addpolicy.php"><i class="fa fa-circle-o"></i>Add Policy</a></li>
+            <li><a href="allpolicies.php"><i class="fa fa-circle-o"></i>All Policies</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Disclaimer</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="adddisclaimer.php"><i class="fa fa-circle-o"></i>Add Details</a></li>
+            <li><a href="alldisclaimers.php"><i class="fa fa-circle-o"></i>All Details</a></li>
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

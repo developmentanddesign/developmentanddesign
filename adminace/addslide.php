@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
 		$_POST['timer']==""||$_POST['priority']==""||$_POST['status']=="")
 		{
 			$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-							<span class=\"bold\">Error: </span>  Please Fill All the Fields. </div>";
+							<span class=\"bold\">Error: </span>  Please Fill * the Fields. </div>";
 		}else{
 		
 			$s_date=explode('-',$_POST['s_date']);
@@ -42,7 +42,7 @@ if(isset($_POST['submit'])){
 			";
 			$n=mysqli_query($conn,$p);
 			if($n){ $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-							<span class=\"bold\">Success: </span>  Slide Added. </div>";
+							<span class=\"bold\">Success: </span>  Slide Added Successfully. </div>";
 					move_uploaded_file($_FILES['image_name']['tmp_name'],"../images/slides/".$_FILES['image_name']['name']);
 			 }
 			else{$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
@@ -64,15 +64,15 @@ if(isset($_POST['submit'])){
                 <div class="box-body">
                   <?php global $msg; echo $msg;?>
         					<div Class="form-group">
-        						<label for="image_name">Image</label>
+        						<label for="image_name">Image *</label>
         						<input type="file" name="image_name" id="image_name" value="" required>
         					</div>
         					<div Class="form-group">
-        						<label for="image_alt">Image ALT</label>
+        						<label for="image_alt">Image ALT *</label>
         						<input type="text" name="image_alt" id="image_alt" value="" class="form-control" required>
         					</div>
         					<div Class="form-group">
-        						<label for="image_title">Image Title</label>
+        						<label for="image_title">Image Title *</label>
         						<input type="text" name="image_title" id="image_title" value="" class="form-control" required>
         					</div>
         					<div Class="form-group">
@@ -86,19 +86,19 @@ if(isset($_POST['submit'])){
         						<i><small>Optional</small></i>
         					</div>
         					<div Class="form-group">
-        						<label for="s_date">Start Date</label>
+        						<label for="s_date">Start Date *</label>
         						<input type="text" name="s_date" value="" class="form-control" data-date-format="dd-mm-yyyy" id="s_date" required>
         					</div>
         					<div Class="form-group">
-        						<label for="e_date">End Date</label>
+        						<label for="e_date">End Date *</label>
         						<input type="text" name="e_date" value="" class="form-control" data-date-format="dd-mm-yyyy" id="e_date" required>
         					</div>
         					<div Class="form-group">
-        						<label for="priority">Priority</label>
+        						<label for="priority">Priority *</label>
         						<input type="text" name="priority" id="priority" value="" class="form-control" required>
         					</div>
         					<div Class="form-group">
-        						<label for="status" class="col-sm-4 no-padding">Status:</label>
+        						<label for="status" class="col-sm-4 no-padding">Status: *</label>
         						<label for="active" class="col-sm-4"><input type="radio" name="status" id="active" value="1" class="radio-control" checked="checked"> Active</label>
         						<label for="inactive" class="col-sm-4"><input type="radio" name="status" id="inactive" value="0" class="radio-control"> Inactive</label>
         					</div>
@@ -109,7 +109,7 @@ if(isset($_POST['submit'])){
         					</div>
         					<div Class="form-group">
         						<label for="destination_url">Destination URL</label>
-        						<input type="text" name="destination_url" id="destination_url" value="" class="form-control" required>
+        						<input type="text" name="destination_url" id="destination_url" value="" class="form-control">
         					</div>
                 </div>
                 <!-- /.box-body -->
@@ -156,9 +156,7 @@ if(isset($_POST['submit'])){
                                   <td><?php echo $count;?></td>
                                   
                                 </tr>
-                				<?php
-                					}
-                					?>
+                				<?php } ?>
                 
                                 </tbody>
                                </table>
@@ -176,4 +174,3 @@ if(isset($_POST['submit'])){
   
 <?php include_once('views/footer.php');?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
-<script src="js/functions.js"></script>
