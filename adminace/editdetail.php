@@ -15,11 +15,8 @@
 <?php
 
 if(isset($_POST['submit'])){
-		if($_POST['title']=="")
-		{
-			$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-							<span class=\"bold\">Error: </span>  Please Fill the Title. </div>";
-		}elseif($_POST['desc']=="")
+		if($_POST['title']==""){$_POST['title']="About Us";}
+		if($_POST['desc']=="")
 		{
 		    $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
 							<span class=\"bold\">Error: </span>  Please Fill the Description </div>";
@@ -53,7 +50,7 @@ if(isset($_POST['submit'])){
       <div class="col-xs-12">
           <div class="box box-info">
               <div class="box-header with-border">
-                <h3 class="box-title">About Page Detail</h3>
+                <h3 class="box-title">Update About Page Details</h3>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
@@ -63,16 +60,16 @@ if(isset($_POST['submit'])){
                      <?php $id=$_GET['id']; 
                         $q="select * from aboutus where id=$id";
                         $r=mysqli_query($conn,$q);
-        					while($ro=mysqli_fetch_array($r)){
+        					      while($ro=mysqli_fetch_array($r)){
         				?>
                     <div class="col-sm-6">
     					<div Class="form-group">
     						<label for="title">Title</label>
-    						<input type="text" name="title" id="title" value="<?php echo $ro['title'];?>"  class="form-control"  required>
+    						<input type="text" name="title" id="title" value="About Us" title="Already Filled" disabled class="form-control"  required>
     					</div>
     					<div Class="form-group">
     						<label for="editor1">Description</label>
-    			            <textarea id="editor1" name="desc" rows="10" cols="80" required>
+    			            <textarea id="editor1" name="desc" rows="10" cols="80" title="Please Fill out This Field" required>
                                  <?php echo $ro['description'];?>
                             </textarea>
     					</div>
@@ -80,11 +77,11 @@ if(isset($_POST['submit'])){
     				<div class="col-sm-6">
     					<div Class="form-group">
     						<label for="mtitle">Meta Title</label>
-    						<input type="text" name="mtitle" id="mtitle" value="<?php echo $ro['meta_title'];?>"  class="form-control"  required>
+    						<input type="text" name="mtitle" id="mtitle" value="<?php echo $ro['meta_title'];?>" title="Please Fill out This Field" class="form-control"  required>
     					</div>
     					<div Class="form-group">
     						<label for="mdesc">Meta Description</label>
-    						<textarea id="mdesc" name="mdesc" rows="5" class="form-control" cols="30" required> <?php echo $ro['meta_desc'];?></textarea>
+    						<textarea id="mdesc" name="mdesc" rows="5" class="form-control" cols="30" title="Please Fill out This Field" required> <?php echo $ro['meta_desc'];?></textarea>
     					</div>
                     </div>
                     <?php } ?>

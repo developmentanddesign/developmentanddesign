@@ -9,12 +9,12 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">About Us</li>
+        <li class="active">Disclaimer</li>
       </ol>
     </section>
 <?php	if(isset($_GET['del'])){
 					$id=$_GET['del'];
-					$query="delete from aboutus where id='".mysqli_real_escape_string($conn,$id)."'";
+					$query="delete from disclaimer where id='".mysqli_real_escape_string($conn,$id)."'";
 					$run=mysqli_query($conn,$query);
 					if($run){ $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
 						<span class=\"bold\">Success: </span>  Details Deleted. </div>";
@@ -29,7 +29,7 @@
       <div class="col-xs-12">
           <div class="box box-info">
               <div class="box-header with-border">
-                <h3 class="box-title">All About Page Entries <a href="adddetail.php" title="Add New"><span class="btn btn-warning">Add New</a></span></h3>
+                <h3 class="box-title">All Disclaimer Page Entries <a href="adddisclaimer.php" title="Add New"><span class="btn btn-warning">Add New</a></span></h3>
               </div>
               <!-- /.box-header -->
                 <div class="box-body">
@@ -48,7 +48,7 @@
                         <tbody>
                        <?php 
                             //insert query//
-                            $r="select * from aboutus";
+                            $r="select * from disclaimer";
                             $sr=1;
                             $result=mysqli_query($conn,$r) or die (mysql_error());
                             while($row=mysqli_fetch_array($result,MYSQL_ASSOC)){
@@ -65,14 +65,14 @@
                               <td><?php echo wordwrap($desc,35,"<br>\n");?></td>
                               <td><?php echo $mtitle;?></td>
                               <td><?php echo wordwrap($mdesc,35,"<br>\n");?></td>
-                              <td>  <a href="editdetail.php?id=<?php echo $id; ?>">
+                              <td>  <a href="editdisclaimer.php?id=<?php echo $id; ?>">
             						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             						<button title="Edit" class="btn btn-success"><i class="fa fa-pencil-square-o"></i></button>
             						</a>
             						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
-            						<button title="Delete" id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="alldetails.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></td>
+            						<button title="Delete" id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="alldisclaimers.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></td>
                             </tr>
-        				<?php $sr++;}?>
+        				        <?php $sr++;}?>
 
                         </tbody>
                    </table>
@@ -102,7 +102,6 @@
               		<!-- /Modal -->
             </div>
         
-        <div class="clearfix"></div>
         </div>
         <div class="clearfix"></div>
     </section>

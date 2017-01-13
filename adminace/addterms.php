@@ -9,13 +9,13 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">About Us</li>
+        <li class="active">Terms</li>
       </ol>
     </section>
 <?php
 
 if(isset($_POST['submit'])){
-		if($_POST['title']==""){$_POST['title']="About Us";}
+		if($_POST['title']==""){$_POST['title']="Terms and Conditions";}
 		if($_POST['desc']=="")
 		{
 		    $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
@@ -30,7 +30,7 @@ if(isset($_POST['submit'])){
 							<span class=\"bold\">Error: </span>  Please Fill the Meta Description </div>";
 		}else{
 		
-			$p="insert into aboutus set
+			$p="insert into terms set
 			    title='".mysqli_real_escape_string($conn,$_POST['title'])."',
 			    description='".mysqli_real_escape_string($conn,$_POST['desc'])."',
 			    meta_title='".mysqli_real_escape_string($conn,$_POST['mtitle'])."',
@@ -50,7 +50,7 @@ if(isset($_POST['submit'])){
       <div class="col-xs-12">
           <div class="box box-info">
               <div class="box-header with-border">
-                <h3 class="box-title">About Page Details</h3>
+                <h3 class="box-title">Terms Page Details</h3>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
@@ -61,11 +61,11 @@ if(isset($_POST['submit'])){
                     <div class="col-sm-6">
     					<div Class="form-group">
     						<label for="title">Title</label>
-    						<input type="text" name="title" id="title" value="About Us" class="form-control" disabled title="Already Filled"  required>
+    						<input type="text" name="title" id="title" value="Terms and Conditions" disabled title="Already Field" class="form-control"  required>
     					</div>
     					<div Class="form-group">
     						<label for="editor1">Description</label>
-    			            <textarea id="editor1" name="desc" rows="10" cols="80" title="Please Fill out This Field" required></textarea>
+    			            <textarea id="editor1" name="desc" rows="10" title="Please Fill out This Field" cols="80" required></textarea>
     					</div>
     				</div>
     				<div class="col-sm-6">
@@ -75,7 +75,7 @@ if(isset($_POST['submit'])){
     					</div>
     					<div Class="form-group">
     						<label for="mdesc">Meta Description</label>
-    						<textarea id="mdesc" name="mdesc" rows="5" class="form-control" cols="30" title="Please Fill out This Field" required></textarea>
+    						<textarea id="mdesc" name="mdesc" rows="5" title="Please Fill out This Field" class="form-control" cols="30" required></textarea>
     					</div>
                     </div>
                 </div>
@@ -90,6 +90,7 @@ if(isset($_POST['submit'])){
               
             <div class="clearfix"></div>
         </div>
+        <div class="clearfix"></div>
     </section>
     <!-- /.content -->
   </div>

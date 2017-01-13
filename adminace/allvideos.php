@@ -9,7 +9,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li class="active">Videos</li>
       </ol>
     </section>
 <?php	if(isset($_GET['del'])){
@@ -29,7 +29,7 @@
       <div class="col-xs-12">
           <div class="box box-info">
               <div class="box-header with-border">
-                <h3 class="box-title">Add Slide</h3>
+                <h3 class="box-title">All Videos <a href="addvideo.php" title="Add New"><span class="btn btn-warning">Add New</a></span></h3>
               </div>
               <!-- /.box-header -->
                 <div class="box-body">
@@ -40,7 +40,7 @@
                           <th>Sr.</th>
                           <th>Thumbnail</th>
                           <th>URL</th>
-                          <th>Action</th>
+                          <th align="center">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -61,12 +61,12 @@
                               <td><?php echo $URL;?></td>
                               <td>  <a href="editvideo.php?id=<?php echo $id; ?>">
             						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            						<button class="btn btn-success"><i class="fa fa-pencil-square-o"></i></button>
+            						<button title="Edit" class="btn btn-success"><i class="fa fa-pencil-square-o"></i></button>
             						</a>
             						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
-            						<button id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="allvideos.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></td>
+            						<button title="Delete" id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="allvideos.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></td>
                             </tr>
-        				<?php $sr++;}?>
+        				          <?php $sr++;}?>
 
                         </tbody>
                    </table>
@@ -99,7 +99,7 @@
                 				<div class="modal-content">
                 					<div class="modal-header">
                 						<button class="close" aria-label="Close" data-dismiss="modal" type="button">
-                						<span aria-hidden="true">�</span>
+                						<span aria-hidden="true">&times/span>
                 						</button>
                 						<h4 class="modal-title">Confirmation</h4>
                 					</div>
@@ -116,8 +116,8 @@
               		<!-- /Modal -->
             </div>
         
-        <div class="clearfix"></div>
         </div>
+        <div class="clearfix"></div>
     </section>
     <!-- /.content -->
   </div>
