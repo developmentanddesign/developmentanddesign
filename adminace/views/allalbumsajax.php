@@ -19,15 +19,48 @@
         	$title=$row['title'];
         	$image_name=$row['cover'];
         ?>
+        <form action="#" method="post" enctype="multipart/formdata">
         <tr>
           <td><?php echo $sr;?></td>
-          <td><?php echo ucwords($title);?></td>
-          <td><img src="../images/albumcover/<?php echo $image_name;?>" height="50px" width="50px" /></td>
+          <td> <?php if($_GET['edit'] )
+                {   if($_GET['edit']!="" && $_GET['edit']==$id) { ?>
+                        <div Class='form-group col-sm-4 col-md-5 col-xs-12 title-height'>
+    						<input type='text' name='title' id='title' value='' class='form-control'  required>
+    					</div> 
+        	      <?php } else {?>
+                  <?php echo ucwords($title);?>
+          <?php } }else{ echo ucwords($title); } ?>
+          </td>
+          <td>
+          <?php if($_GET['edit'])
+                {  if($_GET['edit']!="" && $_GET['edit']==$id) { ?>
+                    <div class="input-group image-preview">
+                        <input id="coverinput" type="text" class="form-control image-preview-filename" disabled="disabled" title="Please Browse an Image"> <!-- don't give a name === doesn't send on POST/GET -->
+                        <span class="input-group-btn">
+                            <!-- image-preview-clear button -->
+                            <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                <span class="glyphicon glyphicon-remove"></span> Clear
+                            </button>
+                            <!-- image-preview-input -->
+                            <div class="btn btn-default image-preview-input">
+                                <span class="glyphicon glyphicon-folder-open"></span>
+                                <span class="image-preview-input-title">Browse</span>
+                                <input id="coverimg" type="file" accept="image/png, image/jpeg, image/gif" name="cover" required/> <!-- rename it -->
+                            </div>
+                        </span>
+                    </div> 
+        	      <?php  }else {?>
+                  <img src="../images/albumcover/<?php echo $image_name;?>" height="50px" width="50px" />
+          <?php }}else{?>
+              <img src="../images/albumcover/<?php echo $image_name;?>" height="50px" width="50px" />
+          <?php } ?>
+          </td>
           <td class="text-center">
       		<button id="<?php echo $id; ?>" data-href="addalbum.php" title="Edit" class="btn btn-success edit-btn"><i class="fa fa-pencil-square-o"></i></button>
       		<button title="Delete" id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="addalbum.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button>
       		</td>
         </tr>
+        </form>
     <?php $sr++;}?>
 
     </tbody>
@@ -50,27 +83,28 @@
     $('.del-confirm').attr('href',href+id);
     });
     
-    // edit album function in same field
-     $('.edit-btn').click(function(){
-    var id= $(this).attr('id');
-    var href= $(this).attr('data-href');
+    // edit album function in same field 
+    $('.edit-btn').click(function(){
+        var id= $(this).attr('id');
+        RefreshPageUrl('Add Album', 'addalbum.php?edit='+id);
+        $(this).html('Update');
         $.ajax({
-            url: href,
+            url: "views/allalbumsajax.php",
             type: "GET",
-            data: {edit: id},
+            data: {edit : id},
             success: function(data) {
-                alert("hello");
+             $('.albumdata').html(data);
             }
         });
     });
     
-    /*function ChangeUrl(title, url) {
-        if (typeof (history.pushState) != "undefined") {
-            var obj = { Title: title, Url: url };
-            history.pushState(obj, obj.Title, obj.Url);
+    // passing edit id in url without page refresh
+    function RefreshPageUrl(title, url) {
+        if (history.pushState) {
+        history.pushState(null, title, url);
         } else {
-            alert("Browser does not support HTML5.");
+        alert("Your Browser will not Support HTML5");
         }
-    }*/
+    }
 </script>
 </script>
