@@ -95,7 +95,7 @@
                 				<div class="modal-content">
                 					<div class="modal-header">
                 						<button class="close" aria-label="Close" data-dismiss="modal" type="button">
-                						<span aria-hidden="true">&times/span>
+                						<span aria-hidden="true">&times</span>
                 						</button>
                 						<h4 class="modal-title">Confirmation</h4>
                 					</div>

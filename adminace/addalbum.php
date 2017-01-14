@@ -15,15 +15,15 @@
     
 <?php	if(isset($_GET['del'])){
 					$id=$_GET['del'];
-					$query1="select * from slider where id='".mysqli_real_escape_string($conn,$id)."'";
+					$query1="select * from albums where id='".mysqli_real_escape_string($conn,$id)."'";
 					$run1=mysqli_query($conn,$query1);
 					while($ro=mysqli_fetch_array($run1)){
-						unlink('../images/slides/'.$ro['image_name']);
+						unlink('../images/albumcover/'.$ro['cover']);
 					}
-					$query="delete from slider where id='".mysqli_real_escape_string($conn,$id)."'";
+					$query="delete from albums where id='".mysqli_real_escape_string($conn,$id)."'";
 					$run=mysqli_query($conn,$query);
 					if($run){ $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-						<span class=\"bold\">Success: </span>  Slide Deleted. </div>";
+						<span class=\"bold\">Success: </span>  Album Deleted. </div>";
 					}else{
 						$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
 						<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
@@ -80,12 +80,13 @@
       				<div class="modal-content">
       					<div class="modal-header">
       						<button class="close" aria-label="Close" data-dismiss="modal" type="button">
-      						<span aria-hidden="true">&times/span>
+      						<span aria-hidden="true">&times</span>
       						</button>
       						<h4 class="modal-title">Confirmation</h4>
       					</div>
       					<div class="modal-body">
-      						<p>Confirm Delete</p>
+      					  <p>All Album Images will be Deleted </p>
+      						<p> Confirm Delete </p>
       					</div>
       					<div class="modal-footer">
       						<button class="btn btn-outline pull-left" data-dismiss="modal" type="button">No</button>
