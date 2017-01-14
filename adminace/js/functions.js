@@ -117,3 +117,4 @@ $(function() {
         reader.readAsDataURL(file);
     });  
 });
+

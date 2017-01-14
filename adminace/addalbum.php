@@ -74,6 +74,7 @@
               </form>
             </div>
       </div>
+      
        <!-- Modal -->
       		<div class="modal modal-primary" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       			<div class="modal-dialog">
