@@ -63,11 +63,11 @@
       		        }?> 
       		        id="<?php echo $id; ?>" 
       		        data-href="addalbum.php" 
-      		        title="<?php if($_GET['edit']=="")
+      		        title="<?php if($_GET['edit']=="" || $_GET['edit']!=$id)
       		        { echo "Edit";} 
       		        else{ echo "Update"; }?>"
       		        class="btn btn-success 
-      		        <?php if($_GET['edit']=="")
+      		        <?php if($_GET['edit']=="" || $_GET['edit']!=$id)
       		        { echo "edit-btn";} else{ }?>">
       		        <?php if($_GET['edit']=="" 
       		                || !isset($_GET['edit']) 
