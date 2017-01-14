@@ -19,13 +19,15 @@
         	$title=$row['title'];
         	$image_name=$row['cover'];
         ?>
-        <form action="#" method="post" enctype="multipart/formdata">
+        <?php if($_GET['edit']!="" && $_GET['edit']==$id){?>
+        <form id="update_form" action="../ajax/albumajax.php" method="post" enctype="multipart/formdata">
+        <?php } ?>
         <tr>
           <td><?php echo $sr;?></td>
           <td> <?php if($_GET['edit'] )
                 {   if($_GET['edit']!="" && $_GET['edit']==$id) { ?>
-                        <div Class='form-group col-sm-4 col-md-5 col-xs-12 title-height'>
-    						<input type='text' name='title' id='title' value='' class='form-control'  required>
+                        <div Class='form-group col-sm-12 col-md-12 col-xs-12 title-height'>
+    						<input type='text' name='title' id='title' value='<?php echo $title;?>' class='form-control'  required>
     					</div> 
         	      <?php } else {?>
                   <?php echo ucwords($title);?>
@@ -34,8 +36,11 @@
           <td>
           <?php if($_GET['edit'])
                 {  if($_GET['edit']!="" && $_GET['edit']==$id) { ?>
-                    <div class="input-group image-preview-new">
-						<input type="text" class="form-control image-preview-filename-new" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                    <div class="input-group image-preview-new col-sm-12">
+						<input type="text" class="form-control image-preview-filename-new" disabled="disabled">
+						<input type="hidden" name="form" value="updatealbum">
+						<input type="hidden" name="id" value="<?php echo $id;?>">
+						<input type="hidden" name="img" value="<?php echo $image_name;?>">
 						<span class="input-group-btn">
 							<!-- image-preview-clear button -->
 							<button type="button" class="btn btn-default image-preview-clear-new" style="display:none;">
@@ -45,7 +50,7 @@
 							<div class="btn btn-default image-preview-input-new">
 								<span class="glyphicon glyphicon-folder-open"></span>
 								<span class="image-preview-input-title-new">Browse</span>
-								<input type="file" accept="image/png, image/jpeg, image/gif" name="cover_new"/> <!-- rename it -->
+								<input type="file" accept="image/png, image/jpeg, image/gif" name="cover"/> <!-- rename it -->
 							</div>
 						</span>
 					</div>
@@ -68,7 +73,7 @@
       		        else{ echo "Update"; }?>"
       		        class="btn btn-success 
       		        <?php if($_GET['edit']=="" || $_GET['edit']!=$id)
-      		        { echo "edit-btn";} else{ }?>">
+      		        { echo "edit-btn";} else{ echo "update-btn"; }?>">
       		        <?php if($_GET['edit']=="" 
       		                || !isset($_GET['edit']) 
       		                || $_GET['edit']!=$id )
@@ -79,14 +84,14 @@
       		<button title="Delete" id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="addalbum.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button>
       		</td>
         </tr>
-        </form>
+        <?php if($_GET['edit']!="" && $_GET['edit']==$id){?></form><?php } ?>
     <?php $sr++;}?>
 
     </tbody>
 </table>
 <script>
 
-    // initialize datatable on adalbums page
+// initialize datatable on adalbums page
    $('#example').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -117,18 +122,18 @@
     });
     
     //your jQuery ajax code
-        $(document).on('click', '#close-preview-new', function(){ 
-            $('.image-preview-new').popover('hide');
-            // Hover befor close the preview
-            $('.image-preview').hover(
-                function () {
-                   $('.image-preview-new').popover('show');
-                }, 
-                 function () {
-                   $('.image-preview-new').popover('hide');
-                }
-            );    
-        });
+    $(document).on('click', '#close-preview-new', function(){ 
+        $('.image-preview-new').popover('hide');
+        // Hover befor close the preview
+        $('.image-preview').hover(
+            function () {
+               $('.image-preview-new').popover('show');
+            }, 
+             function () {
+               $('.image-preview-new').popover('hide');
+            }
+        );    
+    });
         
     // Create the close button
     var closebtn = $('<button/>', {
@@ -138,6 +143,7 @@
         style: 'font-size: initial;',
     });
     closebtn.attr("class","close pull-right");
+    
     // Set the popover default content
     $('.image-preview-new').popover({
         trigger:'manual',
@@ -146,6 +152,7 @@
         content: "There's no image",
         placement:'bottom'
     });
+    
     // Clear event
     $('.image-preview-clear-new').click(function(){
         $('.image-preview-new').attr("data-content","").popover('hide');
@@ -154,6 +161,7 @@
         $('.image-preview-input-new input:file').val("");
         $(".image-preview-input-title-new").text("Browse"); 
     }); 
+    
     // Create the preview image
     $(".image-preview-input-new input:file").change(function (){     
         var img = $('<img/>', {
@@ -163,7 +171,8 @@
         });      
         var file = this.files[0];
         var reader = new FileReader();
-        // Set preview image into the popover data-content
+        
+    // Set preview image into the popover data-content
         reader.onload = function (e) {
             $(".image-preview-input-title-new").text("Change");
             $(".image-preview-clear-new").show();

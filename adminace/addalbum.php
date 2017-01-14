@@ -45,6 +45,7 @@
                   <div id="result"></div>
         					<div Class="form-group col-sm-4 col-md-5 col-xs-12 title-height">
         						<label for="title">Album Title</label>
+        						<input type="hidden" name="form" value="addalbum">
         						<input type="text" name="title" id="title" value="" class="form-control"  required>
         					</div>
         					<div Class="form-group col-sm-5 col-md-5 col-xs-12">
