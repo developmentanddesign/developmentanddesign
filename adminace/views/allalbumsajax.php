@@ -5,6 +5,7 @@
       <th>Sr.</th>
       <th>Title</th>
       <th>Cover</th>
+      <th>Created</th>
       <th class="text-center">Actions</th>
     </tr>
     </thead>
@@ -18,29 +19,28 @@
             $id=$row['id'];
         	$title=$row['title'];
         	$image_name=$row['cover'];
+        	$created=$row['created'];
+        	$lastupdate=$row['lastupdate'];
         ?>
-        <?php if($_GET['edit']!="" && $_GET['edit']==$id){?>
-        <form id="update_form" action="../ajax/albumajax.php" method="post" enctype="multipart/formdata">
-        <?php } ?>
         <tr>
           <td><?php echo $sr;?></td>
           <td> <?php if($_GET['edit'] )
                 {   if($_GET['edit']!="" && $_GET['edit']==$id) { ?>
                         <div Class='form-group col-sm-12 col-md-12 col-xs-12 title-height'>
-    						<input type='text' name='title' id='title' value='<?php echo $title;?>' class='form-control'  required>
+    						<input type='text' name='title' id='title1' value='<?php echo $title;?>' class='form-control'  required>
     					</div> 
         	      <?php } else {?>
-                  <?php echo ucwords($title);?>
-          <?php } }else{ echo ucwords($title); } ?>
+                  <a href="allimages.php?id=<?php echo $id;?>" title="albumimages"><?php echo strlen($title) > 50 ? ucwords(substr($title,0,50))."..." : ucwords($title);?></a>
+          <?php } }else { ?><a href="allimages.php?id=<?php echo $id;?>" title="albumimages"><?php echo strlen($title) > 50 ? ucwords(substr($title,0,50))."..." : ucwords($title); } ?></a>
           </td>
           <td>
           <?php if($_GET['edit'])
                 {  if($_GET['edit']!="" && $_GET['edit']==$id) { ?>
                     <div class="input-group image-preview-new col-sm-12">
 						<input type="text" class="form-control image-preview-filename-new" disabled="disabled">
-						<input type="hidden" name="form" value="updatealbum">
-						<input type="hidden" name="id" value="<?php echo $id;?>">
-						<input type="hidden" name="img" value="<?php echo $image_name;?>">
+						<input type="hidden" name="form" id="form1" value="updatealbum">
+						<input type="hidden" name="id" id="id1" value="<?php echo $id;?>">
+						<input type="hidden" name="img" id="img1" value="<?php echo $image_name;?>">
 						<span class="input-group-btn">
 							<!-- image-preview-clear button -->
 							<button type="button" class="btn btn-default image-preview-clear-new" style="display:none;">
@@ -50,15 +50,28 @@
 							<div class="btn btn-default image-preview-input-new">
 								<span class="glyphicon glyphicon-folder-open"></span>
 								<span class="image-preview-input-title-new">Browse</span>
-								<input type="file" accept="image/png, image/jpeg, image/gif" name="cover"/> <!-- rename it -->
+								<input type="file" accept="image/png, image/jpeg, image/gif" name="cover" id="file1"/> <!-- rename it -->
 							</div>
 						</span>
 					</div>
         	      <?php  }else {?>
-                  <img src="../images/albumcover/<?php echo $image_name;?>" height="50px" width="50px" />
+                  <img src="../images/albumcover/<?php echo $image_name;?>" alt="<?php echo $image_name;?>" height="50px" width="50px" />
           <?php }}else{?>
-              <img src="../images/albumcover/<?php echo $image_name;?>" height="50px" width="50px" />
+              <img src="../images/albumcover/<?php echo $image_name;?>" alt="<?php echo $image_name;?>" height="50px" width="50px" />
           <?php } ?>
+          </td>
+          <td>
+              <span class="pull-left"><?php $dateObject = new DateTime($created);
+                    echo $dateObject->format("d-m-y  H:i A");?></span>
+            <?php if($lastupdate != '0000-00-00 00:00:00'){?>
+              <span class="pull-right" href="#" class="pull-right" data-toggle="popover" title="Last Update" data-content="
+                        <?php $dateObject = new DateTime($lastupdate);
+                            echo $dateObject->format("d-m-y  H:i A");?>
+                ">
+                  <i class="fa fa-pencil"></i>
+              </span>
+            <?php } ?>
+              
           </td>
           <td class="text-center">
       		<button 
@@ -84,7 +97,6 @@
       		<button title="Delete" id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="addalbum.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button>
       		</td>
         </tr>
-        <?php if($_GET['edit']!="" && $_GET['edit']==$id){?></form><?php } ?>
     <?php $sr++;}?>
 
     </tbody>
@@ -100,6 +112,12 @@
       "info": true,
       "autoWidth": false
     });
+    
+    // popover
+    $('[data-toggle="popover"]').popover({
+        placement : 'top',
+        trigger : 'hover'
+    });  
     
     //delete album function
     $('.delete').click(function(){
@@ -117,11 +135,42 @@
             data: {edit : id},
             success: function(data) {
              $('.albumdata').html(data);
+             disablesubmit();
             }
         });
     });
     
-    //your jQuery ajax code
+    // update album Form Submit
+    $('.update-btn').click(function(){
+        var dataimg = new FormData();
+        dataimg.append('cover', $('#file1')[0].files[0]);
+        dataimg.append('id', $('#id1').val());
+        dataimg.append('title', $('#title1').val());
+        dataimg.append('imgold', $('#img1').val());
+        dataimg.append('form', $('#form1').val());
+            $.ajax({
+                url : 'ajax/albumajax.php',
+                type: 'post',
+                data :dataimg,
+                processData: false,
+                contentType: false
+            }).done(function(response){ //
+                $("#result").html(response);
+                $.ajax({
+                    url: "views/allalbumsajax.php",
+                    type: "POST",
+                    data: 'data',
+                    success: function(data) {
+                     $('.albumdata').html(data);
+                     disablesubmit();
+                     $(".image-preview-input-title").text("Browse");
+                    }
+                });
+            });
+    });
+    
+    
+    //Image Preview Code starts
     $(document).on('click', '#close-preview-new', function(){ 
         $('.image-preview-new').popover('hide');
         // Hover befor close the preview
@@ -182,6 +231,6 @@
         }        
         reader.readAsDataURL(file);
     });  
-
+    //Image Preview Code Ends
 
 </script>

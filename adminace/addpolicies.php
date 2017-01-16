@@ -9,7 +9,8 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Privacy Policies</li>
+        <li>Privacy Policies</li>
+        <li class="active">Add Policies/li>
       </ol>
     </section>
 <?php

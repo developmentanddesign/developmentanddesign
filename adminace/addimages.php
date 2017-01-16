@@ -1,4 +1,6 @@
 <?php include_once('views/header.php');?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.6/css/fileinput.css" />
  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -10,21 +12,21 @@
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Albums</li>
-        <li class="active">Add Albums</li>
+        <li class="active">Add Images</li>
       </ol>
     </section>
     
 <?php	if(isset($_GET['del'])){
 					$id=$_GET['del'];
-					$query1="select * from albums where id='".mysqli_real_escape_string($conn,$id)."'";
+					$query1="select * from images where parent_id='".mysqli_real_escape_string($conn,$id)."'";
 					$run1=mysqli_query($conn,$query1);
 					while($ro=mysqli_fetch_array($run1)){
-						unlink('../images/albumcover/'.$ro['cover']);
+						unlink('../images/albumimages/'.$ro['cover']);
 					}
-					$query="delete from albums where id='".mysqli_real_escape_string($conn,$id)."'";
+					$query="delete from images where parent_id='".mysqli_real_escape_string($conn,$id)."'";
 					$run=mysqli_query($conn,$query);
 					if($run){ $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-						<span class=\"bold\">Success: </span>  Album Deleted. </div>";
+						<span class=\"bold\">Success: </span>  Image Deleted. </div>";
 					}else{
 						$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
 						<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
@@ -36,44 +38,34 @@
       <div class="col-xs-12">
           <div class="box box-info">
               <div class="box-header with-border">
-                <h3 class="box-title">Album Tilte</h3>
+                <h3 class="box-title">Album Images</h3>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
               <form id="albums_form" action="ajax/albumajax.php" method="POST" enctype="multipart/form-data">
                 <div class="box-body">
                   <div id="result"><?php global $msg; echo $msg;?></div>
-        					<div Class="form-group col-sm-4 col-md-5 col-xs-12 title-height">
-        						<label for="title">Album Title</label>
-        						<input type="hidden" name="form" value="addalbum">
-        						<div class="field">
-        						  <input type="text" name="title" id="title" value="" class="form-control"  required>
-        						</div>
-        					</div>
-        					<div Class="form-group col-sm-5 col-md-5 col-xs-12">
-        						<label for="desc">Album Cover</label>
-        						<div class="input-group image-preview">
-                        <input id="coverinput" type="text" class="form-control image-preview-filename" disabled="disabled" title="Please Browse an Image"> <!-- don't give a name === doesn't send on POST/GET -->
-                        <span class="input-group-btn">
-                            <!-- image-preview-clear button -->
-                            <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
-                                <span class="glyphicon glyphicon-remove"></span> Clear
-                            </button>
-                            <!-- image-preview-input -->
-                            <div class="btn btn-default field image-preview-input">
-                                <span class="glyphicon glyphicon-folder-open"></span>
-                                <span class="image-preview-input-title">Browse</span>
-                                <input id="coverimg" type="file" accept="image/png, image/jpeg, image/gif" name="cover" required/> <!-- rename it -->
-                            </div>
-                        </span>
-                    </div>
+                  <div Class="form-group col-sm-6">
+                    <label class="control-label">Select Album</label>
+                    <input type="hidden" name="form" value="addimages">
+              			<select class="select2 form-control" name="album">
+              			    <option value="">All</option>
+              			    <?php $p="select * from albums";
+              			          $run=mysqli_query($conn,$p);
+              			          while($row=mysqli_fetch_array($run)){ ?>
+                                      <option value="<?php echo $row['id'];?>"><?php echo $row['title'];?></option>
+              			     <?php  } ?>
+              			</select>		
                   </div>
-                  <div Class="form-group col-sm-3 col-md-2 col-xs-12 btn-height">
-                      <label>&nbsp</label>
-                      <input type="submit" id="submit" name="submit" value="Submit" class="btn btn-primary">
+                  <div Class="form-group col-sm-12">
+                    <label class="control-label">Select Images</label>
+                    <input id="file-5" class="file" type="file" name="images[]" multiple data-preview-file-type="any" data-upload-url="#">
                   </div>
                 </div>
                 <!-- /.box-body -->
+                <div class="box-footer">
+                      <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+                    </div>
               </form>
             </div>
       </div>
@@ -101,23 +93,27 @@
       		</div>
     		<!-- /Modal -->
             
-      <div class="col-sm-12 col-xs-12">
+        <div class="col-sm-12 col-xs-12">
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">All Albums</h3>
+              <h3 class="box-title">All Images</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <div class="box-body albumdata">
+            <div class="box-body imagesdata">
                 
             </div>
           </div>
-      </div>
-              
+        </div>
+      
       <div class="clearfix"></div>
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.6/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.6/themes/gly/theme.min.js"></script>
 <?php include_once('views/footer.php');?>
+

@@ -9,7 +9,8 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Slider</li>
+        <li>Slider</li>
+        <li class="active">All Slides</li>
       </ol>
     </section>
 <?php	if(isset($_GET['del'])){

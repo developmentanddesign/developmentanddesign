@@ -7,12 +7,22 @@ $(function () {
       "info": true,
       "autoWidth": false
     });
+    
+    // datepicker for slider start date
     $('#s_date').datepicker({
       autoclose: true
     });
+    
+    // datepicker for slider end date
 	 $('#e_date').datepicker({
       autoclose: true
     });
+    
+    // Custom select box select 2
+    $(".select2").select2();
+    
+    // html Editor
     CKEDITOR.replace('editor1');
+    
     
 });

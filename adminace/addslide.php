@@ -10,7 +10,8 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li>Slider</li>
+        <li class="active">Add Slide</li>
       </ol>
     </section>
 <?php

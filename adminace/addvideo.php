@@ -9,7 +9,8 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Video Management</li>
+        <li>Videos</li>
+        <li class="active">Add Videos</li>
       </ol>
     </section>
 <?php

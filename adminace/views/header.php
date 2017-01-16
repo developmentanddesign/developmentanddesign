@@ -106,19 +106,19 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="addalbum.php"><i class="fa fa-circle-o"></i>Add Album</a></li>
-            <li><a href="allalbum.php"><i class="fa fa-circle-o"></i>All Albums</a></li>
-            <li><a href="allalbum.php"><i class="fa fa-circle-o"></i>All Album Images</a></li>
+            <li><a href="addimages.php"><i class="fa fa-circle-o"></i>Add Images</a></li>
+            <li><a href="allimages.php"><i class="fa fa-circle-o"></i>All Images</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
-            <span>Video</span>
+            <span>Videos</span>
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="addvideo.php"><i class="fa fa-circle-o"></i>Add Video URL</a></li>
-            <li><a href="allvideos.php"><i class="fa fa-circle-o"></i>All Videos URL</a></li>
+            <li><a href="addvideo.php"><i class="fa fa-circle-o"></i>Add Videos</a></li>
+            <li><a href="allvideos.php"><i class="fa fa-circle-o"></i>All Videos</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -161,7 +161,7 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="addpolicies.php"><i class="fa fa-circle-o"></i>Add Policy</a></li>
+            <li><a href="addpolicies.php"><i class="fa fa-circle-o"></i>Add Policies</a></li>
             <li><a href="allpolicies.php"><i class="fa fa-circle-o"></i>All Policies</a></li>
           </ul>
         </li>

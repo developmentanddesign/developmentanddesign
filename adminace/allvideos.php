@@ -10,6 +10,7 @@
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Videos</li>
+        <li >All Videos</li>
       </ol>
     </section>
 <?php	if(isset($_GET['del'])){
