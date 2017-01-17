@@ -1,5 +1,5 @@
 <?php require_once('../config/config.php');?>
-<table id="example" class="table table-striped table-bordered dt-responsive nowrap">
+<table id="example3" class="table table-striped table-bordered dt-responsive nowrap">
     <thead>
     <tr>
       <th>Sr.</th>
@@ -12,7 +12,14 @@
     <tbody>
    <?php 
         //fetch query//
-        $r="select * from albumimages order by 1 desc";
+        if($_POST['select']=="all"){
+          $r="select * from albumimages order by 1 desc";
+        }elseif($_POST['select']=="one"){
+          $id=$_POST['id'];
+           $r="select * from albumimages where parent_id=$id order by 1 desc";
+        }else{
+          $r="select * from albumimages order by 1 desc";
+        }
         $sr=1;
         $result=mysqli_query($conn,$r) or die (mysql_error());
         while($row=mysqli_fetch_array($result,MYSQL_ASSOC)){
@@ -33,15 +40,6 @@
           <td>
               <span class="pull-left"><?php $dateObject = new DateTime($created);
                     echo $dateObject->format("d-m-y  H:i A");?></span>
-            <?php if($lastupdate != '0000-00-00 00:00:00'){?>
-              <span class="pull-right" href="#" class="pull-right" data-toggle="popover" title="Last Update" data-content="
-                        <?php $dateObject = new DateTime($lastupdate);
-                            echo $dateObject->format("d-m-y  H:i A");?>
-                ">
-                  <i class="fa fa-pencil"></i>
-              </span>
-            <?php } ?>
-              
           </td>
           <td class="text-center">
       		<button title="Delete" id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="addimages.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button>
@@ -52,8 +50,8 @@
     </tbody>
 </table>
 <script>
-    // initializing data table
-    $('#example').DataTable({
+  // initializing data table
+    $('#example3').DataTable({
           "paging": true,
           "lengthChange": false,
           "searching": false,
@@ -62,4 +60,12 @@
           "autoWidth": false
         });
     // initializing data table
+    
+    //  image delete action
+    $('.delete').click(function(){
+    var id= $(this).attr('id');
+    var href= $(this).attr('data-href');
+    $('.del-confirm').attr('href',href+id);
+    });
+     //  image delete action
 </script>

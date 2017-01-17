@@ -1,6 +1,8 @@
 
 <?php 
 require_once('../config/config.php');
+
+		// insert query into albums
 		if($_POST['form']=="addalbum"){
 			if($_POST['title']=="")
 			{
@@ -40,7 +42,7 @@ require_once('../config/config.php');
 						    }
 				 }
 			}
-		echo $msg;
+		echo $msg; // Update query into albums
 		}elseif($_POST['form']=="updatealbum"){
 				$id=mysqli_real_escape_string($conn,$_POST['id']);
 				$img=mysqli_real_escape_string($conn,$_POST['imgold']);
@@ -87,7 +89,7 @@ require_once('../config/config.php');
 	        							<span class=\"bold\">Error: </span>Sorry Upload Error. </div>";
 				    }
 			}
-		echo $msg;
+		echo $msg; // insert query into albumimages
 		}elseif($_POST['form']=="addimages"){
 			if($_POST['album']=="")
 			{
@@ -103,7 +105,8 @@ require_once('../config/config.php');
 			
 				$p="insert into albumimages set
 				    parent_id='".mysqli_real_escape_string($conn,$_POST['album'])."',
-				    image='".mysqli_real_escape_string($conn,$file)."'
+				    image='".mysqli_real_escape_string($conn,$file)."',
+				    created=NOW()
 				    ";
 				    if(move_uploaded_file($_FILES['images']['tmp_name'][$key],'../../images/albumimages/'.$file)){
 	    			    $n=mysqli_query($conn,$p);

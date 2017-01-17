@@ -1,5 +1,5 @@
 $(function () {
-  
+    
     //delete confirm popup
     $('.delete').click(function(){
     var id= $(this).attr('id');
@@ -22,17 +22,14 @@ $(function () {
         });
     //get all albums
     
-    $.ajax({
-            url: "views/imagesajax.php",
-            type: "POST",
-            data: 'data',
-            success: function(data) {
-            $("#result").html('');
-             $('.imagesdata').html(data);
-            }
-        });
-        
-    });
+    var full_url = document.URL; // Get current url
+    var url_array = full_url.split('#') // Split the string into an array with / as separator
+    var last_segment = url_array[url_array.length-1];  // Get the last part of the array (-1)
+    $('.select2').val(last_segment).change();
+    filter('#filter');
+    
+});
+
     $(window).load(function(){
         disablesubmit();
     });
@@ -69,13 +66,12 @@ $(function () {
     });
      //disable submit function until input is empty
     
-    // form submition for adding albums
+    // form submition for adding albums & images
     $("#albums_form").submit(function(event){
         event.preventDefault(); //prevent default action 
         var post_url = $(this).attr("action"); //get form action url
         var request_method = $(this).attr("method"); //get form GET/POST method
         var formData = new FormData($(this)[0]); //Encode form elements for submission
-    
         $.ajax({
             url : post_url,
             type: request_method,
@@ -86,7 +82,12 @@ $(function () {
             $("#result").html(response);
             $('#title').val('');
             $('#coverimg').val('');
+            $('.select2').val('').change();
             $('#coverinput').val('');
+            $('.file-preview-thumbnails').html('');
+            $('.file-drop-zone').append('<div class="file-drop-zone-title">Drag &amp; drop files here …</div>');
+            $('.kv-fileinput-caption').html('');
+            $('.file').val('');
             $('.image-preview').popover('hide');
             $('.image-preview-clear').hide();
             $.ajax({
@@ -102,9 +103,8 @@ $(function () {
             $.ajax({
                 url: "views/imagesajax.php",
                 type: "POST",
-                data: 'data',
+                data: {select:"all"},
                 success: function(data) {
-                $("#result").html('');
                  $('.imagesdata').html(data);
                 }
             });
@@ -189,13 +189,53 @@ $(function () {
             reader.readAsDataURL(file);
         });  
     });
-    //Image preview in table row field while album update
     
+    
+    //Image preview in table row field while album update
+    $('#filter').bind("change",function(){
+        filter('#filter');
+    });
+    function filter(a){
+        if($(a).val()>0){
+            var id=$(a).val();
+            $.ajax({
+                url: "views/imagesajax.php",
+                type: "POST",
+                data: {id:id,select:"one"},
+                success: function(data) {
+                $("#result").html('');
+                 $('.imagesdata').html(data);
+                }
+            });
+        }else{
+            $.ajax({
+                url: "views/imagesajax.php",
+                type: "POST",
+                data: {select:"all"},
+                success: function(data) {
+                $("#result").html('');
+                 $('.imagesdata').html(data);
+                }
+            });
+        }
+    }
+    
+     $("#add-imgs").click(function(){
+         var link = $(this);
+         if ($('.custom-dropbox').is(':visible')) {
+             link.text('Add Images');                
+        } else {
+             link.text('close');                
+        }        
+          $(".custom-dropbox").slideToggle();
+          $(".custom-submit").slideToggle();
+     });
     //dragdrop image upload
     $("#input-fa").fileinput({
         browseOnZoneClick: true,
         allowedFileExtensions : ['jpg', 'png','gif','jpeg'],
         theme: "fa"
     });
+    
     
 

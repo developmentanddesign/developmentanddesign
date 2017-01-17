@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+<style type="text/css">
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#map_canvas {
+  height: 100%;
+  width: 80%;
+}
+
+#side_bar {
+  height: 100%;
+  width: 20%;
+  overflow: auto;
+}
+
+@media print {
+  html, body {
+    height: auto;
+  }
+
+  #map_canvas {
+    height: 650px;
+  }
+}
+</style>
+    <title>Google Maps JavaScript API v3 Example: SearchBox</title>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false&amp;libraries=places"></script>
+    <script>
+var map = null;
+var gmarkers = [];
+var service = null;
+var noAutoComplete = false;
+var initialService = null;
+var infowindow = new google.maps.InfoWindow({size: new google.maps.Size(150,50)});
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      var place = results[i];
+      createMarker(results[i]);
+    }
+  }
+}
+
+      function initialize() {
+  var pyrmont = new google.maps.LatLng(-33.8665433,151.1956316);
+      // If there are any parameters at eh end of the URL, they will be in  location.search
+      // looking something like  "?marker=3"
+ 
+      // skip the first character, we are not interested in the "?"
+      var query = location.search.substring(1);
+ 
+      // split the rest at each "&" character to give a list of  "argname=value"  pairs
+      var pairs = query.split("&");
+      for (var i=0; i<pairs.length; i++) {
+        // break each pair at the first "=" to obtain the argname and value
+	var pos = pairs[i].indexOf("=");
+	var argname = pairs[i].substring(0,pos).toLowerCase();
+        switch(argname) {
+         case "q":
+	  var value = pairs[i].substring(pos+1);
+          break;
+         default:
+	  var value = pairs[i].substring(pos+1).toLowerCase();
+          break;
+        }
+ 
+        // process each possible argname  -  use unescape() if theres any chance of spaces
+        if (argname == "q") { 
+           noAutoComplete = true;
+           document.getElementById('target').value = unescape(value);
+  var request = {
+    bounds: new google.maps.LatLngBounds(new google.maps.LatLng(1.1548,103.571), new google.maps.LatLng(1.567,104.12)),
+
+    query: unescape(value)
+  };
+        }
+        if (argname == "lat") {lat = parseFloat(value);}
+        if (argname == "lng") {lng = parseFloat(value);}
+        if (argname == "zoom") {
+	  zoom = parseInt(value);
+	  myGeoXml3Zoom = false;
+	}
+        if (argname == "type") {
+// from the v3 documentation 8/24/2010
+// HYBRID This map type displays a transparent layer of major streets on satellite images. 
+// ROADMAP This map type displays a normal street map. 
+// SATELLITE This map type displays satellite images. 
+// TERRAIN This map type displays maps with physical features such as terrain and vegetation. 
+          if (value == "m") {maptype = google.maps.MapTypeId.ROADMAP;}
+          if (value == "k") {maptype = google.maps.MapTypeId.SATELLITE;}
+          if (value == "h") {maptype = google.maps.MapTypeId.HYBRID;}
+          if (value == "t") {maptype = google.maps.MapTypeId.TERRAIN;}
+
+        }
+      }
+  map = new google.maps.Map(document.getElementById('map_canvas'), {
+      center: pyrmont,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    streetViewControl: false
+  });
+  service = new google.maps.places.PlacesService(map);
+  initialService = new google.maps.places.PlacesService(map);
+  if (noAutoComplete) initialService.textSearch(request, callback);
+  var defaultBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(41.7033177, -93.0573533),
+    new google.maps.LatLng(41, -93)
+  );
+  if (request && request.bounds) map.fitBounds(request.bounds);
+  else map.fitBounds(defaultBounds);
+
+  if (!noAutoComplete) {
+  var input = document.getElementById('target');
+  var searchBox = new google.maps.places.SearchBox(input);
+  searchBox.setBounds(defaultBounds);
+  var markers = [];
+  service = new google.maps.places.PlacesService(map);
+
+  google.maps.event.addListener(searchBox, 'places_changed', function() {
+    var places = searchBox.getPlaces();
+    // alert("getPlaces returns "+places.length+" places");
+
+    for (var i = 0; i < gmarkers.length; i++) {
+      gmarkers[i].setMap(null);
+    }
+    gmarkers = [];
+    var bounds = new google.maps.LatLngBounds();
+    document.getElementById('side_bar').innerHTML ="<h5>found "+places.length+" places</h5>";
+
+    for (var i = 0, place; place = places[i]; i++) {
+      var place = places[i];
+      createMarker(place);
+      bounds.extend(place.geometry.location);
+    }
+    map.fitBounds(bounds);
+    // if (markers.length == 1) map.setZoom(17);
+  });
+
+  google.maps.event.addListener(map, 'bounds_changed', function() {
+    var bounds = map.getBounds();
+    searchBox.setBounds(bounds);
+  });
+}
+
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+function createMarker(place){
+    var placeLoc=place.geometry.location;
+    if (place.icon) {
+      var image = new google.maps.MarkerImage(
+                place.icon, new google.maps.Size(71, 71),
+                new google.maps.Point(0, 0), new google.maps.Point(17, 34),
+                new google.maps.Size(25, 25));
+     } else var image = null;
+
+    var marker=new google.maps.Marker({
+        map:map,
+        icon: image,
+        position:place.geometry.location
+    });
+    var request =  {
+          reference: place.reference
+    };
+    google.maps.event.addListener(marker,'click',function(){
+        service.getDetails(request, function(place, status) {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            var contentStr = '<h5>'+place.name+'</h5><p>'+place.formatted_address;
+            if (!!place.formatted_phone_number) contentStr += '<br>'+place.formatted_phone_number;
+            if (!!place.website) contentStr += '<br><a target="_blank" href="'+place.website+'">'+place.website+'</a>';
+            contentStr += '<br>'+place.types+'</p>';
+            infowindow.setContent(contentStr);
+            infowindow.open(map,marker);
+          } else { 
+            var contentStr = "<h5>No Result, status="+status+"</h5>";
+            infowindow.setContent(contentStr);
+            infowindow.open(map,marker);
+          }
+        });
+
+    });
+    gmarkers.push(marker);
+    if (gmarkers.length==1)
+    {
+      map.setCenter(marker.getPosition());
+      map.setZoom(19);
+      google.maps.event.trigger(marker, "click");
+    }
+    var side_bar_html = "<a href='javascript:google.maps.event.trigger(gmarkers["+parseInt(gmarkers.length-1)+"],\"click\");'>"+place.name+"</a><br>";
+    document.getElementById('side_bar').innerHTML += side_bar_html;
+}
+
+
+    </script>
+    <style>
+      #search-panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        width: 350px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+      #target {
+        width: 345px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="search-panel">
+      <input id="target" type="text" placeholder="Search Box">
+    </div>
+<table border="1" style="width:100%; height: 100%;"><tr><td style="width:80%;height:100%;">
+    <div id="map_canvas" style="width:100%; height: 100%;"></div>
+</td><td style="width:20%;height:100%">
+    <div id="side_bar"></div>
+</td></tr></table>
+  </body>
+</html>

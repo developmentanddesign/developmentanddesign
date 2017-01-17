@@ -17,13 +17,13 @@
     </section>
     
 <?php	if(isset($_GET['del'])){
-					$id=$_GET['del'];
-					$query1="select * from images where parent_id='".mysqli_real_escape_string($conn,$id)."'";
+			   	$id=$_GET['del'];
+					$query1="select * from albumimages where id='".mysqli_real_escape_string($conn,$id)."'";
 					$run1=mysqli_query($conn,$query1);
 					while($ro=mysqli_fetch_array($run1)){
-						unlink('../images/albumimages/'.$ro['cover']);
+						unlink('../images/albumimages/'.$ro['image']);
 					}
-					$query="delete from images where parent_id='".mysqli_real_escape_string($conn,$id)."'";
+					$query="delete from albumimages where id='".mysqli_real_escape_string($conn,$id)."'";
 					$run=mysqli_query($conn,$query);
 					if($run){ $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
 						<span class=\"bold\">Success: </span>  Image Deleted. </div>";
@@ -38,7 +38,9 @@
       <div class="col-xs-12">
           <div class="box box-info">
               <div class="box-header with-border">
-                <h3 class="box-title">Album Images</h3>
+                <h3 class="box-title">Album Images 
+                    <button class="btn btn-warning" id="add-imgs">Add Images</button>
+                </h3>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
@@ -46,25 +48,26 @@
                 <div class="box-body">
                   <div id="result"><?php global $msg; echo $msg;?></div>
                   <div Class="form-group col-sm-6">
-                    <label class="control-label">Select Album</label>
+                    <label class="control-label" id="selectbox">Select Album</label>
                     <input type="hidden" name="form" value="addimages">
-              			<select class="select2 form-control" name="album">
+              			<select class="select2 form-control" name="album" id="filter">
+              			  <?php $getid=$_GET['id']; ?> 
               			    <option value="">All</option>
               			    <?php $p="select * from albums";
               			          $run=mysqli_query($conn,$p);
               			          while($row=mysqli_fetch_array($run)){ ?>
-                                      <option value="<?php echo $row['id'];?>"><?php echo $row['title'];?></option>
+                                      <option value="<?php echo $row['id'];?>" <?php if($getid==$row['id']){ echo "selected='selected'";} ?>><?php echo $row['title'];?></option>
               			     <?php  } ?>
               			</select>		
                   </div>
-                  <div Class="form-group col-sm-12">
+                  <div Class="form-group col-sm-12 custom-dropbox">
                     <label class="control-label">Select Images</label>
                     <input id="file-5" class="file" type="file" name="images[]" multiple data-preview-file-type="any" data-upload-url="#">
                   </div>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                      <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+                      <input type="submit" name="submit" value="Submit" class="btn btn-primary custom-submit">
                     </div>
               </form>
             </div>
