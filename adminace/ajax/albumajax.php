@@ -72,7 +72,8 @@ require_once('../config/config.php');
 				    cover='".mysqli_real_escape_string($conn,$_FILES['cover']['name'])."'
 				    where id=$id
 				    ";
-				    if(move_uploaded_file($_FILES['cover']['tmp_name'],'../../images/albumcover/'.$_FILES['cover']['name'])){
+				    if(move_uploa
+				    ded_file($_FILES['cover']['tmp_name'],'../../images/albumcover/'.$_FILES['cover']['name'])){
 				    	unlink('../../images/albumcover/'.$img);
 	    			    $n=mysqli_query($conn,$p);
 	        			if($n){ 
@@ -89,7 +90,7 @@ require_once('../config/config.php');
 	        							<span class=\"bold\">Error: </span>Sorry Upload Error. </div>";
 				    }
 			}
-		echo $msg; // insert query into albumimages
+		echo $msg; 
 		}elseif($_POST['form']=="addimages"){
 			if($_POST['album']=="")
 			{
@@ -102,27 +103,63 @@ require_once('../config/config.php');
 			    
 			}else{
 				foreach($_FILES['images']['name'] as $key => $file){
+					$x=1;
+					$p1="select * from albumimages where image='$file'";
+					$n1=mysqli_query($conn,$p1);
+					if(mysqli_num_rows($n1)>0){
+						$str = '';
+						$str_len = 4 ;
+						for($i = 0; $i < $str_len; $i++){
+						    //97 is ascii code for 'a' and 122 is ascii code for z
+						    $str .= chr(rand(97, 122));
+						}
+						$temp = explode(".", $file);
+						$extension = end($temp);
+						$filenew=$temp[0] .$str.".".$extension;
+						$p2="insert into albumimages set
+					    parent_id='".mysqli_real_escape_string($conn,$_POST['album'])."',
+					    image='".mysqli_real_escape_string($conn,$filenew)."',
+					    created=NOW()
+					    ";
+					    if(move_uploaded_file($_FILES['images']['tmp_name'][$key],'../../images/albumimages/'.$filenew)){
+		    			    $n=mysqli_query($conn,$p2);
+		        			if($n){ 
+		        			  $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+		        							<span class=\"bold\">Success: </span>  Images Uploaded Successfully. </div>";
+		        			 }
+		        			else{
+		        			  $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+		        							<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
+		        			  
+		        			}
+					    }else{
+					      $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+		        							<span class=\"bold\">Error: </span>Sorry Upload Error. </div>";
+					    }
+					}else{
+						$p="insert into albumimages set
+					    parent_id='".mysqli_real_escape_string($conn,$_POST['album'])."',
+					    image='".mysqli_real_escape_string($conn,$file)."',
+					    created=NOW()
+					    ";
+					    if(move_uploaded_file($_FILES['images']['tmp_name'][$key],'../../images/albumimages/'.$file)){
+		    			    $n=mysqli_query($conn,$p);
+		        			if($n){ 
+		        			  $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+		        							<span class=\"bold\">Success: </span>  Images Uploaded Successfully. </div>";
+		        			 }
+		        			else{
+		        			  $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+		        							<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
+		        			  
+		        			}
+					    }else{
+					      $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+		        							<span class=\"bold\">Error: </span>Sorry Upload Error. </div>";
+					    }
+					}
 			
-				$p="insert into albumimages set
-				    parent_id='".mysqli_real_escape_string($conn,$_POST['album'])."',
-				    image='".mysqli_real_escape_string($conn,$file)."',
-				    created=NOW()
-				    ";
-				    if(move_uploaded_file($_FILES['images']['tmp_name'][$key],'../../images/albumimages/'.$file)){
-	    			    $n=mysqli_query($conn,$p);
-	        			if($n){ 
-	        			  $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-	        							<span class=\"bold\">Success: </span>  Images Uploaded Successfully. </div>";
-	        			 }
-	        			else{
-	        			  $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-	        							<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
-	        			  
-	        			}
-				    }else{
-				      $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-	        							<span class=\"bold\">Error: </span>Sorry Upload Error. </div>";
-				    }
+				
 				}
 			}
 		echo $msg;

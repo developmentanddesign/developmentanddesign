@@ -38,9 +38,8 @@
       <div class="col-xs-12">
           <div class="box box-info">
               <div class="box-header with-border">
-                <h3 class="box-title">Album Images 
-                    <button class="btn btn-warning" id="add-imgs">Add Images</button>
-                </h3>
+                <h3 class="box-title">Album Images </h3>
+                <button class="btn btn-warning pull-right" id="add-imgs">Add Images</button>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
@@ -84,7 +83,7 @@
       						<h4 class="modal-title">Confirmation</h4>
       					</div>
       					<div class="modal-body">
-      					  <p>All Album Images will be Deleted </p>
+      					  <p>Images will be Deleted </p>
       						<p> Confirm Delete </p>
       					</div>
       					<div class="modal-footer">

@@ -61,11 +61,12 @@
                               <td class="text-center"><img src="<?php getYoutubeImage($URL)?>" height="50px" width="50px" /></td>
                               <td><?php echo $URL;?></td>
                               <td>  <a href="editvideo.php?id=<?php echo $id; ?>">
-            						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            						<button title="Edit" class="btn btn-success"><i class="fa fa-pencil-square-o"></i></button>
-            						</a>
-            						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
-            						<button title="Delete" id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="allvideos.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button></td>
+                        						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        						<button title="Edit" class="btn btn-success"><i class="fa fa-pencil-square-o"></i></button>
+                        						</a>
+                        						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                        						<button title="Delete" id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="allvideos.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button>
+                        			</td>
                             </tr>
         				          <?php $sr++;}?>
 

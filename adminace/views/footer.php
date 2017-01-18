@@ -25,9 +25,7 @@
 <!-- AdminLTE App -->
 <script src="js/app.min.js"></script>
 <script src="js/functions.js"></script>
-<script src="js/plugins.js">
-  
-</script>
+<script src="js/plugins.js"></script>
 
 
 </body>

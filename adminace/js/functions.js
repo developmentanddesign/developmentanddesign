@@ -1,40 +1,71 @@
-$(function () {
-    
-    //delete confirm popup
-    $('.delete').click(function(){
-    var id= $(this).attr('id');
-    var href= $(this).attr('data-href');
-    $('.del-confirm').attr('href',href+id);
-    });
-    //delete confirm popup
-    
-    equalheight(".title-height",".btn-height");
-    
-    //get all albums 
-    $.ajax({
-            url: "views/allalbumsajax.php",
-            type: "POST",
-            data: 'data',
-            success: function(data) {
-            $("#result").html('');
-             $('.albumdata').html(data);
-            }
+    $(function () {
+        
+        //delete confirm popup
+        $('.delete').click(function(){
+        var id= $(this).attr('id');
+        var href= $(this).attr('data-href');
+        $('.del-confirm').attr('href',href+id);
         });
-    //get all albums
-    
-    var full_url = document.URL; // Get current url
-    var url_array = full_url.split('#') // Split the string into an array with / as separator
-    var last_segment = url_array[url_array.length-1];  // Get the last part of the array (-1)
-    $('.select2').val(last_segment).change();
-    filter('#filter');
-    
-});
+        //delete confirm popup
+        
+        //disable Add Images button
+        if($('#filter').val()>0){
+                $("#add-imgs").prop('disabled', false);
+            }else{
+                 $("#add-imgs").prop('disabled', true);
+            }
+        
+         $("#filter").bind('change', function(){
+            if($('#filter').val()>0){
+                $("#add-imgs").prop('disabled', false);
+            }else{
+                 $("#add-imgs").prop('disabled', true);
+            }
+        }); 
+        //disable Add Images button
+        
+        equalheight(".title-height",".btn-height");
+        
+        //get all albums 
+        $.ajax({
+                url: "views/allalbumsajax.php",
+                type: "POST",
+                data: 'data',
+                success: function(data) {
+                $("#result").html('');
+                 $('.albumdata').html(data);
+                }
+            });
+        //get all albums
+        
+        //get all albums 
+        $.ajax({
+                url: "views/allvideoajax.php",
+                type: "POST",
+                data: 'data',
+                success: function(data) {
+                $("#result").html('');
+                 $('.videodata').html(data);
+                }
+            });
+        //get all albums
+        
+        var full_url = document.URL; // Get current url
+        var url_array = full_url.split('#') // Split the string into an array with / as separator
+        var last_segment = url_array[url_array.length-1];  // Get the last part of the array (-1)
+        if( last_segment>0){
+            $('.select2').val(last_segment).change();
+        }
+        filter('#filter');
+        
+    });
 
+    //disable submit function until input is empty
     $(window).load(function(){
         disablesubmit();
     });
     
-    //disable submit function until input is empty
+    
     function  disablesubmit(){
     $('.field input').each(function() {
                 if ($(this).val() == '') {
@@ -82,7 +113,6 @@ $(function () {
             $("#result").html(response);
             $('#title').val('');
             $('#coverimg').val('');
-            $('.select2').val('').change();
             $('#coverinput').val('');
             $('.file-preview-thumbnails').html('');
             $('.file-drop-zone').append('<div class="file-drop-zone-title">Drag &amp; drop files here …</div>');
@@ -111,7 +141,37 @@ $(function () {
         
         });
     });
-// form submition for adding albums
+    // form submition for adding albums & images
+    
+    
+    // form submition for adding Videos
+    $("#video_form").submit(function(event){
+        event.preventDefault(); //prevent default action 
+        var post_url = $(this).attr("action"); //get form action url
+        var request_method = $(this).attr("method"); //get form GET/POST method
+        var formData = new FormData($(this)[0]); //Encode form elements for submission
+        $.ajax({
+            url : post_url,
+            type: request_method,
+            data : formData,
+            processData: false,
+            contentType: false
+        }).done(function(response){ //
+            $("#result").html(response);
+            $('#title').val('');
+            $('#url').val('');
+            $.ajax({
+                url: "views/allvideoajax.php",
+                type: "POST",
+                data: 'data',
+                success: function(data) {
+                 $('.videodata').html(data);
+                }
+            });
+        
+        });
+    });
+    // form submition for adding Videos
             
 
     // place submit button and form at equal level in addalbum.php
@@ -230,12 +290,16 @@ $(function () {
           $(".custom-dropbox").slideToggle();
           $(".custom-submit").slideToggle();
      });
+     
     //dragdrop image upload
     $("#input-fa").fileinput({
         browseOnZoneClick: true,
         allowedFileExtensions : ['jpg', 'png','gif','jpeg'],
         theme: "fa"
     });
+    
+    //select2 initilizing
+    $(".select2").select2();
     
     
 

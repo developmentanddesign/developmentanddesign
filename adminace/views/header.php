@@ -107,7 +107,6 @@
           <ul class="treeview-menu">
             <li><a href="addalbum.php"><i class="fa fa-circle-o"></i>Add Album</a></li>
             <li><a href="addimages.php"><i class="fa fa-circle-o"></i>Add Images</a></li>
-            <li><a href="allimages.php"><i class="fa fa-circle-o"></i>All Images</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -118,7 +117,6 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="addvideo.php"><i class="fa fa-circle-o"></i>Add Videos</a></li>
-            <li><a href="allvideos.php"><i class="fa fa-circle-o"></i>All Videos</a></li>
           </ul>
         </li>
         <li class="treeview">

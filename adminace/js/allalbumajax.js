@@ -14,7 +14,7 @@
         trigger : 'hover'
     });  
     
-    //delete album function
+    //deleteimagefilter('#filter'); function
     $('.delete').click(function(){
     var id= $(this).attr('id');
     var href= $(this).attr('data-href');

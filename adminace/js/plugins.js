@@ -18,11 +18,13 @@ $(function () {
       autoclose: true
     });
     
-    // Custom select box select 2
-    $(".select2").select2();
     
     // html Editor
     CKEDITOR.replace('editor1');
+    
+    // Custom select box select 2
+    $(".select2").select2();
+    
     
     
 });

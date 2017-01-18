@@ -36,7 +36,7 @@
       <div class="col-xs-12">
           <div class="box box-info">
               <div class="box-header with-border">
-                <h3 class="box-title">Album Tilte</h3>
+                <h3 class="box-title">Album Title</h3>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
@@ -47,7 +47,7 @@
         						<label for="title">Album Title</label>
         						<input type="hidden" name="form" value="addalbum">
         						<div class="field">
-        						  <input type="text" name="title" id="title" value="" class="form-control"  required>
+        						  <input type="text" name="title" id="title" value="" class="form-control" required>
         						</div>
         					</div>
         					<div Class="form-group col-sm-5 col-md-5 col-xs-12">
