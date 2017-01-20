@@ -14,32 +14,30 @@
         trigger : 'hover'
     });  
     
-    //deleteimagefilter('#filter'); function
+    //delete video function
     $('.delete').click(function(){
     var id= $(this).attr('id');
     var href= $(this).attr('data-href');
     $('.del-confirm').attr('href',href+id);
     });
+     //delete video function
     
-    // edit album function in same field 
-    $('.edit-btn').click(function(){
-        var id= $(this).attr('id');
-        $.ajax({
-            url: "views/allvideoajax.php",
-            type: "GET",
-            data: {edit : id},
-            success: function(data) {
-             $('.videodata').html(data);
-             disablesubmit();
-            }
-        });
+   // popover
+    $('[data-toggle="popover"]').popover({
+        placement : 'top',
+        trigger : 'hover'
     });
-    
-    // update album Form Submit
-    $('.update-btn').click(function(){
+     // popover
+     
+    //getting local datetime
+    setInterval(localdate(), 1000);
+     
+    // update video Form Submit
+    function updateVideo(){
         var dataimg = new FormData();
+        dataimg.append('id', $('#id').val());
+        dataimg.append('date', $('#localdate').val());
         dataimg.append('title', $('#title1').val());
-        dataimg.append('url', $('#url').val());
         dataimg.append('form', "update");
             $.ajax({
                 url : 'ajax/videosajax.php',
@@ -59,5 +57,5 @@
                     }
                 });
             });
-    });
-    
+    }
+    // update video Form Submit

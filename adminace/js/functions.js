@@ -65,6 +65,36 @@
         disablesubmit();
     });
     
+    // edit video function in same field 
+    function edit(id,href){
+        var id1= id;
+        var href1=href;
+        $.ajax({
+            url: href1,
+            type: "GET",
+            data: {edit : id1},
+            success: function(data) {
+             $('.videodata').html(data);
+             disablesubmit();
+            }
+        });
+    }
+    
+    function cancle(href){
+        var href1=href;
+        //get all albums 
+        $.ajax({
+                url: href,
+                type: "POST",
+                data: 'data',
+                success: function(data) {
+                $("#result").html('');
+                 $('.videodata').html(data);
+                }
+            });
+        //get all albums
+    }
+    
     
     function  disablesubmit(){
     $('.field input').each(function() {
@@ -99,7 +129,7 @@
     
     // form submition for adding albums & images
     $("#albums_form").submit(function(event){
-        event.preventDefault(); //prevent default action 
+        event.preventDefault(); //prevent default action
         var post_url = $(this).attr("action"); //get form action url
         var request_method = $(this).attr("method"); //get form GET/POST method
         var formData = new FormData($(this)[0]); //Encode form elements for submission
@@ -143,6 +173,30 @@
     });
     // form submition for adding albums & images
     
+    //getting local datetime
+    setInterval(localdate(), 1000);
+    function localdate(){
+        var date = new Date,
+            day = date.getDate(),
+            month = ("0" + (date.getMonth() + 1)).slice(-2),
+            year = date.getFullYear(),
+            hour = date.getHours(),
+            minute = date.getMinutes(),
+            seconds = date.getSeconds(),
+            ampm = hour > 12 ? "PM" : "AM";
+    
+        hour = hour % 12;
+        hour = hour ? hour : 12; // zero = 12
+        
+        minute = minute > 9 ? minute : "0" + minute;
+        seconds = seconds > 9 ? seconds : "0" + seconds;
+        hour = hour > 9 ? hour : "0" + hour;
+        
+        
+        date = day + "-" + month + "-" + year + " " + hour + ":" + minute + ":" + seconds + " " + ampm;
+        $('#localdate').val(date);
+        }
+    
     
     // form submition for adding Videos
     $("#video_form").submit(function(event){
@@ -172,7 +226,6 @@
         });
     });
     // form submition for adding Videos
-            
 
     // place submit button and form at equal level in addalbum.php
     $(window).resize(function(){

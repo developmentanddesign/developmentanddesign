@@ -13,32 +13,20 @@
         <li class="active">Add Videos</li>
       </ol>
     </section>
-    <?php
     
-    if(isset($_POST['submit'])){
-    		if($_POST['title']=="")
-    		{
-    			$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-    							<span class=\"bold\">Error: </span>  Please Fill the Title. </div>";
-    		}elseif($_POST['url']=="")
-    		{
-    		    $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-    							<span class=\"bold\">Error: </span>  Please Fill the URL </div>";
-    		}else{
-    		
-    			$p="insert into videos set
-    			    title='".mysqli_real_escape_string($conn,$_POST['title'])."',
-    			    url='".mysqli_real_escape_string($conn,$_POST['url'])."'
-    			    ";
-    			$n=mysqli_query($conn,$p);
-    			if($n){ $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-    							<span class=\"bold\">Success: </span>  Video Added Successfully. </div>";
-    			 }
-    			else{$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-    							<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; }
-    		}
-    }			
+    <?php	if(isset($_GET['del'])){
+					$id=$_GET['del'];
+					$query="delete from videos where id='".mysqli_real_escape_string($conn,$id)."'";
+					$run=mysqli_query($conn,$query);
+					if($run){ $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+						<span class=\"bold\">Success: </span>  Video Deleted. </div>";
+					}else{
+						$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+						<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
+					}
+				}
     ?>
+    
     <!-- Main content -->
     <section class="content">
       <div class="col-xs-12">
@@ -53,6 +41,8 @@
                 <div id="result"><?php global $msg; echo $msg;?></div>
   					<div Class="form-group col-sm-4 title-height field">
   						<label for="title">Video Title</label>
+  						<input type="hidden" name="form" value="add" class="form-control" required>
+  						<input type="hidden" name="date" value="" id="localdate">
   						<input type="text" name="title" id="title" value=""  class="form-control"  required>
   					</div>
   					<div Class="form-group col-sm-4 field">

@@ -22,7 +22,7 @@ require_once('../config/config.php');
 						$p="insert into albums set
 						    title='".mysqli_real_escape_string($conn,$_POST['title'])."',
 						    cover='".mysqli_real_escape_string($conn,$_FILES['cover']['name'])."',
-						    created=NOW(),
+						    created='".mysqli_real_escape_string($conn,$_POST['date'])."',
 						    lastupdate='0000-00-00'
 						    ";
 						    if(move_uploaded_file($_FILES['cover']['tmp_name'],'../../images/albumcover/'.$_FILES['cover']['name'])){
@@ -50,45 +50,48 @@ require_once('../config/config.php');
 			{
 				$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
 								<span class=\"bold\">Error: </span>  Please Fill the Title. </div>";
-			}elseif($_FILES['cover']['name']=="" || $_FILES['cover']['name']==null)
+			}
+			elseif($_FILES['cover']['name']=="" || $_FILES['cover']['name']==null)
 			{
-			    $p="update albums set
-				    title='".mysqli_real_escape_string($conn,$_POST['title'])."'
-				    where id=$id
-				    ";
-    			    $n=mysqli_query($conn,$p);
-        			if($n){ 
-        			  $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-        							<span class=\"bold\">Success: </span>  album Updated Successfully. </div>";
-        			 }
-        			else{
-        			  $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-        							<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
-        			}
-			}else{
 			
-				$p="update albums set
+			    $p="update albums set
 				    title='".mysqli_real_escape_string($conn,$_POST['title'])."',
-				    cover='".mysqli_real_escape_string($conn,$_FILES['cover']['name'])."'
+				    lastupdate='".mysqli_real_escape_string($conn,$_POST['date'])."'
 				    where id=$id
 				    ";
-				    if(move_uploa
-				    ded_file($_FILES['cover']['tmp_name'],'../../images/albumcover/'.$_FILES['cover']['name'])){
-				    	unlink('../../images/albumcover/'.$img);
-	    			    $n=mysqli_query($conn,$p);
-	        			if($n){ 
-	        			  $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-	        							<span class=\"bold\">Success: </span>  album Updated Successfully. </div>";
-	        			 }
-	        			else{
-	        			  $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-	        							<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
-	        			  
-	        			}
-				    }else{
-				      $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-	        							<span class=\"bold\">Error: </span>Sorry Upload Error. </div>";
-				    }
+				    $n=mysqli_query($conn,$p);
+	    			if($n){ 
+	    			  $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+	    							<span class=\"bold\">Success: </span>  album Updated Successfully. </div>";
+	    			 }
+	    			else{
+	    			  $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+	    							<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
+	    			}
+			}else{
+				
+					$p="update albums set
+					    title='".mysqli_real_escape_string($conn,$_POST['title'])."',
+					    cover='".mysqli_real_escape_string($conn,$_FILES['cover']['name'])."',
+					    lastupdate='".mysqli_real_escape_string($conn,$_POST['date'])."'
+					    where id=$id
+					    ";
+					    if(move_uploaded_file($_FILES['cover']['tmp_name'],'../../images/albumcover/'.$_FILES['cover']['name'])){
+					    	unlink('../../images/albumcover/'.$img);
+		    			    $n=mysqli_query($conn,$p);
+		        			if($n){ 
+		        			  $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+		        							<span class=\"bold\">Success: </span>  album Updated Successfully. </div>";
+		        			 }
+		        			else{
+		        			  $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+		        							<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
+		        			  
+		        			}
+					    }else{
+					      $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+		        							<span class=\"bold\">Error: </span>Sorry Upload Error. </div>";
+					    }
 			}
 		echo $msg; 
 		}elseif($_POST['form']=="addimages"){

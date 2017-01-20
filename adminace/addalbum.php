@@ -14,23 +14,23 @@
       </ol>
     </section>
     
-<?php	if(isset($_GET['del'])){
-					$id=$_GET['del'];
-					$query1="select * from albums where id='".mysqli_real_escape_string($conn,$id)."'";
-					$run1=mysqli_query($conn,$query1);
-					while($ro=mysqli_fetch_array($run1)){
-						unlink('../images/albumcover/'.$ro['cover']);
-					}
-					$query="delete from albums where id='".mysqli_real_escape_string($conn,$id)."'";
-					$run=mysqli_query($conn,$query);
-					if($run){ $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-						<span class=\"bold\">Success: </span>  Album Deleted. </div>";
-					}else{
-						$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-						<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
-					}
-				}
-?>
+    <?php	if(isset($_GET['del'])){
+    					$id=$_GET['del'];
+    					$query1="select * from albums where id='".mysqli_real_escape_string($conn,$id)."'";
+    					$run1=mysqli_query($conn,$query1);
+    					while($ro=mysqli_fetch_array($run1)){
+    						unlink('../images/albumcover/'.$ro['cover']);
+    					}
+    					$query="delete from albums where id='".mysqli_real_escape_string($conn,$id)."'";
+    					$run=mysqli_query($conn,$query);
+    					if($run){ $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+    						<span class=\"bold\">Success: </span>  Album Deleted. </div>";
+    					}else{
+    						$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+    						<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
+    					}
+    				}
+    ?>
     <!-- Main content -->
     <section class="content">
       <div class="col-xs-12">
@@ -46,6 +46,7 @@
         					<div Class="form-group col-sm-4 col-md-5 col-xs-12 title-height">
         						<label for="title">Album Title</label>
         						<input type="hidden" name="form" value="addalbum">
+        						<input type="hidden" name="date" value="" id="localdate">
         						<div class="field">
         						  <input type="text" name="title" id="title" value="" class="form-control" required>
         						</div>

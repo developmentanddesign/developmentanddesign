@@ -40,6 +40,7 @@
 						<input type="text" class="form-control image-preview-filename-new" disabled="disabled">
 						<input type="hidden" name="form" id="form1" value="updatealbum">
 						<input type="hidden" name="id" id="id1" value="<?php echo $id;?>">
+						<input type="hidden" name="date" id="localdate" value="">
 						<input type="hidden" name="img" id="img1" value="<?php echo $image_name;?>">
 						<span class="input-group-btn">
 							<!-- image-preview-clear button -->
@@ -61,13 +62,10 @@
           <?php } ?>
           </td>
           <td>
-              <span class="pull-left"><?php $dateObject = new DateTime($created);
-                    echo $dateObject->format("d-m-y  H:i A");?></span>
-            <?php if($lastupdate != '0000-00-00 00:00:00'){?>
-              <span class="pull-right" href="#" class="pull-right" data-toggle="popover" title="Last Update" data-content="
-                        <?php $dateObject = new DateTime($lastupdate);
-                            echo $dateObject->format("d-m-y  H:i A");?>
-                ">
+            
+            <span class="pull-left"><?php echo $created;?></span>
+            <?php if($lastupdate != ''){?>
+              <span class="pull-right" href="#" class="pull-right" data-toggle="popover" title="Last Update" data-content="<?php echo $lastupdate;?>">
                   <i class="fa fa-pencil"></i>
               </span>
             <?php } ?>
@@ -94,7 +92,15 @@
       		              elseif($_GET['edit']!="" && $_GET['edit']==$id)
       		                { echo '<i class="fa fa-check"></i>'; }?>
       		  </button>
-      		<button title="Delete" id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="addalbum.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button>
+      		<button
+      		<?php if($_GET['edit']!="" && $_GET['edit']==$id)
+      		        { 
+      		            echo 'id="cancle" title="Cancle" name="cancle" class="btn btn-warning cancle" data-href="addalbum.php"><i class="fa fa-times"></i>';
+      		        }else { echo 'title="Delete" id='.$id.' class="btn btn-danger delete" data-href="addalbum.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash-o"></i>';
+      		        }
+      		        ?> 
+      		</button>
+      		
       		</td>
         </tr>
     <?php $sr++;}?>
