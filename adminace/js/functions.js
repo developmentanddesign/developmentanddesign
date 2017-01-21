@@ -38,7 +38,7 @@
             });
         //get all albums
         
-        //get all albums 
+        //get all videos 
         $.ajax({
                 url: "views/allvideoajax.php",
                 type: "POST",
@@ -48,8 +48,17 @@
                  $('.videodata').html(data);
                 }
             });
-        //get all albums
+        //get all videos
         
+        $.ajax({
+                url: "views/allcontactajax.php",
+                type: "POST",
+                data: 'data',
+                success: function(data) {
+                 $('.contactdata').html(data);
+                }
+            });
+            
         var full_url = document.URL; // Get current url
         var url_array = full_url.split('#') // Split the string into an array with / as separator
         var last_segment = url_array[url_array.length-1];  // Get the last part of the array (-1)
@@ -66,7 +75,7 @@
     });
     
     // edit video function in same field 
-    function edit(id,href){
+    function edit(id,href,resultfield){
         var id1= id;
         var href1=href;
         $.ajax({
@@ -74,13 +83,14 @@
             type: "GET",
             data: {edit : id1},
             success: function(data) {
-             $('.videodata').html(data);
+             $(resultfield).html(data);
              disablesubmit();
             }
         });
     }
     
-    function cancle(href){
+    //cancle update on click
+    function cancle(href,resultfield){
         var href1=href;
         //get all albums 
         $.ajax({
@@ -89,17 +99,33 @@
                 data: 'data',
                 success: function(data) {
                 $("#result").html('');
-                 $('.videodata').html(data);
+                 $(resultfield).html(data);
                 }
             });
-        //get all albums
+        //cancle update on click
     }
     
+    // countries data for contact page
+     function countrydata(a,name,id,href,resultfield){
+        if($(a).value!=''){
+            $.ajax({
+                url: href,
+                type: "POST",
+                data: {id:id,name:name},
+                success: function(data) {
+                $("#result").html('');
+                 $(resultfield).html(data);
+                }
+            });
+        }
+    }
+    // countries data for contact page
     
     function  disablesubmit(){
     $('.field input').each(function() {
+           var empty;
                 if ($(this).val() == '') {
-                    empty = true;
+                  empty = true;
                 }
             });
     
@@ -111,8 +137,7 @@
     }
     
     $('.field input').on('keyup keydown blur change',function() {
-
-        var empty = false;
+        
         $('.field input').each(function() {
             if ($(this).val() == '') {
                 empty = true;
@@ -193,7 +218,7 @@
         hour = hour > 9 ? hour : "0" + hour;
         
         
-        date = day + "-" + month + "-" + year + " " + hour + ":" + minute + ":" + seconds + " " + ampm;
+        date = day + "-" + month + "-" + year + " " + hour + ":" + minute + /*":" + seconds + */ " " + ampm;
         $('#localdate').val(date);
         }
     
@@ -345,10 +370,11 @@
      });
      
     //dragdrop image upload
-    $("#input-fa").fileinput({
+    $("#file-5").fileinput({
         browseOnZoneClick: true,
-        allowedFileExtensions : ['jpg', 'png','gif','jpeg'],
-        theme: "fa"
+        showRemove: false,
+        uploadUrl: 'ajax/albumajax.php',
+        allowedFileExtensions : ['jpg', 'png','gif','jpeg']
     });
     
     //select2 initilizing

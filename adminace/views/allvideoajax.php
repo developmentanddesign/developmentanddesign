@@ -37,7 +37,7 @@
           <?php } }else { echo strlen($title) > 50 ? ucwords(substr($title,0,50))."..." : ucwords($title); } ?>
           </td>
           <td class="text-center"><img src="<?php getYoutubeImage($URL)?>" height="50px" width="50px" /></td>
-          <td> <?php echo $URL; ?> </td>
+          <td> <?php echo strlen($URL) > 50 ? substr($URL,0,50)."..." : $URL; ?> </td>
           <td>
               <span class="pull-left">
                   <?php echo $created;?>
@@ -66,7 +66,7 @@
       		        <?php if($_GET['edit']=="" || $_GET['edit']!=$id)
       		        {} else{ echo "update-btn"; }?>"
       		        <?php if($_GET['edit']=="" || $_GET['edit']!=$id)
-      		        { ?> onclick="edit(id,'views/allvideoajax.php')" <?php }?>>
+      		        { ?> onclick="edit(id,'views/allvideoajax.php','.videodata')" <?php }?>>
       		        <?php if($_GET['edit']=="" 
       		                || !isset($_GET['edit']) 
       		                || $_GET['edit']!=$id )
@@ -76,7 +76,7 @@
       		</button>
       		<button
       		<?php if($_GET['edit']!="" && $_GET['edit']==$id)
-      		        { ?> id="cancle" title="Cancle" name="cancle" onclick="cancle('views/allvideoajax.php')" class="btn btn-warning cancle"><i class="fa fa-times"></i>
+      		        { ?> id="cancle" title="Cancle" name="cancle" onclick="cancle('views/allvideoajax.php','.videodata')" class="btn btn-warning cancle"><i class="fa fa-times"></i>
       		       <?php }else { echo 'title="Delete" id='.$id.' class="btn btn-danger delete" data-href="addvideo.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash-o"></i>';
       		        }
       		        ?> 

@@ -1,5 +1,4 @@
 <?php include_once('views/header.php');?>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.6/css/fileinput.css" />
  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -49,6 +48,7 @@
                   <div Class="form-group col-sm-6">
                     <label class="control-label" id="selectbox">Select Album</label>
                     <input type="hidden" name="form" value="addimages">
+        						<input type="hidden" name="date" value="" id="localdate">
               			<select class="select2 form-control" name="album" id="filter">
               			  <?php $getid=$_GET['id']; ?> 
               			    <option value="">All</option>
@@ -83,7 +83,7 @@
       						<h4 class="modal-title">Confirmation</h4>
       					</div>
       					<div class="modal-body">
-      					  <p>Images will be Deleted </p>
+      					  <p>Image will be Deleted </p>
       						<p> Confirm Delete </p>
       					</div>
       					<div class="modal-footer">
@@ -114,8 +114,10 @@
   </div>
   <!-- /.content-wrapper -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.6/js/fileinput.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.6/themes/gly/theme.min.js"></script>
 <?php include_once('views/footer.php');?>
 
+<script> 
+setInterval(localdate(), 1000);
+</script>

@@ -13,18 +13,18 @@
         <li class="active">All Terms</li>
       </ol>
     </section>
-<?php	if(isset($_GET['del'])){
-					$id=$_GET['del'];
-					$query="delete from terms where id='".mysqli_real_escape_string($conn,$id)."'";
-					$run=mysqli_query($conn,$query);
-					if($run){ $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-						<span class=\"bold\">Success: </span>  Details Deleted. </div>";
-					}else{
-						$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-						<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
-					}
-				}
-?>
+    <?php	if(isset($_GET['del'])){
+    					$id=$_GET['del'];
+    					$query="delete from terms where id='".mysqli_real_escape_string($conn,$id)."'";
+    					$run=mysqli_query($conn,$query);
+    					if($run){ $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+    						<span class=\"bold\">Success: </span>  Details Deleted. </div>";
+    					}else{
+    						$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+    						<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
+    					}
+    				}
+    ?>
     <!-- Main content -->
     <section class="content">
       <div class="col-xs-12">

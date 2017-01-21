@@ -44,6 +44,8 @@ require_once('../config/config.php');
 			}
 		echo $msg; // Update query into albums
 		}elseif($_POST['form']=="updatealbum"){
+			/*print_r($_POST);
+				die();*/
 				$id=mysqli_real_escape_string($conn,$_POST['id']);
 				$img=mysqli_real_escape_string($conn,$_POST['imgold']);
 			if($_POST['title']=="")
@@ -122,7 +124,7 @@ require_once('../config/config.php');
 						$p2="insert into albumimages set
 					    parent_id='".mysqli_real_escape_string($conn,$_POST['album'])."',
 					    image='".mysqli_real_escape_string($conn,$filenew)."',
-					    created=NOW()
+					    created='".mysqli_real_escape_string($conn,$_POST['date'])."'
 					    ";
 					    if(move_uploaded_file($_FILES['images']['tmp_name'][$key],'../../images/albumimages/'.$filenew)){
 		    			    $n=mysqli_query($conn,$p2);

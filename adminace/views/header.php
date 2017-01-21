@@ -19,7 +19,8 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" />
   <link rel="stylesheet" href="css/style.css">
    
  
@@ -173,6 +174,12 @@
             <li><a href="adddisclaimer.php"><i class="fa fa-circle-o"></i>Add Details</a></li>
             <li><a href="alldisclaimers.php"><i class="fa fa-circle-o"></i>All Details</a></li>
           </ul>
+        </li>
+        <li class="treeview">
+          <a href="contact.php">
+            <i class="fa fa-laptop"></i>
+            <span>Contacts</span>
+          </a>
         </li>
       </ul>
     </section>
