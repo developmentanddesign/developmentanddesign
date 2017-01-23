@@ -26,38 +26,6 @@
         
         equalheight(".title-height",".btn-height");
         
-        //get all albums 
-        $.ajax({
-                url: "views/allalbumsajax.php",
-                type: "POST",
-                data: 'data',
-                success: function(data) {
-                $("#result").html('');
-                 $('.albumdata').html(data);
-                }
-            });
-        //get all albums
-        
-        //get all videos 
-        $.ajax({
-                url: "views/allvideoajax.php",
-                type: "POST",
-                data: 'data',
-                success: function(data) {
-                $("#result").html('');
-                 $('.videodata').html(data);
-                }
-            });
-        //get all videos
-        
-        $.ajax({
-                url: "views/allcontactajax.php",
-                type: "POST",
-                data: 'data',
-                success: function(data) {
-                 $('.contactdata').html(data);
-                }
-            });
             
         var full_url = document.URL; // Get current url
         var url_array = full_url.split('#') // Split the string into an array with / as separator

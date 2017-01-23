@@ -18,7 +18,6 @@ $(function () {
       autoclose: true
     });
     
-    
     // html Editor
     CKEDITOR.replace('editor1');
     

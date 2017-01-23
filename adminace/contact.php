@@ -169,6 +169,8 @@
         					</div>
         				</div>
         			</div>
+        			
+            <div class="clearfix"></div>
         		</div>
       		<!-- /Modal -->
       <div class="col-sm-12 col-xs-12">
@@ -187,7 +189,6 @@
       <div class="clearfix"></div>
     </section>
     <!-- /.content -->
-    <div class="clearfix"></div>
   </div>
   <!-- /.content-wrapper -->
   

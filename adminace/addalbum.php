@@ -122,3 +122,16 @@
   <!-- /.content-wrapper -->
   
 <?php include_once('views/footer.php');?>
+<script>
+    //get all albums 
+    $.ajax({
+            url: "views/allalbumsajax.php",
+            type: "POST",
+            data: 'data',
+            success: function(data) {
+            $("#result").html('');
+             $('.albumdata').html(data);
+            }
+        });
+    //get all albums
+</script>

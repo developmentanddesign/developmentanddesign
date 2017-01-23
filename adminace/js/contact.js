@@ -1,4 +1,12 @@
-    
+    // getting all contacts entries
+    $.ajax({
+            url: "views/allcontactajax.php",
+            type: "POST",
+            data: 'data',
+            success: function(data) {
+             $('.contactdata').html(data);
+            }
+        });
     
     //select2 initilizing
     $(".select3").select2();

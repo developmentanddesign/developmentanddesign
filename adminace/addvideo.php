@@ -102,3 +102,16 @@
   <!-- /.content-wrapper -->
   
 <?php include_once('views/footer.php');?>
+<script>
+  //get all videos 
+    $.ajax({
+        url: "views/allvideoajax.php",
+        type: "POST",
+        data: 'data',
+        success: function(data) {
+        $("#result").html('');
+         $('.videodata').html(data);
+        }
+    });
+//get all videos
+</script>

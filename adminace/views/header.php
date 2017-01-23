@@ -111,14 +111,10 @@
           </ul>
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="addvideo.php">
             <i class="fa fa-laptop"></i>
             <span>Videos</span>
-            <i class="fa fa-angle-left pull-right"></i>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="addvideo.php"><i class="fa fa-circle-o"></i>Add Videos</a></li>
-          </ul>
         </li>
         <li class="treeview">
           <a href="#">
@@ -132,15 +128,10 @@
           </ul>
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="about.php">
             <i class="fa fa-laptop"></i>
             <span>About Us</span>
-            <i class="fa fa-angle-left pull-right"></i>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="adddetail.php"><i class="fa fa-circle-o"></i>Add Details</a></li>
-            <li><a href="alldetails.php"><i class="fa fa-circle-o"></i>All Details</a></li>
-          </ul>
         </li>
         <li class="treeview">
           <a href="#">
@@ -178,7 +169,7 @@
         <li class="treeview">
           <a href="contact.php">
             <i class="fa fa-laptop"></i>
-            <span>Contacts</span>
+            <span>Contact Us</span>
           </a>
         </li>
       </ul>

@@ -1,3 +1,5 @@
+
+
 // initialize datatable on adalbums page
    $('#example4').DataTable({
       "paging": true,
