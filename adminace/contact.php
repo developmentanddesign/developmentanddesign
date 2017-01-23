@@ -30,17 +30,24 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="col-xs-12">
+      <div class="col-xs-12 contactform">
           <div class="box box-info">
               <div class="box-header with-border">
                 <h3 class="box-title">Contact Information</h3>
+                <?php  $q="select * from contacts";
+                        $run=mysqli_query($conn,$q);
+                        $submit="ture";
+                        while($row=mysqli_fetch_array($run)){
+                          $submit="false";
+                    ?>
+                  <button class="btn btn-warning pull-right" id="edit-contact">Edit</button>
+                <?php } ?>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
               <form id="contact_form" action="ajax/contactajax.php" method="POST" enctype="multipart/form-data">
                 <div class="box-body">
                   <div id="result"><?php global $msg; echo $msg;?></div>
-                  
                   <div class="col-sm-6">
                       <div Class="form-group">
             						<label for="title">Title</label>
@@ -52,12 +59,42 @@
             			     <textarea id="address" name="address" rows="4" cols="50" class="form-control" title="Please Fill out This Field" required></textarea>
             					</div>
             					<div Class="form-group">
-            						<label for="mobile">Mobile no</label>
-            			       <input type="text" id="mobile" class="form-control" name="mobile" data-inputmask='"mask": "(999) 999-9999"' data-mask required>
+            						<div class="col-xs-4 col-sm-5 no-left-padding no-right-padding">
+            						  <label for="ccode">Country Code</label>
+            						  <select class="select4 form-control" name="ccode" id="ccode" required>
+                  			    <option value="">Select One</option>
+                  			    <?php $p="select * from codes";
+                  			          $run=mysqli_query($conn,$p);
+                  			          while($row=mysqli_fetch_array($run)){ ?>
+                                      <option value="<?php echo $row['code'];?>"><?php echo $row['code'];?></option>
+                  			     <?php  } ?>
+                			    </select>		
+            						</div>
+            						<div class="col-xs-8 col-sm-7 no-right-padding">
+            						   <label for="ccode1">Mobile No.</label>
+            						   <input type="text" id="mobile" class="form-control" name="mobile" pattern="[0-9]{10}" required>
+            					  </div>
             					</div>
             					<div Class="form-group">
-            						<label for="phone">Phone no</label>
-            			       <input type="text" class="form-control" name="phone" id="phone" data-inputmask='"mask": "(999) 999-9999"' data-mask required>
+            						<div class="col-xs-6 col-sm-4 no-left-padding no-right-padding">
+            						  <label for="ccode1">Country Code</label>
+            						  <select class="select4 form-control" name="ccode1" id="ccode1">
+                  			    <option value="">Select One</option>
+                  			    <?php $p="select * from codes";
+                  			          $run=mysqli_query($conn,$p);
+                  			          while($row=mysqli_fetch_array($run)){ ?>
+                                      <option value="<?php echo $row['code'];?>"><?php echo $row['code'];?></option>
+                  			     <?php  } ?>
+                			    </select>		
+            						</div>
+            						<div class="col-xs-6 col-sm-4 no-right-padding">
+            						  <label for="areacode">Area Code</label>
+            			        <input type="text" class="form-control" name="areacode" id="areacode">
+            						</div>
+            						<div class="col-xs-12 col-sm-4 no-right-padding">
+            						   <label for="phone">Phone No.</label>
+            			         <input type="text" class="form-control" name="phone" id="phone">
+            						</div>
             					</div>
             					<div Class="form-group">
             						<label for="email">Email</label>
@@ -106,33 +143,34 @@
                 </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                      <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+                      
+                      <input type="submit" name="submit" value="Submit" class="btn btn-primary" <?php if($submit=="false"){ echo "disabled";}?>>
                     </div>
                         <!-- /.box-footer -->
                   </form>
                 </div>
             </div>
           <!-- Modal -->
-                		<div class="modal modal-primary" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                			<div class="modal-dialog">
-                				<div class="modal-content">
-                					<div class="modal-header">
-                						<button class="close" aria-label="Close" data-dismiss="modal" type="button">
-                						<span aria-hidden="true">&times</span>
-                						</button>
-                						<h4 class="modal-title">Confirmation</h4>
-                					</div>
-                					<div class="modal-body">
-                						<p>Confirm Delete</p>
-                					</div>
-                					<div class="modal-footer">
-                						<button class="btn btn-outline pull-left" data-dismiss="modal" type="button">No</button>
-                						<a href="" class="del-confirm"><button class="btn btn-outline" type="button">Yes</button></a>
-                					</div>
-                				</div>
-                			</div>
-                		</div>
-              		<!-- /Modal -->
+        		<div class="modal modal-primary" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        			<div class="modal-dialog">
+        				<div class="modal-content">
+        					<div class="modal-header">
+        						<button class="close" aria-label="Close" data-dismiss="modal" type="button">
+        						<span aria-hidden="true">&times</span>
+        						</button>
+        						<h4 class="modal-title">Confirmation</h4>
+        					</div>
+        					<div class="modal-body">
+        						<p>Confirm Delete</p>
+        					</div>
+        					<div class="modal-footer">
+        						<button class="btn btn-outline pull-left" data-dismiss="modal" type="button">No</button>
+        						<a href="" class="del-confirm"><button class="btn btn-outline" type="button">Yes</button></a>
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+      		<!-- /Modal -->
       <div class="col-sm-12 col-xs-12">
         <div class="box box-info">
           <div class="box-header with-border">
@@ -149,6 +187,7 @@
       <div class="clearfix"></div>
     </section>
     <!-- /.content -->
+    <div class="clearfix"></div>
   </div>
   <!-- /.content-wrapper -->
   

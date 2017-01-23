@@ -78,3 +78,9 @@
 .custom-dropbox,.custom-submit {
 	display:none;
 }
+.no-left-padding {
+    padding-left:0px !important;
+}
+.no-right-padding {
+    padding-right:0px !important;
+}

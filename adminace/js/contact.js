@@ -31,7 +31,26 @@
                  $('.contactdata').html(data);
                 }
             });
+            $.ajax({
+                url: "views/editcontactajax.php",
+                type: "POST",
+                data: 'data',
+                success: function(data) {
+                 $('.contactform').html(data);
+                }
+            });
         
         });
     });
     // form submition for adding contact
+    
+    $('#edit-contact').click(function(){
+        $.ajax({
+                url: "views/editcontactajax.php",
+                type: "POST",
+                data: {edit:edit},
+                success: function(data) {
+                 $('.contactform').html(data);
+                }
+            });
+    });

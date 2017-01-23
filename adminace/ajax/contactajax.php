@@ -46,6 +46,10 @@ require_once('../config/config.php'); ?>
 		{
 		    $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
 							<span class=\"bold\">Error: </span>  Please Fill the Mobile Number </div>";
+		}elseif($_POST['ccode']=="")
+		{
+		    $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+							<span class=\"bold\">Error: </span> Fill Country Code For Mobile </div>";
 		}elseif($_POST['email']=="")
 		{
 		    $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
@@ -71,8 +75,8 @@ require_once('../config/config.php'); ?>
             $p="insert into contacts set
 			    title='".mysqli_real_escape_string($conn,$title)."',
 			    address='".mysqli_real_escape_string($conn,$_POST['address'])."',
-			    mobile='".mysqli_real_escape_string($conn,$_POST['mobile'])."',
-			    phone='".mysqli_real_escape_string($conn,$_POST['phone'])."',
+			    mobile='".mysqli_real_escape_string($conn,$_POST['ccode']."-".$_POST['mobile'])."',
+			    phone='".mysqli_real_escape_string($conn,$_POST['ccode1']."-".$_POST['areacode']."-".$_POST['phone'])."',
 			    email='".mysqli_real_escape_string($conn,$_POST['email'])."',
 			    country='".mysqli_real_escape_string($conn,$_POST['country'])."',
 			    state='".mysqli_real_escape_string($conn,$_POST['state'])."',
@@ -102,6 +106,10 @@ require_once('../config/config.php'); ?>
 		{
 		    $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
 							<span class=\"bold\">Error: </span>  Please Fill the Mobile Number </div>";
+		}elseif($_POST['ccode']=="")
+		{
+		    $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+							<span class=\"bold\">Error: </span> Fill Country Code For Mobile </div>";
 		}elseif($_POST['email']=="")
 		{
 		    $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
@@ -127,8 +135,8 @@ require_once('../config/config.php'); ?>
             $p="update contacts set
 			    title='".mysqli_real_escape_string($conn,$title)."',
 			    address='".mysqli_real_escape_string($conn,$_POST['address'])."',
-			    mobile='".mysqli_real_escape_string($conn,$_POST['mobile'])."',
-			    phone='".mysqli_real_escape_string($conn,$_POST['phone'])."',
+			    mobile='".mysqli_real_escape_string($conn,$_POST['ccode']."-".$_POST['mobile'])."',
+			    phone='".mysqli_real_escape_string($conn,$_POST['ccode1']."-".$_POST['areacode']."-".$_POST['phone'])."',
 			    email='".mysqli_real_escape_string($conn,$_POST['email'])."',
 			    country='".mysqli_real_escape_string($conn,$_POST['country'])."',
 			    state='".mysqli_real_escape_string($conn,$_POST['state'])."',

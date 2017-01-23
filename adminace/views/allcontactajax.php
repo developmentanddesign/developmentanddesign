@@ -32,6 +32,22 @@
         	$country=$row['country'];
         	$state=$row['state'];
         	$city=$row['city'];
+          	$p1="select * from countries where id=$country";
+          	$run1=mysqli_query($conn,$p1);
+            while($row1=mysqli_fetch_array($run1)){
+              $countryname=$row1['name'];
+            }
+            $p2="select * from states where id=$state";
+          	$run2=mysqli_query($conn,$p2);
+            while($row2=mysqli_fetch_array($run2)){
+              $statename=$row2['name'];
+            }
+            $p3="select * from cities where id=$city";
+          	$run3=mysqli_query($conn,$p3);
+            while($row3=mysqli_fetch_array($run3)){
+              $cityname=$row3['name'];
+            }
+        	
         	$pin=$row['pin'];
         ?>
         <tr>
@@ -41,9 +57,9 @@
           <td><?php echo $mobile;?></td>
           <td><?php echo $phone;?></td>
           <td><?php echo $email;?></td>
-          <td><?php echo $country;?></td>
-          <td><?php echo $state;?></td>
-          <td><?php echo $city;?></td>
+          <td><?php echo $countryname;?></td>
+          <td><?php echo $statename;?></td>
+          <td><?php echo $cityname;?></td>
           <td><?php echo $pin;?></td>
           <td class="text-center">
       		<button title="Delete" id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="contact.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button>
