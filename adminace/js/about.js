@@ -13,7 +13,10 @@
     
     // form submition for adding about details
     $("#about_form").submit(function(event){
-        event.preventDefault(); //prevent default action 
+        event.preventDefault(); //prevent default action  
+        for (instance in CKEDITOR.instances) {
+            CKEDITOR.instances[instance].updateElement();
+        }
         var post_url = $(this).attr("action"); //get form action url
         var request_method = $(this).attr("method"); //get form GET/POST method
         var formData = new FormData($(this)[0]); //Encode form elements for submission

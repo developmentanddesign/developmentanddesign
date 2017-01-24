@@ -75,11 +75,11 @@ if(isset($_POST['edit'])){
                     type: "POST",
                     data: 'data',
                     success: function(data) {
-                     $('.termsdata').html(data);
+                     $('.disclaimerdata').html(data);
                     }
                 });
                 $.ajax({
-                    url: "views/edittermsajax.php",
+                    url: "views/editdisclaimerajax.php",
                     type: "POST",
                     data: 'data',
                     success: function(data) {
