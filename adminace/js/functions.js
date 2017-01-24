@@ -91,32 +91,35 @@
     
     function  disablesubmit(){
     $('.field input').each(function() {
-           var empty;
+           var empty="";
                 if ($(this).val() == '') {
                   empty = true;
                 }
-            });
-    
-            if (empty) {
+                if (empty) {
                     $('#submit').attr('disabled', true);
                 } else {
                     $('#submit').attr('disabled', false);
                 }
+            });
+    
+            
     }
     
     $('.field input').on('keyup keydown blur change',function() {
         
         $('.field input').each(function() {
+            var empty="";
             if ($(this).val() == '') {
                 empty = true;
             }
+             if (empty) {
+            $('#submit').attr('disabled', true);
+            } else {
+                $('#submit').attr('disabled', false);
+            }
         });
 
-        if (empty) {
-            $('#submit').attr('disabled', true);
-        } else {
-            $('#submit').attr('disabled', false);
-        }
+       
     });
      //disable submit function until input is empty
     

@@ -134,37 +134,22 @@
           </a>
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="terms.php">
             <i class="fa fa-laptop"></i>
             <span>Terms & Conditions</span>
-            <i class="fa fa-angle-left pull-right"></i>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="addterms.php"><i class="fa fa-circle-o"></i>Add Term</a></li>
-            <li><a href="allterms.php"><i class="fa fa-circle-o"></i>All Terms</a></li>
-          </ul>
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="policies.php">
             <i class="fa fa-laptop"></i>
             <span>Privacy Policies</span>
-            <i class="fa fa-angle-left pull-right"></i>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="addpolicies.php"><i class="fa fa-circle-o"></i>Add Policies</a></li>
-            <li><a href="allpolicies.php"><i class="fa fa-circle-o"></i>All Policies</a></li>
-          </ul>
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="disclaimer.php">
             <i class="fa fa-laptop"></i>
             <span>Disclaimer</span>
-            <i class="fa fa-angle-left pull-right"></i>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="adddisclaimer.php"><i class="fa fa-circle-o"></i>Add Details</a></li>
-            <li><a href="alldisclaimers.php"><i class="fa fa-circle-o"></i>All Details</a></li>
-          </ul>
         </li>
         <li class="treeview">
           <a href="contact.php">

@@ -9,13 +9,13 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">About Us</li>
+        <li class="active">Terms & Conditions</li>
       </ol>
     </section>
 
 <?php	if(isset($_GET['del'])){
 					$id=$_GET['del'];
-					$query="delete from aboutus where id='".mysqli_real_escape_string($conn,$id)."'";
+					$query="delete from terms where id='".mysqli_real_escape_string($conn,$id)."'";
 					$run=mysqli_query($conn,$query);
 					if($run){ $msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
 						<span class=\"bold\">Success: </span>  Details Deleted. </div>";
@@ -27,34 +27,34 @@
 ?>
     <!-- Main content -->
     <section class="content">
-      <div class="col-xs-12 aboutform">
+      <div class="col-xs-12 termsform">
           <div class="box box-info">
               <div class="box-header with-border">
-                <h3 class="box-title">About Page Details</h3>
-                <?php  $q="select * from aboutus order by 1 desc limit 1";
+                <h3 class="box-title">Terms & Conditions Page Details</h3>
+                <?php  $q="select * from terms order by 1 desc limit 1";
                         $run=mysqli_query($conn,$q);
                         $submit="ture";
                         while($row=mysqli_fetch_array($run)){
                           $submit="false";
                     ?>
-                  <button class="btn btn-warning pull-right" id="edit-about">Edit</button>
+                  <button class="btn btn-warning pull-right" id="edit-terms">Edit</button>
                 <?php } ?>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
-              <form id="about_form" action="ajax/aboutajax.php" method="POST" enctype="multipart/form-data">
+              <form id="terms_form" action="ajax/termsajax.php" method="POST" enctype="multipart/form-data">
                 <div class="box-body">
                   <div id="result"><?php global $msg; echo $msg;?></div>
                       
                   <div class="col-sm-6">
           					<div Class="form-group">
           						<label for="title">Title</label>
-          						<input type="text" name="title" id="title" value="About Us" class="form-control" disabled title="Already Filled"  required>
+          						<input type="text" name="title" id="title" value="Terms and Conditions" class="form-control" disabled title="Already Filled"  required>
           						<input type="hidden" name="form" value="add" class="form-control" required>
           					</div>
           					<div Class="form-group">
           						<label for="editor1">Description</label>
-          			            <textarea id="editor1" name="desc" rows="10" cols="80" title="Please Fill out This Field" required></textarea>
+          			         <textarea id="editor1" name="description" rows="10" cols="80" title="Please Fill out This Field" required></textarea>
           					</div>
           				</div>
           				<div class="col-sm-6">
@@ -102,10 +102,10 @@
             <div class="col-xs-12">
               <div class="box box-info">
                 <div class="box-header with-border">
-                  <h3 class="box-title">All About Page Entries</h3>
+                  <h3 class="box-title">All Terms & Conditions Page Entries</h3>
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body aboutdata">
+                <div class="box-body termsdata">
                   
                 </div>
                     
@@ -121,4 +121,4 @@
   
 <?php include_once('views/footer.php');?>
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
-<script src="js/about.js"></script>
+<script src="js/terms.js"></script>
