@@ -45,8 +45,14 @@
             url: "views/allalbumsajax.php",
             type: "GET",
             data: {edit : id},
+            beforeSend: function(){
+                 $('.cssload-whirlpool').show();
+                 $('.album-box').fadeTo(0,0.1);
+             },
             success: function(data) {
              $('.albumdata').html(data);
+             $('.cssload-whirlpool').delay(2000).fadeOut();
+             $('.album-box').delay(2000).fadeTo(0, 1);
              disablesubmit();
             }
         });
@@ -71,7 +77,11 @@
                 type: 'post',
                 data :dataimg,
                 processData: false,
-                contentType: false
+                contentType: false,
+            beforeSend: function(){
+                 $('.cssload-whirlpool').show();
+                 $('.album-box').fadeTo(0,0.1);
+             }
             }).done(function(response){ //
                 $("#result").html(response);
                 $.ajax({
@@ -80,6 +90,8 @@
                     data: 'data',
                     success: function(data) {
                      $('.albumdata').html(data);
+                     $('.cssload-whirlpool').delay(2000).fadeOut();
+                     $('.album-box').delay(2000).fadeTo(0, 1);
                      disablesubmit();
                      $(".image-preview-input-title").text("Browse");
                     }

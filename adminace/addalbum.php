@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        ACEChannel
+        ACE Channel
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
@@ -20,6 +20,13 @@
     					$run1=mysqli_query($conn,$query1);
     					while($ro=mysqli_fetch_array($run1)){
     						unlink('../images/albumcover/'.$ro['cover']);
+    						$q1="select * from albumimages where parent_id=$id";
+    						$run2=mysqli_query($conn,$q1);
+    						while($ro1=mysqli_fetch_array($run2)){
+    						  unlink('../images/albumimages/'.$ro1['image']);
+    						}
+    						$q2="delete from albumimages where parent_id='".mysqli_real_escape_string($conn,$id)."'";
+    				    $run=mysqli_query($conn,$q2);
     					}
     					$query="delete from albums where id='".mysqli_real_escape_string($conn,$id)."'";
     					$run=mysqli_query($conn,$query);

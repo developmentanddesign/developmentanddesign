@@ -4,9 +4,15 @@
             url: "views/allaboutajax.php",
             type: "POST",
             data: 'data',
+            beforeSend: function(){
+                 $('.cssload-whirlpool').show();
+                 $('.album-box').fadeTo(0,0.1);
+             },
             success: function(data) {
             $("#result").html('');
              $('.aboutdata').html(data);
+             $('.cssload-whirlpool').delay(2000).fadeOut();
+             $('.album-box').delay(2000).fadeTo(0, 1);
             }
     });
     //get all about Deatils
@@ -25,7 +31,11 @@
             type: request_method,
             data : formData,
             processData: false,
-            contentType: false
+            contentType: false,
+            beforeSend: function(){
+                 $('.cssload-whirlpool').show();
+                 $('.album-box').fadeTo(0,0.1);
+             }
         }).done(function(response){ //
             $("#result").html(response);
             $('#mtitle').val('');
@@ -37,6 +47,8 @@
                 data: 'data',
                 success: function(data) {
                  $('.aboutdata').html(data);
+                $('.cssload-whirlpool').delay(2000).fadeOut();
+                $('.album-box').delay(2000).fadeTo(0, 1);
                 }
             });
         
@@ -49,8 +61,14 @@
                 url: "views/editaboutajax.php",
                 type: "POST",
                 data: {edit:edit},
+                beforeSend: function(){
+                     $('.cssload-whirlpool1').show();
+                     $('.aboutform').fadeTo(0,0.1);
+                 },
                 success: function(data) {
                  $('.aboutform').html(data);
+                 $('.cssload-whirlpool1').delay(2000).fadeOut();
+                 $('.aboutform').delay(2000).fadeTo(0, 1);
                  // html Editor
                  CKEDITOR.replace('editor1');
                  

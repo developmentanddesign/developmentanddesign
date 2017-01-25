@@ -5,7 +5,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        ACEChannel
+        ACE Channel
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
@@ -102,7 +102,8 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <div class="box-body imagesdata">
+            <div class="cssload-whirlpool"></div>
+            <div class="box-body imagesdata album-box">
                 
             </div>
           </div>
@@ -119,5 +120,5 @@
 <?php include_once('views/footer.php');?>
 
 <script> 
-setInterval(localdate(), 1000);
+  setInterval(localdate(), 1000);
 </script>

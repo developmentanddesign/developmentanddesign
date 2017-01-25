@@ -136,7 +136,8 @@
             processData: false,
             contentType: false,
             beforeSend: function(){
-               $('.loader').show();
+                 $('.cssload-whirlpool').show();
+                 $('.album-box').fadeTo(0,0.1);
              }
         }).done(function(response){ //
             $("#result").html(response);
@@ -155,7 +156,9 @@
                 data: 'data',
                 success: function(data) {
                  $('.albumdata').html(data);
-                $(".image-preview-input-title").text("Browse");
+                 $('.cssload-whirlpool').delay(2000).fadeOut();
+                 $('.album-box').delay(2000).fadeTo(0, 1);
+                 $(".image-preview-input-title").text("Browse");
                  disablesubmit();
                 }
             });
@@ -167,7 +170,6 @@
                  $('.imagesdata').html(data);
                 }
             });
-            $('.loader').hide();
         
         });
     });
@@ -211,7 +213,8 @@
             processData: false,
             contentType: false,
             beforeSend: function(){
-               $('.loader').show();
+                 $('.cssload-whirlpool').show();
+                 $('.album-box').fadeTo(0,0.1);
              }
         }).done(function(response){ //
             $("#result").html(response);
@@ -223,7 +226,8 @@
                 data: 'data',
                 success: function(data) {
                  $('.videodata').html(data);
-                 $('.loader').hide();
+                 $('.cssload-whirlpool').delay(2000).fadeOut();
+                 $('.album-box').delay(2000).fadeTo(0, 1);
                 }
             });
         
@@ -320,12 +324,14 @@
                 type: "POST",
                 data: {id:id,select:"one"},
                 beforeSend: function(){
-                   $('.loader').show();
-                 },
+                     $('.cssload-whirlpool').show();
+                     $('.album-box').fadeTo(0,0.1);
+                },
                 success: function(data) {
                 $("#result").html('');
                  $('.imagesdata').html(data);
-                 $('.loader').hide();
+                 $('.cssload-whirlpool').delay(2000).fadeOut();
+                 $('.album-box').delay(2000).fadeTo(0, 1);
                 }
             });
         }else{
@@ -334,12 +340,14 @@
                 type: "POST",
                 data: {select:"all"},
                 beforeSend: function(){
-                   $('.loader').show();
+                     $('.cssload-whirlpool').show();
+                     $('.album-box').fadeTo(0,0.1);
                  },
                 success: function(data) {
                 $("#result").html('');
                  $('.imagesdata').html(data);
-                 $('.loader').hide();
+                 $('.cssload-whirlpool').delay(2000).fadeOut();
+                 $('.album-box').delay(2000).fadeTo(0, 1);
                 }
             });
         }
