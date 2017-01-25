@@ -109,8 +109,8 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <div class="box-body albumdata">
-                
+            <div class="cssload-whirlpool"></div>
+            <div class="box-body albumdata album-box">
             </div>
           </div>
       </div>
@@ -128,9 +128,15 @@
             url: "views/allalbumsajax.php",
             type: "POST",
             data: 'data',
+            beforeSend: function(){
+                 $('.cssload-whirlpool').show();
+                 $('.album-box').fadeTo(0,0.1);
+             },
             success: function(data) {
             $("#result").html('');
-             $('.albumdata').html(data);
+             $('.albumdata').delay(2000).html(data);
+             $('.cssload-whirlpool').delay(2000).fadeOut();
+             $('.album-box').delay(2000).fadeTo(0, 1);
             }
         });
     //get all albums

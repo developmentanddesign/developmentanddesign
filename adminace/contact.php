@@ -89,16 +89,16 @@
             						</div>
             						<div class="col-xs-6 col-sm-4 no-right-padding">
             						  <label for="areacode">Area Code</label>
-            			        <input type="text" class="form-control" name="areacode" id="areacode">
+            			        <input type="text" class="form-control" name="areacode" id="areacode" pattern="\d*">
             						</div>
             						<div class="col-xs-12 col-sm-4 no-right-padding">
             						   <label for="phone">Phone No.</label>
-            			         <input type="text" class="form-control" name="phone" id="phone">
+            			         <input type="text" class="form-control" name="phone" id="phone" pattern="\d*">
             						</div>
             					</div>
             					<div Class="form-group">
             						<label for="email">Email</label>
-            			       <input type="email" class="form-control" name="email" id="email" required>
+            			       <input type="email" class="form-control" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" required>
             					</div>
           				</div>
           				<div class="col-sm-6">

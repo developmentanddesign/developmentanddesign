@@ -68,16 +68,16 @@
         						</div>
         						<div class="col-xs-6 col-sm-4 no-right-padding">
         						   <label for="areacode">Area Code</label>
-            			           <input type="text" class="form-control" value="<?php echo $acode;?>" name="areacode" id="areacode">
+            			           <input type="text" class="form-control" value="<?php echo $acode;?>" name="areacode" id="areacode" pattern="\d*">
         						</div>
         						<div class="col-xs-12 col-sm-4 no-right-padding">
         						   <label for="phone">Phone no</label>
-    			                   <input type="text" class="form-control" name="phone" id="phone" value="<?php echo $phone1;?>">
+    			                   <input type="text" class="form-control" name="phone" id="phone" value="<?php echo $phone1;?>" pattern="\d*">
     			                </div>
         					</div>
         					<div Class="form-group">
         						<label for="email">Email</label>
-        			           <input type="email" class="form-control" name="email" id="email" value="<?php echo $email;?>" required>
+        			           <input type="email" class="form-control" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="<?php echo $email;?>" required>
         					</div>
           				</div>
           				<div class="col-sm-6">
@@ -234,16 +234,16 @@ echo '<script>
             						</div>
             						<div class="col-xs-6 col-sm-4 no-right-padding">
             						  <label for="areacode">Area Code</label>
-            			              <input type="text" class="form-control" name="areacode" id="areacode">
+            			              <input type="text" class="form-control" name="areacode" id="areacode" pattern="\d*">
             						</div>
             						<div class="col-xs-12 col-sm-4 no-right-padding">
             						   <label for="phone">Phone No.</label>
-        			                   <input type="text" class="form-control" name="phone" id="phone">
+        			                   <input type="text" class="form-control" name="phone" id="phone" pattern="\d*">
             						</div>
             					</div>
             					<div Class="form-group">
             						<label for="email">Email</label>
-            			            <input type="email" class="form-control" name="email" id="email" required>
+            			            <input type="email" class="form-control" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
             					</div>
           				</div>
           				<div class="col-sm-6">
