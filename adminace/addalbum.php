@@ -40,52 +40,69 @@
     ?>
     <!-- Main content -->
     <section class="content">
-      <div class="col-xs-12">
-          <div class="box box-info">
+      <div class="form-box col-xs-12">
+        <div class="cssload-whirlpool1"></div>
+        <div class="box box-info addform">
               <div class="box-header with-border">
-                <h3 class="box-title">Album Title</h3>
+                <h3 class="box-title">Add Albums</h3>
+                <button class="btn btn-warning pull-right" id="add-album">Add Album</button>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
               <form id="albums_form" action="ajax/albumajax.php" method="POST" enctype="multipart/form-data">
-                <div class="box-body">
+                <div class="box-body custom-form">
                   <div id="result"><?php global $msg; echo $msg;?></div>
-        					<div Class="form-group col-sm-4 col-md-5 col-xs-12 title-height">
-        						<label for="title">Album Title</label>
-        						<input type="hidden" name="form" value="addalbum">
-        						<input type="hidden" name="date" value="" id="localdate">
-        						<div class="field">
-        						  <input type="text" name="title" id="title" value="" class="form-control" required>
-        						</div>
-        					</div>
-        					<div Class="form-group col-sm-5 col-md-5 col-xs-12">
-        						<label for="desc">Album Cover</label>
-        						<div class="input-group image-preview">
-                        <input id="coverinput" type="text" class="form-control image-preview-filename" disabled="disabled" title="Please Browse an Image"> <!-- don't give a name === doesn't send on POST/GET -->
-                        <span class="input-group-btn">
-                            <!-- image-preview-clear button -->
-                            <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
-                                <span class="glyphicon glyphicon-remove"></span> Clear
-                            </button>
-                            <!-- image-preview-input -->
-                            <div class="btn btn-default field image-preview-input">
-                                <span class="glyphicon glyphicon-folder-open"></span>
-                                <span class="image-preview-input-title">Browse</span>
-                                <input id="coverimg" type="file" accept="image/png, image/jpeg, image/gif" name="cover" required/> <!-- rename it -->
-                            </div>
-                        </span>
+                  <div class="col-sm-6 no-padding">
+          					<div Class="form-group col-sm-12">
+          						<label for="title">Album Title</label>
+          						<input type="hidden" name="form" value="addalbum">
+          						<input type="hidden" name="date" value="" id="localdate">
+          						<div class="field">
+          						  <input type="text" name="title" id="title" value="" class="form-control" required>
+          						</div>
+          					</div>
+          					<div Class="form-group col-sm-12">
+          						<label for="desc">Album Cover</label>
+          						<div class="input-group image-preview">
+                          <input id="coverinput" type="text" class="form-control image-preview-filename" disabled="disabled" title="Please Browse an Image"> <!-- don't give a name === doesn't send on POST/GET -->
+                          <span class="input-group-btn">
+                              <!-- image-preview-clear button -->
+                              <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                  <span class="glyphicon glyphicon-remove"></span> Clear
+                              </button>
+                              <!-- image-preview-input -->
+                              <div class="btn btn-default field image-preview-input">
+                                  <span class="glyphicon glyphicon-folder-open"></span>
+                                  <span class="image-preview-input-title">Browse</span>
+                                  <input id="coverimg" type="file" accept="image/png, image/jpeg, image/gif" name="cover" required/> <!-- rename it -->
+                              </div>
+                          </span>
+                      </div>
                     </div>
                   </div>
-                  <div Class="form-group col-sm-3 col-md-2 col-xs-12 btn-height">
-                      <label>&nbsp</label>
-                      <input type="submit" id="submit" name="submit" value="Submit" class="btn btn-primary">
+                  <div class="col-sm-6 no-padding">
+                    <div Class="form-group col-sm-12">
+          						<label for="mtitle">Meta Title</label>
+          						<div class="field">
+          						  <input type="text" name="mtitle" id="mtitle" class="form-control" required>
+          						</div>
+        					  </div>
+        					  <div Class="form-group col-sm-12">
+          						<label for="mdesc">Meta Description</label>
+          						<div class="field">
+          						  <textarea name="mdesc" id="mdesc" class="form-control" required></textarea>
+          						</div>
+        					  </div>
+        					</div>
+        					</div>
+                  <div class="box-footer custom-form">
+                    <input type="submit" id="submit" name="submit" value="Submit" class="btn btn-primary">
                   </div>
-                </div>
                 <!-- /.box-body -->
               </form>
-            </div>
       </div>
-      
+
+      </div>
        <!-- Modal -->
       		<div class="modal modal-primary" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       			<div class="modal-dialog">

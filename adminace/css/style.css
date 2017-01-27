@@ -153,6 +153,59 @@
 		-webkit-animation: cssload-rotate 2300ms linear infinite;
 		-moz-animation: cssload-rotate 2300ms linear infinite;
 }
+.cssload-whirlpool2 {
+	display:none;
+	z-index:9999;
+}	
+.cssload-whirlpool2,
+.cssload-whirlpool2::before,
+.cssload-whirlpool2::after {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border: 1px solid red;
+	border-left-color: rgb(0,0,0);
+	border-radius: 974px;
+		-o-border-radius: 974px;
+		-ms-border-radius: 974px;
+		-webkit-border-radius: 974px;
+		-moz-border-radius: 974px;
+}
+
+.cssload-whirlpool2 {
+	margin: -24px 0 0 -24px;
+	height: 49px;
+	width: 49px;
+	animation: cssload-rotate 1150ms linear infinite;
+		-o-animation: cssload-rotate 1150ms linear infinite;
+		-ms-animation: cssload-rotate 1150ms linear infinite;
+		-webkit-animation: cssload-rotate 1150ms linear infinite;
+		-moz-animation: cssload-rotate 1150ms linear infinite;
+}
+
+.cssload-whirlpool2::before {
+	content: "";
+	margin: -22px 0 0 -22px;
+	height: 43px;
+	width: 43px;
+	animation: cssload-rotate 1150ms linear infinite;
+		-o-animation: cssload-rotate 1150ms linear infinite;
+		-ms-animation: cssload-rotate 1150ms linear infinite;
+		-webkit-animation: cssload-rotate 1150ms linear infinite;
+		-moz-animation: cssload-rotate 1150ms linear infinite;
+}
+
+.cssload-whirlpool2::after {
+	content: "";
+	margin: -28px 0 0 -28px;
+	height: 55px;
+	width: 55px;
+	animation: cssload-rotate 2300ms linear infinite;
+		-o-animation: cssload-rotate 2300ms linear infinite;
+		-ms-animation: cssload-rotate 2300ms linear infinite;
+		-webkit-animation: cssload-rotate 2300ms linear infinite;
+		-moz-animation: cssload-rotate 2300ms linear infinite;
+}
 
 
 @keyframes cssload-rotate {
@@ -195,4 +248,25 @@
 }
 .form-box {
 	position:relative;
+}
+.select2-container--default .select2-selection--single, .select2-selection .select2-selection--single {
+    height: 34px !important;
+    padding: 6px 12px !important;
+}
+
+.select2-container--default .select2-selection--single {
+    border-radius: 0px !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 34px !important;
+}
+.no-padding {
+	padding-left:0px !important;
+	padding-right:0px !important;
+}
+.custom-form {
+	display:none;
+}
+.updateform {
+	display:none;
 }

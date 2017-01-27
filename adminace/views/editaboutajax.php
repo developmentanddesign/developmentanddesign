@@ -70,7 +70,7 @@ if(isset($_POST['edit'])){
                      $('.album-box').fadeTo(0,0.1);
                      $('.cssload-whirlpool1').show();
                      $('.aboutform').fadeTo(0,0.1);
-                 },
+                 }
             }).done(function(response){ //
                 $("#result").html(response);
                 $('#mtitle').val('');

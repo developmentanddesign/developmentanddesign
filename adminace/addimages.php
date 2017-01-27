@@ -66,8 +66,8 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                      <input type="submit" name="submit" value="Submit" class="btn btn-primary custom-submit">
-                    </div>
+                  <input type="submit" name="submit" value="Submit" class="btn btn-primary custom-submit">
+                </div>
               </form>
             </div>
       </div>

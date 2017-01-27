@@ -64,7 +64,13 @@ if(isset($_POST['edit'])){
                 type: request_method,
                 data : formData,
                 processData: false,
-                contentType: false
+                contentType: false,
+                beforeSend: function(){
+                     $('.cssload-whirlpool').show();
+                     $('.album-box').fadeTo(0,0.1);
+                     $('.cssload-whirlpool1').show();
+                     $('.disclaimerform').fadeTo(0,0.1);
+                 }
             }).done(function(response){ //
                 $("#result").html(response);
                 $('#mtitle').val('');
@@ -76,6 +82,10 @@ if(isset($_POST['edit'])){
                     data: 'data',
                     success: function(data) {
                      $('.disclaimerdata').html(data);
+                     $('.cssload-whirlpool').delay(2000).fadeOut();
+                     $('.album-box').delay(2000).fadeTo(0, 1);
+                    $('.cssload-whirlpool1').delay(2000).fadeOut();
+                    $('.disclaimerform').delay(2000).fadeTo(0, 1);
                     }
                 });
                 $.ajax({
@@ -154,7 +164,11 @@ if(isset($_POST['edit'])){
             type: request_method,
             data : formData,
             processData: false,
-            contentType: false
+            contentType: false,
+        beforeSend: function(){
+             $('.cssload-whirlpool').show();
+             $('.album-box').fadeTo(0,0.1);
+         }
         }).done(function(response){ //
             $("#result").html(response);
             $('#mtitle').val('');
@@ -166,6 +180,8 @@ if(isset($_POST['edit'])){
                 data: 'data',
                 success: function(data) {
                  $('.disclaimerdata').html(data);
+                $('.cssload-whirlpool').delay(2000).fadeOut();
+                $('.album-box').delay(2000).fadeTo(0, 1);
                  // html Editor
                  CKEDITOR.replace('editor1');
                 }
@@ -180,8 +196,14 @@ if(isset($_POST['edit'])){
                 url: "views/editdisclaimerajax.php",
                 type: "POST",
                 data: {edit:edit},
+                beforeSend: function(){
+                     $('.cssload-whirlpool1').show();
+                     $('.disclaimerform').fadeTo(0,0.1);
+                 },
                 success: function(data) {
                  $('.disclaimerform').html(data);
+                 $('.cssload-whirlpool1').delay(2000).fadeOut();
+                 $('.disclaimerform').delay(2000).fadeTo(0, 1);
                  
                  // html Editor
                  CKEDITOR.replace('editor1');

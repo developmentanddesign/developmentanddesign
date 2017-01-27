@@ -27,7 +27,9 @@
 ?>
     <!-- Main content -->
     <section class="content">
-      <div class="col-xs-12 policiesform">
+      <div class="form-box col-xs-12">
+        <div class="cssload-whirlpool1"></div>
+        <div class="col-xs-12 policiesform">
           <div class="box box-info">
               <div class="box-header with-border">
                 <h3 class="box-title">Privacy Policies Page Details</h3>
@@ -76,6 +78,7 @@
                 </form>
               </div>
           </div>
+      </div>
               
          <!-- Modal -->
         		<div class="modal modal-primary" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -105,7 +108,8 @@
                   <h3 class="box-title">All Privacy Policies Page Entries</h3>
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body policiesdata">
+                <div class="cssload-whirlpool"></div>
+                <div class="box-body policiesdata album-box">
                   
                 </div>
                     

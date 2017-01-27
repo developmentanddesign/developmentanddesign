@@ -1,13 +1,21 @@
     // getting all contacts entries
-    $.ajax({
+
+    $(window).load(function(){             
+        $.ajax({
             url: "views/allcontactajax.php",
             type: "POST",
             data: 'data',
+            beforeSend: function(){
+                $('.cssload-whirlpool').show();
+                $('.alldiv').fadeTo(0,0.1);
+             },
             success: function(data) {
              $('.contactdata').html(data);
+             $('.cssload-whirlpool').delay(2000).fadeOut();
+             $('.alldiv').delay(2000).fadeTo(0, 1);
             }
         });
-    
+    });
     //select2 initilizing
     $(".select3").select2();
    
@@ -28,7 +36,13 @@
             type: request_method,
             data : formData,
             processData: false,
-            contentType: false
+            contentType: false,
+            beforeSend: function(){
+                 $('.cssload-whirlpool1').show();
+                 $('.contactform').fadeTo(0,0.1);
+                 $('.cssload-whirlpool2').show();
+                 $('.album-box').fadeTo(0,0.1);
+             },
         }).done(function(response){ //
             $("#result").html(response);
             $.ajax({
@@ -37,6 +51,10 @@
                 data: 'data',
                 success: function(data) {
                  $('.contactdata').html(data);
+                 $('.cssload-whirlpool1').delay(2000).fadeOut();
+                 $('.contactform').delay(2000).fadeTo(0, 1);
+                 $('.cssload-whirlpool2').delay(2000).fadeOut();
+                 $('.album-box').delay(2000).fadeTo(0, 1);
                 }
             });
             $.ajax({
@@ -57,8 +75,14 @@
                 url: "views/editcontactajax.php",
                 type: "POST",
                 data: {edit:edit},
+                beforeSend: function(){
+                     $('.cssload-whirlpool1').show();
+                     $('.contactform').fadeTo(0,0.1);
+                 },
                 success: function(data) {
                  $('.contactform').html(data);
+                 $('.cssload-whirlpool1').delay(2000).fadeOut();
+                 $('.contactform').delay(2000).fadeTo(0, 1);
                 }
             });
     });

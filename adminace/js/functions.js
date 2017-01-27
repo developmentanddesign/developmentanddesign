@@ -143,12 +143,16 @@
             $("#result").html(response);
             $('#title').val('');
             $('#coverimg').val('');
+            $('#mtitle').val('');
+            $('#mdesc').val('');
+            $('#mdesc').val('');
             $('#coverinput').val('');
             $('.file-preview-thumbnails').html('');
             $('.file-drop-zone').append('<div class="file-drop-zone-title">Drag &amp; drop files here …</div>');
             $('.kv-fileinput-caption').html('');
             $('.file').val('');
             $('.image-preview').popover('hide');
+            $('.image-preview').attr('data-content','');
             $('.image-preview-clear').hide();
             $.ajax({
                 url: "views/allalbumsajax.php",
@@ -177,6 +181,7 @@
     
     //getting local datetime
     setInterval(localdate(), 1000);
+    
     function localdate(){
         var date = new Date,
             day = date.getDate(),
@@ -352,6 +357,16 @@
             });
         }
     }
+    
+     $("#add-album").click(function(){
+         var link = $(this);
+         if ($('.custom-form').is(':visible')) {
+             link.text('Add Album');                
+        } else {
+             link.text('close');                
+        }        
+          $(".custom-form").slideToggle();
+     });
     
      $("#add-imgs").click(function(){
          var link = $(this);

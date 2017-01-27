@@ -1,7 +1,6 @@
 
 <?php 
 require_once('../config/config.php');
-
 		// insert query into albums
 		if($_POST['form']=="addalbum"){
 			if($_POST['title']=="")
@@ -12,6 +11,14 @@ require_once('../config/config.php');
 			{
 			    $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
 								<span class=\"bold\">Error: </span>  Please Attach the Cover Image </div>";
+			}elseif($_POST['mtitle']=="")
+			{
+			    $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+								<span class=\"bold\">Error: </span>  Please Fill Meta Title </div>";
+			}elseif($_POST['mdesc']=="")
+			{
+			    $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+								<span class=\"bold\">Error: </span>  Please Fill Meta Description </div>";
 			}else{
 				$p1="select * from albums where title='".mysqli_real_escape_string($conn,$_POST['title'])."'";
 				 $n=mysqli_query($conn,$p1);
@@ -23,6 +30,8 @@ require_once('../config/config.php');
 						    title='".mysqli_real_escape_string($conn,$_POST['title'])."',
 						    cover='".mysqli_real_escape_string($conn,$_FILES['cover']['name'])."',
 						    created='".mysqli_real_escape_string($conn,$_POST['date'])."',
+						    mtitle='".mysqli_real_escape_string($conn,$_POST['mtitle'])."',
+						    mdesc='".mysqli_real_escape_string($conn,$_POST['mdesc'])."',
 						    lastupdate='0000-00-00'
 						    ";
 						    if(move_uploaded_file($_FILES['cover']['tmp_name'],'../../images/albumcover/'.$_FILES['cover']['name'])){
@@ -52,12 +61,22 @@ require_once('../config/config.php');
 			{
 				$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
 								<span class=\"bold\">Error: </span>  Please Fill the Title. </div>";
+			}elseif($_POST['mtitle']=="")
+			{
+			    $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+								<span class=\"bold\">Error: </span>  Please Fill Meta Title </div>";
+			}elseif($_POST['mdesc']=="")
+			{
+			    $msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+								<span class=\"bold\">Error: </span>  Please Fill Meta Description </div>";
 			}
 			elseif($_FILES['cover']['name']=="" || $_FILES['cover']['name']==null)
 			{
 			
 			    $p="update albums set
 				    title='".mysqli_real_escape_string($conn,$_POST['title'])."',
+				    mtitle='".mysqli_real_escape_string($conn,$_POST['mtitle'])."',
+				    mdesc='".mysqli_real_escape_string($conn,$_POST['mdesc'])."',
 				    lastupdate='".mysqli_real_escape_string($conn,$_POST['date'])."'
 				    where id=$id
 				    ";

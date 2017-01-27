@@ -4,9 +4,15 @@
             url: "views/alltermsajax.php",
             type: "POST",
             data: 'data',
+            beforeSend: function(){
+                 $('.cssload-whirlpool').show();
+                 $('.album-box').fadeTo(0,0.1);
+             },
             success: function(data) {
             $("#result").html('');
              $('.termsdata').html(data);
+             $('.cssload-whirlpool').delay(2000).fadeOut();
+             $('.album-box').delay(2000).fadeTo(0, 1);
             }
     });
     
@@ -24,7 +30,11 @@
             type: request_method,
             data : formData,
             processData: false,
-            contentType: false
+            contentType: false,
+            beforeSend: function(){
+                 $('.cssload-whirlpool').show();
+                 $('.album-box').fadeTo(0,0.1);
+             }
         }).done(function(response){ //
             $("#result").html(response);
             $('#mtitle').val('');
@@ -36,6 +46,8 @@
                 data: 'data',
                 success: function(data) {
                  $('.termsdata').html(data);
+                $('.cssload-whirlpool').delay(2000).fadeOut();
+                $('.album-box').delay(2000).fadeTo(0, 1);
                 }
             });
         
@@ -48,8 +60,14 @@
                 url: "views/edittermsajax.php",
                 type: "POST",
                 data: {edit:edit},
+                beforeSend: function(){
+                     $('.cssload-whirlpool1').show();
+                     $('.termsform').fadeTo(0,0.1);
+                 },
                 success: function(data) {
                  $('.termsform').html(data);
+                 $('.cssload-whirlpool1').delay(2000).fadeOut();
+                 $('.termsform').delay(2000).fadeTo(0, 1);
                  // html Editor
                  CKEDITOR.replace('editor1');
                  

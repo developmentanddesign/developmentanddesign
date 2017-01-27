@@ -27,7 +27,9 @@
 ?>
     <!-- Main content -->
     <section class="content">
-      <div class="col-xs-12 termsform">
+      <div class="form-box col-xs-12">
+        <div class="cssload-whirlpool1"></div>
+        <div class="col-xs-12 termsform">
           <div class="box box-info">
               <div class="box-header with-border">
                 <h3 class="box-title">Terms & Conditions Page Details</h3>
@@ -76,6 +78,7 @@
                 </form>
               </div>
           </div>
+      </div>
               
          <!-- Modal -->
         		<div class="modal modal-primary" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -105,7 +108,8 @@
                   <h3 class="box-title">All Terms & Conditions Page Entries</h3>
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body termsdata">
+                <div class="cssload-whirlpool"></div>
+                <div class="box-body termsdata album-box">
                   
                 </div>
                     
