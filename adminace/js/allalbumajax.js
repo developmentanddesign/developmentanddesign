@@ -42,17 +42,17 @@
     $('.edit-btn').click(function(){
         var id= $(this).attr('id');
         $.ajax({
-            url: "views/allalbumsajax.php",
-            type: "GET",
+            url: "views/editalbumajax.php",
+            type: "POST",
             data: {edit : id},
             beforeSend: function(){
-                 $('.cssload-whirlpool').show();
-                 $('.album-box').fadeTo(0,0.1);
+                 $('.cssload-whirlpool1').show();
+                 $('.form-box').fadeTo(0,0.1);
              },
             success: function(data) {
-             $('.albumdata').html(data);
-             $('.cssload-whirlpool').delay(2000).fadeOut();
-             $('.album-box').delay(2000).fadeTo(0, 1);
+             $('.form-box').html(data);
+             $('.cssload-whirlpool1').delay(2000).fadeOut();
+             $('.form-box').delay(2000).fadeTo(0, 1);
              disablesubmit();
             }
         });
@@ -100,65 +100,4 @@
     });
     
     
-    //Image Preview Code starts
-    $(document).on('click', '#close-preview-new', function(){ 
-        $('.image-preview-new').popover('hide');
-        // Hover befor close the preview
-        $('.image-preview').hover(
-            function () {
-               $('.image-preview-new').popover('show');
-            }, 
-             function () {
-               $('.image-preview-new').popover('hide');
-            }
-        );    
-    });
-        
-    // Create the close button
-    var closebtn = $('<button/>', {
-        type:"button",
-        text: 'x',
-        id: 'close-preview-new',
-        style: 'font-size: initial;',
-    });
-    closebtn.attr("class","close pull-right");
-    
-    // Set the popover default content
-    $('.image-preview-new').popover({
-        trigger:'manual',
-        html:true,
-        title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
-        content: "There's no image",
-        placement:'bottom'
-    });
-    
-    // Clear event
-    $('.image-preview-clear-new').click(function(){
-        $('.image-preview-new').attr("data-content","").popover('hide');
-        $('.image-preview-filename-new').val("");
-        $('.image-preview-clear-new').hide();
-        $('.image-preview-input-new input:file').val("");
-        $(".image-preview-input-title-new").text("Browse"); 
-    }); 
-    
-    // Create the preview image
-    $(".image-preview-input-new input:file").change(function (){     
-        var img = $('<img/>', {
-            id: 'dynamic',
-            width:250,
-            height:200
-        });      
-        var file = this.files[0];
-        var reader = new FileReader();
-        
-    // Set preview image into the popover data-content
-        reader.onload = function (e) {
-            $(".image-preview-input-title-new").text("Change");
-            $(".image-preview-clear-new").show();
-            $(".image-preview-filename-new").val(file.name);            
-            img.attr('src', e.target.result);
-            $(".image-preview-new").attr("data-content",$(img)[0].outerHTML).popover("show");
-        }        
-        reader.readAsDataURL(file);
-    });  
-    //Image Preview Code Ends
+   

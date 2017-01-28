@@ -1,16 +1,15 @@
 <?php
 require_once('../config/config.php');
 if(isset($_POST['edit'])){ 
-    $id=$_POST['id'];
+    $id=$_POST['edit'];
     $p="select * from albums where id=$id";
     $run=mysqli_query($conn,$p);
     while($row=mysqli_fetch_array($run)){
         $title=$row['title'];
         $img=$row['image'];
         $mtitle=$row['mtitle'];
-        $mdesc=$row['mdesc'];
-    }
-?>
+        $mdesc=$row['mdesc'];?>
+        <div class="cssload-whirlpool1"></div>
            <div class="box box-info addform">
               <div class="box-header with-border">
                 <h3 class="box-title">Update Album</h3>
@@ -23,6 +22,7 @@ if(isset($_POST['edit'])){
                   <div class="col-sm-6 no-padding">
   					<div Class="form-group col-sm-12">
   						<label for="title">Album Title</label>
+  						<input type="hidden" name="id" value="<?php echo $id; ?>">
   						<input type="hidden" name="form" value="updatealbum">
   						<input type="hidden" name="date" value="" id="localdate">
   						<input type="hidden" name="imgold" value="<?php echo $img;?>" id="imgold">
@@ -43,7 +43,7 @@ if(isset($_POST['edit'])){
                               <div class="btn btn-default field image-preview-input">
                                   <span class="glyphicon glyphicon-folder-open"></span>
                                   <span class="image-preview-input-title">Browse</span>
-                                  <input id="coverimg" type="file" accept="image/png, image/jpeg, image/gif" name="cover" required/> <!-- rename it -->
+                                  <input id="coverimg" type="file" accept="image/png, image/jpeg, image/gif" name="cover"/> <!-- rename it -->
                               </div>
                           </span>
                       </div>
@@ -59,18 +59,20 @@ if(isset($_POST['edit'])){
 				    <div Class="form-group col-sm-12">
   					  <label for="mdesc">Meta Description</label>
   					  <div class="field">
-  					    <textarea name="mdesc" id="mdesc" value="<?php echo $mdesc;?>" class="form-control" required></textarea>
+  					    <textarea name="mdesc" id="mdesc" value="<?php echo $mdesc;?>" class="form-control" required><?php echo $mdesc;?></textarea>
   					  </div>
 				    </div>
 				   </div>
 				</div>
-                  <div class="box-footer custom-form">
+                  <div class="box-footer">
                     <input type="submit" id="submit" name="submit" value="Submit" class="btn btn-primary">
                   </div>
                 <!-- /.box-body -->
               </form>
-      </div>
-          
+          </div>
+   
+  <?php   }
+?>       
 <script>
     // form submition for adding about details
         $("#update").submit(function(event){
@@ -88,16 +90,12 @@ if(isset($_POST['edit'])){
                      $('.cssload-whirlpool').show();
                      $('.album-box').fadeTo(0,0.1);
                      $('.cssload-whirlpool1').show();
-                     $('.albumform').fadeTo(0,0.1);
+                     $('.form-box').fadeTo(0,0.1);
                  }
             }).done(function(response){ //
                 $("#result").html(response);
-                $('.image-preview').attr('data-content','');
-                $('#title').val('');
-                $('#mtitle').val('');
-                $('#mdesc').val('');
                 $.ajax({
-                    url: "views/alldisclaimerajax.php",
+                    url: "views/allalbumsajax.php",
                     type: "POST",
                     data: 'data',
                     success: function(data) {
@@ -105,7 +103,7 @@ if(isset($_POST['edit'])){
                      $('.cssload-whirlpool').delay(2000).fadeOut();
                      $('.album-box').delay(2000).fadeTo(0, 1);
                     $('.cssload-whirlpool1').delay(2000).fadeOut();
-                    $('.albumform').delay(2000).fadeTo(0, 1);
+                    $('.form-box').delay(2000).fadeTo(0, 1);
                     }
                 });
                 $.ajax({
@@ -113,15 +111,78 @@ if(isset($_POST['edit'])){
                     type: "POST",
                     data: 'data',
                     success: function(data) {
-                     $('.albumform').html(data);
+                     $('.form-box').html(data);
                     }
                 });
             
             });
         });
     // form submition for adding about details
+    
+     //Image preview in table row field while album update
+    $(document).on('click', '#close-preview', function(){ 
+        $('.image-preview').popover('hide');
+        // Hover befor close the preview
+        $('.image-preview').hover(
+            function () {
+               $('.image-preview').popover('show');
+            }, 
+             function () {
+               $('.image-preview').popover('hide');
+            }
+        );    
+    });
+    
+        // Create the close button
+        var closebtn = $('<button/>', {
+            type:"button",
+            text: 'x',
+            id: 'close-preview',
+            style: 'font-size: initial;',
+        });
+        closebtn.attr("class","close pull-right");
+        // Set the popover default content
+        $('.image-preview').popover({
+            trigger:'manual',
+            html:true,
+            title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+            content: "There's no image",
+            placement:'bottom'
+        });
+        // Clear event
+        $('.image-preview-clear').click(function(){
+            $('.image-preview').attr("data-content","").popover('hide');
+            $('.image-preview-filename').val("");
+            $('.image-preview-clear').hide();
+            $('.image-preview-input input:file').val("");
+            $(".image-preview-input-title").text("Browse"); 
+        }); 
+        // Create the preview image
+        $(".image-preview-input input:file").change(function (){     
+            var img = $('<img/>', {
+                id: 'dynamic',
+                width:250,
+                height:200
+            });      
+            var file = this.files[0];
+            var reader = new FileReader();
+            // Set preview image into the popover data-content
+            reader.onload = function (e) {
+                $(".image-preview-input-title").text("Change");
+                $(".image-preview-clear").show();
+                $(".image-preview-filename").val(file.name);            
+                img.attr('src', e.target.result);
+                $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+            }        
+            reader.readAsDataURL(file);
+        });  
+    
+    
+    //Image preview in table row field while album update
 </script>
 <?php }else{ ?>
+
+        <div class="cssload-whirlpool1"></div>
             <div class="box box-info addform">
               <div class="box-header with-border">
                 <h3 class="box-title">Add Albums</h3>
@@ -206,9 +267,6 @@ if(isset($_POST['edit'])){
             $('#mdesc').val('');
             $('#mdesc').val('');
             $('#coverinput').val('');
-            $('.file-preview-thumbnails').html('');
-            $('.file-drop-zone').append('<div class="file-drop-zone-title">Drag &amp; drop files here …</div>');
-            $('.kv-fileinput-caption').html('');
             $('.file').val('');
             $('.image-preview').popover('hide');
             $('.image-preview').attr('data-content','');
@@ -230,28 +288,107 @@ if(isset($_POST['edit'])){
     });
     // form submition for adding albums & images
     
-    $('#edit-album').click(function(){
+    $('.edit-btn').click(function(){
+        var id= $(this).attr('id');
         $.ajax({
                 url: "views/editalbumajax.php",
                 type: "POST",
-                data: {edit:edit},
+                data: {edit:id},
                 beforeSend: function(){
                      $('.cssload-whirlpool1').show();
-                     $('.albumform').fadeTo(0,0.1);
+                     $('.form-box').fadeTo(0,0.1);
                  },
                 success: function(data) {
-                 $('.albumform').html(data);
+                 $('.form-box').html(data);
                  $('.cssload-whirlpool1').delay(2000).fadeOut();
-                 $('.albumform').delay(2000).fadeTo(0, 1);
-                 
-                 // html Editor
-                 CKEDITOR.replace('editor1');
+                 $('.form-box').delay(2000).fadeTo(0, 1);
                  
                 }
             });
     });
+    $("#add-album").click(function(){
+         var link = $(this);
+         if ($('.custom-form').is(':visible')) {
+             link.text('Add Album');                
+        } else {
+             link.text('close');                
+        }        
+          $(".custom-form").slideToggle();
+     });
+     
+      //Image Preview Code starts
+    $(document).on('click', '#close-preview-new', function(){ 
+        $('.image-preview-new').popover('hide');
+        // Hover befor close the preview
+        $('.image-preview').hover(
+            function () {
+               $('.image-preview-new').popover('show');
+            }, 
+             function () {
+               $('.image-preview-new').popover('hide');
+            }
+        );    
+    });
+        
+      //Image preview in table row field while album update
+    $(document).on('click', '#close-preview', function(){ 
+        $('.image-preview').popover('hide');
+        // Hover befor close the preview
+        $('.image-preview').hover(
+            function () {
+               $('.image-preview').popover('show');
+            }, 
+             function () {
+               $('.image-preview').popover('hide');
+            }
+        );    
+    });
     
-                 // html Editor
-                 CKEDITOR.replace('editor1');
+        // Create the close button
+        var closebtn = $('<button/>', {
+            type:"button",
+            text: 'x',
+            id: 'close-preview',
+            style: 'font-size: initial;',
+        });
+        closebtn.attr("class","close pull-right");
+        // Set the popover default content
+        $('.image-preview').popover({
+            trigger:'manual',
+            html:true,
+            title: "<strong>Preview</strong>"+$(closebtn)[0].outerHTML,
+            content: "There's no image",
+            placement:'bottom'
+        });
+        // Clear event
+        $('.image-preview-clear').click(function(){
+            $('.image-preview').attr("data-content","").popover('hide');
+            $('.image-preview-filename').val("");
+            $('.image-preview-clear').hide();
+            $('.image-preview-input input:file').val("");
+            $(".image-preview-input-title").text("Browse"); 
+        }); 
+        // Create the preview image
+        $(".image-preview-input input:file").change(function (){     
+            var img = $('<img/>', {
+                id: 'dynamic',
+                width:250,
+                height:200
+            });      
+            var file = this.files[0];
+            var reader = new FileReader();
+            // Set preview image into the popover data-content
+            reader.onload = function (e) {
+                $(".image-preview-input-title").text("Change");
+                $(".image-preview-clear").show();
+                $(".image-preview-filename").val(file.name);            
+                img.attr('src', e.target.result);
+                $(".image-preview").attr("data-content",$(img)[0].outerHTML).popover("show");
+            }        
+            reader.readAsDataURL(file);
+        });  
+    
+    
+    //Image preview in table row field while album update
 </script>
 <?php }?>
