@@ -53,8 +53,6 @@ require_once('../config/config.php');
 			}
 		echo $msg; // Update query into albums
 		}elseif($_POST['form']=="updatealbum"){
-			/*print_r($_POST);
-				die();*/
 				$id=mysqli_real_escape_string($conn,$_POST['id']);
 				$img=mysqli_real_escape_string($conn,$_POST['imgold']);
 			if($_POST['title']=="")
@@ -94,6 +92,8 @@ require_once('../config/config.php');
 					$p="update albums set
 					    title='".mysqli_real_escape_string($conn,$_POST['title'])."',
 					    cover='".mysqli_real_escape_string($conn,$_FILES['cover']['name'])."',
+					    mtitle='".mysqli_real_escape_string($conn,$_POST['mtitle'])."',
+					    mdesc='".mysqli_real_escape_string($conn,$_POST['mdesc'])."',
 					    lastupdate='".mysqli_real_escape_string($conn,$_POST['date'])."'
 					    where id=$id
 					    ";
