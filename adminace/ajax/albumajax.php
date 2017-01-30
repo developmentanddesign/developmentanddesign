@@ -164,7 +164,7 @@ require_once('../config/config.php');
 						$p="insert into albumimages set
 					    parent_id='".mysqli_real_escape_string($conn,$_POST['album'])."',
 					    image='".mysqli_real_escape_string($conn,$file)."',
-					    created=NOW()
+					    created=$_POST['date'];
 					    ";
 					    if(move_uploaded_file($_FILES['images']['tmp_name'][$key],'../../images/albumimages/'.$file)){
 		    			    $n=mysqli_query($conn,$p);

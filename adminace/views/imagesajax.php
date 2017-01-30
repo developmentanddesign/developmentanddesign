@@ -38,8 +38,7 @@
           <td> <?php echo strlen($title) > 50 ? ucwords(substr($title,0,50))."..." : ucwords($title);?></td>
           <td><img src="../images/albumimages/<?php echo $image_name;?>" alt="<?php echo $image_name;?>" height="50px" width="50px" /></td>
           <td>
-              <span class="pull-left"><?php $dateObject = new DateTime($created);
-                    echo $dateObject->format("d-m-y  H:i A");?></span>
+              <span class="pull-left"><?php echo $created; ?></span>
           </td>
           <td class="text-center">
       		<button title="Delete" id="<?php echo $id; ?>" class="btn btn-danger delete" data-href="addimages.php?del=" data-toggle="modal" data-target="#myModal"><i class="fa fa-times"></i></button>

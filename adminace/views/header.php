@@ -106,9 +106,15 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="addalbum.php"><i class="fa fa-circle-o"></i>Add Album</a></li>
-            <li><a href="addimages.php"><i class="fa fa-circle-o"></i>Add Images</a></li>
+            <li><a href="addalbum.php"><i class="fa fa-circle-o"></i>Albums</a></li>
+            <li><a href="addimages.php"><i class="fa fa-circle-o"></i>Images</a></li>
           </ul>
+        </li>
+        <li class="treeview">
+          <a href="articles.php">
+            <i class="fa fa-laptop"></i>
+            <span>Articles</span>
+          </a>
         </li>
         <li class="treeview">
           <a href="addvideo.php">
