@@ -10,8 +10,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>About Us</li>
-        <li class="active">Add Details</li>
+        <li class="active">Contact Us</li>
       </ol>
     </section>
     

@@ -273,3 +273,6 @@
 .fileinput-upload {
 	display:none;
 }
+.noresize {
+  resize: none !important; 
+}

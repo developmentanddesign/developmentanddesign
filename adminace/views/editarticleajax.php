@@ -14,6 +14,7 @@ if(isset($_POST['edit'])){
             <div class="box box-info">
               <div class="box-header with-border">
                 <h3 class="box-title">Articles</h3>
+                <button class="btn btn-warning pull-right" onclick="cancle('views/editarticleajax.php','.articlesform')">Cancle</button>
                 <div id="result"><?php global $msg; echo $msg;?></div>
               </div>
               <!-- /.box-header -->
@@ -38,7 +39,7 @@ if(isset($_POST['edit'])){
       					</div>
       					<div Class="form-group field">
       						<label for="mdesc">Meta Description</label>
-      						<textarea name="mdesc" rows="5" cols="25" class="form-control" title="Meta Description" required><?php echo $mdesc;?></textarea>
+      						<textarea name="mdesc" rows="5" cols="25" class="form-control noresize" cols="20" rows="5" title="Meta Description" required><?php echo $mdesc;?></textarea>
       					</div>
       				</div>
           			
@@ -171,7 +172,7 @@ tinymce.init({
   				</div>
   				<div Class="form-group field">
   					<label for="mdesc">Meta Description</label>
-  					<textarea name="mdesc" rows="5" cols="25" class="form-control" title="Meta Description" required></textarea>
+  					<textarea name="mdesc" rows="5" cols="25" class="form-control noresize" cols="20" rows="5" title="Meta Description" required></textarea>
   				</div>
   			</div>
       			

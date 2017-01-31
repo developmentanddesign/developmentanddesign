@@ -13,7 +13,7 @@
       <th>State</th>
       <th>City</th>
       <th>Pin</th>
-      <th class="text-center">Actions</th>
+      <th class="text-center" data-priority="1">Actions</th>
     </tr>
     </thead>
     <tbody>

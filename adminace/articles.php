@@ -57,7 +57,7 @@
           					</div>
           					<div Class="form-group field">
           						<label for="mdesc">Meta Description</label>
-          						<textarea name="mdesc" rows="5" cols="25" class="form-control" title="Meta Description" required></textarea>
+          						<textarea name="mdesc" rows="5" cols="20" class="form-control noresize" title="Meta Description" required></textarea>
           					</div>
           				</div>
           			

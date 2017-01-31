@@ -66,7 +66,7 @@ if(isset($_POST['submit'])){
                   <?php global $msg; echo $msg;?>
         					<div Class="form-group">
         						<label for="image_name">Image *</label>
-        						<input type="file" name="image_name" id="image_name" value="" required>
+        						<input type="file" name="image_name" id="image_name" value="" accept="image/*" required>
         					</div>
         					<div Class="form-group">
         						<label for="image_alt">Image ALT *</label>

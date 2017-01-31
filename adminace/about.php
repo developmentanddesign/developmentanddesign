@@ -27,7 +27,7 @@
 ?>
     <!-- Main content -->
     <section class="content">
-      <div class="form-box col-xs-12">
+      <div class="form-box col-xs-12 no-padding">
         <div class="cssload-whirlpool1"></div>
         <div class="col-xs-12 aboutform">
             <div class="box box-info">

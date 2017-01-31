@@ -31,8 +31,7 @@ require_once('../config/config.php');
 						    cover='".mysqli_real_escape_string($conn,$_FILES['cover']['name'])."',
 						    created='".mysqli_real_escape_string($conn,$_POST['date'])."',
 						    mtitle='".mysqli_real_escape_string($conn,$_POST['mtitle'])."',
-						    mdesc='".mysqli_real_escape_string($conn,$_POST['mdesc'])."',
-						    lastupdate='0000-00-00'
+						    mdesc='".mysqli_real_escape_string($conn,$_POST['mdesc'])."'
 						    ";
 						    if(move_uploaded_file($_FILES['cover']['tmp_name'],'../../images/albumcover/'.$_FILES['cover']['name'])){
 							    $n=mysqli_query($conn,$p);
@@ -164,7 +163,7 @@ require_once('../config/config.php');
 						$p="insert into albumimages set
 					    parent_id='".mysqli_real_escape_string($conn,$_POST['album'])."',
 					    image='".mysqli_real_escape_string($conn,$file)."',
-					    created=$_POST['date'];
+					    created='".mysqli_real_escape_string($conn,$_POST['date'])."';
 					    ";
 					    if(move_uploaded_file($_FILES['images']['tmp_name'][$key],'../../images/albumimages/'.$file)){
 		    			    $n=mysqli_query($conn,$p);

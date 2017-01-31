@@ -20,6 +20,7 @@
         <div class="box box-info">
               <div class="box-header with-border">
                 <h3 class="box-title">Contact Information</h3>
+                <button class="btn btn-warning pull-right" onclick="cancle('views/editcontactajax.php','.contactform')">Cancle</button>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
@@ -204,96 +205,96 @@ echo '<script>
                 <div class="box-body">
                   <div id="result"><?php global $msg; echo $msg;?></div>
                   <div class="col-sm-6">
-                      <div Class="form-group">
-            						<label for="title">Title</label>
-            						<input type="text" name="title" id="title" value="Contact Us" placeholder="Contact Us" class="form-control" title="Already Filled" disabled>
-            						<input type="hidden" name="form" id="form" value="add" class="form-control">
-            					</div>
-            					<div Class="form-group">
-            						<label for="address">Address</label>
-            			     <textarea id="address" name="address" rows="4" cols="50" class="form-control" title="Please Fill out This Field" required></textarea>
-            					</div>
-            					<div Class="form-group">
-            						<div class="col-xs-4 col-sm-5 no-left-padding no-right-padding">
-            						  <label for="ccode">Country Code</label>
-            						  <select class="select4 form-control" name="ccode" id="ccode" required>
+                  <div Class="form-group">
+        					<label for="title">Title</label>
+        					<input type="text" name="title" id="title" value="Contact Us" placeholder="Contact Us" class="form-control" title="Already Filled" disabled>
+        					<input type="hidden" name="form" id="form" value="add" class="form-control">
+        				</div>
+        				<div Class="form-group">
+        					<label for="address">Address</label>
+        		     <textarea id="address" name="address" rows="4" cols="50" class="form-control" title="Please Fill out This Field" required></textarea>
+        				</div>
+        				<div Class="form-group">
+        					<div class="col-xs-4 col-sm-5 no-left-padding no-right-padding">
+        					  <label for="ccode">Country Code</label>
+        					  <select class="select4 form-control" name="ccode" id="ccode" required>
+          			    <option value="">Select One</option>
+          			    <?php $p="select * from codes";
+          			          $run=mysqli_query($conn,$p);
+          			          while($row=mysqli_fetch_array($run)){ ?>
+                              <option value="<?php echo $row['code'];?>"><?php echo $row['code'];?></option>
+          			     <?php  } ?>
+        			    </select>		
+        					</div>
+        					<div class="col-xs-8 col-sm-7 no-right-padding">
+        					   <label for="ccode1">Mobile No.</label>
+        					   <input type="text" id="mobile" class="form-control" name="mobile" pattern="[0-9]{10}" required>
+        				  </div>
+        				</div>
+        				<div Class="form-group">
+        					<div class="col-xs-6 col-sm-4 no-left-padding no-right-padding">
+        					  <label for="ccode1">Country Code</label>
+        					  <select class="select4 form-control" name="ccode1" id="ccode1">
                   			    <option value="">Select One</option>
                   			    <?php $p="select * from codes";
                   			          $run=mysqli_query($conn,$p);
                   			          while($row=mysqli_fetch_array($run)){ ?>
                                       <option value="<?php echo $row['code'];?>"><?php echo $row['code'];?></option>
                   			     <?php  } ?>
-                			    </select>		
-            						</div>
-            						<div class="col-xs-8 col-sm-7 no-right-padding">
-            						   <label for="ccode1">Mobile No.</label>
-            						   <input type="text" id="mobile" class="form-control" name="mobile" pattern="[0-9]{10}" required>
-            					  </div>
-            					</div>
-            					<div Class="form-group">
-            						<div class="col-xs-6 col-sm-4 no-left-padding no-right-padding">
-            						  <label for="ccode1">Country Code</label>
-            						  <select class="select4 form-control" name="ccode1" id="ccode1">
-                          			    <option value="">Select One</option>
-                          			    <?php $p="select * from codes";
-                          			          $run=mysqli_query($conn,$p);
-                          			          while($row=mysqli_fetch_array($run)){ ?>
-                                              <option value="<?php echo $row['code'];?>"><?php echo $row['code'];?></option>
-                          			     <?php  } ?>
-                        			  </select>		
-            						</div>
-            						<div class="col-xs-6 col-sm-4 no-right-padding">
-            						  <label for="areacode">Area Code</label>
-            			              <input type="text" class="form-control" name="areacode" id="areacode" pattern="\d*">
-            						</div>
-            						<div class="col-xs-12 col-sm-4 no-right-padding">
-            						   <label for="phone">Phone No.</label>
-        			                   <input type="text" class="form-control" name="phone" id="phone" pattern="\d*">
-            						</div>
-            					</div>
-            					<div Class="form-group">
-            						<label for="email">Email</label>
-            			            <input type="email" class="form-control" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-            					</div>
+                			  </select>		
+        					</div>
+        					<div class="col-xs-6 col-sm-4 no-right-padding">
+        					  <label for="areacode">Area Code</label>
+        		              <input type="text" class="form-control" name="areacode" id="areacode" pattern="\d*">
+        					</div>
+        					<div class="col-xs-12 col-sm-4 no-right-padding">
+        					   <label for="phone">Phone No.</label>
+        	                   <input type="text" class="form-control" name="phone" id="phone" pattern="\d*">
+        					</div>
+        				</div>
+        				<div Class="form-group">
+        					<label for="email">Email</label>
+        		            <input type="email" class="form-control" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+        				</div>
+          			</div>
+          			<div class="col-sm-6">
+          				<div Class="form-group">
+          					<label for="country">Select Country</label>
+          					<select class="select3 form-control" name="country" id="country" onchange="countrydata('#country','states',$('#country').val(),'ajax/contactajax.php','.states')" required>
+            			    <option value="">Select One</option>
+            			    <?php $p="select * from countries";
+            			          $run=mysqli_query($conn,$p);
+            			          while($row=mysqli_fetch_array($run)){ ?>
+                                <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
+            			     <?php  } ?>
+            			</select>		
           				</div>
-          				<div class="col-sm-6">
-          					<div Class="form-group">
-          						<label for="country">Select Country</label>
-          						<select class="select3 form-control" name="country" id="country" onchange="countrydata('#country','states',$('#country').val(),'ajax/contactajax.php','.states')" required>
-                			    <option value="">Select One</option>
-                			    <?php $p="select * from countries";
-                			          $run=mysqli_query($conn,$p);
-                			          while($row=mysqli_fetch_array($run)){ ?>
-                                    <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
-                			     <?php  } ?>
-                			</select>		
-          					</div>
-          					<div Class="form-group states">
-          						<label for="state">Select State</label>
-          						<select class="select4 form-control" name="state" id="state" disabled>
+          				<div Class="form-group states">
+          					<label for="state">Select State</label>
+          					<select class="select4 form-control" name="state" id="state" disabled>
                         	<option value="">Select One</option>
                 			    <?php $p="select * from states";
                 			          $run=mysqli_query($conn,$p);
                 			          while($row=mysqli_fetch_array($run)){ ?>
                                     <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
                 			     <?php  } ?>
-                      </select>	
-          					</div>
-          					<div Class="form-group cities">
-          						<label for="city">Select City</label>
-          						<select class="select5 form-control" name="city" id="city" disabled>
+                             </select>	
+          				</div>
+          				<div Class="form-group cities">
+          					<label for="city">Select City</label>
+          					<select class="select5 form-control" name="city" id="city" disabled>
                         	<option value="" selected="selected">Select One</option>
                 			    <?php $p="select * from cities";
                 			          $run=mysqli_query($conn,$p);
                 			          while($row=mysqli_fetch_array($run)){ ?>
                                     <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
                 			     <?php  } ?>
-                			 </select>	
-          					</div>
-          					<div Class="form-group">
-            						<label for="pin">Pin Code</label>
-            						<input type="text" name="pin" id="pin" value="" placeholder="Pin Code" class="form-control" title="Pin Code" required>
-            					</div>
+                			</select>	
+          				</div>
+          				<div Class="form-group">
+    						<label for="pin">Pin Code</label>
+    						<input type="text" name="pin" id="pin" value="" placeholder="Pin Code" class="form-control" title="Pin Code" required>
+    					</div>
                   </div>
                 </div>
                     <!-- /.box-body -->

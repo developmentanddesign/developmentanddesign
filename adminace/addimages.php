@@ -115,8 +115,8 @@
   </div>
   <!-- /.content-wrapper -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.6/js/fileinput.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.6/themes/gly/theme.min.js"></script>
+<script src="plugins/fileinput/fileinput.min.js"></script>
+<script src="plugins/fileinput/theme.min.js"></script>
 <?php include_once('views/footer.php');?>
 
 <script> 

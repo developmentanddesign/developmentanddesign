@@ -13,6 +13,7 @@ if(isset($_POST['edit'])){
             <div class="box box-info">
               <div class="box-header with-border">
                 <h3 class="box-title">Terms & Conditions Page Details</h3>
+                <button class="btn btn-warning pull-right" onclick="cancle('views/edittermsajax.php','.termsform')">Cancle</button>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
@@ -38,7 +39,7 @@ if(isset($_POST['edit'])){
     					</div>
     					<div Class="form-group">
     						<label for="mdesc">Meta Description</label>
-    						<textarea id="mdesc" name="mdesc" rows="5" class="form-control" cols="30" title="Please Fill out This Field" required><?php echo $mdesc;?></textarea>
+    						<textarea id="mdesc" name="mdesc" rows="5" class="form-control noresize" cols="20" title="Please Fill out This Field" required><?php echo $mdesc;?></textarea>
     					</div>
                     </div>
                 </div>
@@ -138,7 +139,7 @@ if(isset($_POST['edit'])){
           					</div>
           					<div Class="form-group">
           						<label for="mdesc">Meta Description</label>
-          						<textarea id="mdesc" name="mdesc" rows="5" class="form-control" cols="30" title="Please Fill out This Field" required></textarea>
+          						<textarea id="mdesc" name="mdesc" rows="5" class="form-control noresize" cols="20" title="Please Fill out This Field" required></textarea>
           					</div>
                           </div>
                       </div>

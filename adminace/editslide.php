@@ -92,7 +92,7 @@ if(isset($_POST['submit'])){
         				?>
             					<div Class="form-group">
             						<label for="image_name">Image</label>
-            						<input type="file" name="image_name" id="image_name" value="">
+            						<input type="file" name="image_name" id="image_name" accept="image/*" value="">
             						<i>If Empty Remains the Last One</i>
             					</div>
             					<div Class="form-group">

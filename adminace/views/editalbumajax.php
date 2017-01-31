@@ -6,13 +6,14 @@ if(isset($_POST['edit'])){
     $run=mysqli_query($conn,$p);
     while($row=mysqli_fetch_array($run)){
         $title=$row['title'];
-        $img=$row['image'];
+        $img=$row['cover'];
         $mtitle=$row['mtitle'];
         $mdesc=$row['mdesc'];?>
         <div class="cssload-whirlpool1"></div>
            <div class="box box-info addform">
               <div class="box-header with-border">
                 <h3 class="box-title">Update Album</h3>
+                <button class="btn btn-warning pull-right" onclick="cancle('views/editalbumajax.php','.form-box')">Cancle</button>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
@@ -59,7 +60,7 @@ if(isset($_POST['edit'])){
 				    <div Class="form-group col-sm-12">
   					  <label for="mdesc">Meta Description</label>
   					  <div class="field">
-  					    <textarea name="mdesc" id="mdesc" value="<?php echo $mdesc;?>" class="form-control" required><?php echo $mdesc;?></textarea>
+  					    <textarea name="mdesc" id="mdesc" value="<?php echo $mdesc;?>" cols="20" rows="5" class="form-control noresize" required><?php echo $mdesc;?></textarea>
   					  </div>
 				    </div>
 				   </div>
@@ -74,6 +75,8 @@ if(isset($_POST['edit'])){
   <?php   }
 ?>       
 <script>
+
+    setInterval(localdate(), 1000);
     // form submition for adding about details
         $("#update").submit(function(event){
             event.preventDefault(); //prevent default action 
@@ -231,7 +234,7 @@ if(isset($_POST['edit'])){
         					  <div Class="form-group col-sm-12">
           						<label for="mdesc">Meta Description</label>
           						<div class="field">
-          						  <textarea name="mdesc" id="mdesc" class="form-control" required></textarea>
+          						  <textarea name="mdesc" id="mdesc" class="form-control noresize" cols="20" rows="5" required></textarea>
           						</div>
         					  </div>
         					</div>
@@ -243,6 +246,8 @@ if(isset($_POST['edit'])){
               </form>
             </div>
 <script>
+
+    setInterval(localdate(), 1000);
 // form submition for adding albums & images
     $("#albums_form").submit(function(event){
         event.preventDefault(); //prevent default action

@@ -13,6 +13,7 @@ if(isset($_POST['edit'])){
             <div class="box box-info">
               <div class="box-header with-border">
                 <h3 class="box-title">About Page Details</h3>
+                <button class="btn btn-warning pull-right" onclick="cancle('views/editaboutajax.php','.aboutform')">Cancle</button>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
@@ -206,7 +207,6 @@ if(isset($_POST['edit'])){
                  $('.aboutform').delay(2000).fadeTo(0, 1);
                  // html Editor
                  CKEDITOR.replace('editor1');
-                 
                 }
             });
     });

@@ -90,7 +90,7 @@
         					  <div Class="form-group col-sm-12">
           						<label for="mdesc">Meta Description</label>
           						<div class="field">
-          						  <textarea name="mdesc" id="mdesc" class="form-control" required></textarea>
+          						  <textarea name="mdesc" id="mdesc" class="form-control noresize" cols="20" rows="5" required></textarea>
           						</div>
         					  </div>
         					</div>
@@ -164,4 +164,6 @@
             }
         });
     //get all albums
+    
+    setInterval(localdate(), 1000);
 </script>

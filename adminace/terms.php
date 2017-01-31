@@ -27,7 +27,7 @@
 ?>
     <!-- Main content -->
     <section class="content">
-      <div class="form-box col-xs-12">
+      <div class="form-box col-xs-12 no-padding">
         <div class="cssload-whirlpool1"></div>
         <div class="col-xs-12 termsform">
           <div class="box box-info">
@@ -66,7 +66,7 @@
           					</div>
           					<div Class="form-group">
           						<label for="mdesc">Meta Description</label>
-          						<textarea id="mdesc" name="mdesc" rows="5" class="form-control" cols="30" title="Please Fill out This Field" required></textarea>
+          						<textarea id="mdesc" name="mdesc" rows="5" class="form-control noresize" cols="20" title="Please Fill out This Field" required></textarea>
           					</div>
                   </div>
               </div>

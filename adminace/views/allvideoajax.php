@@ -33,11 +33,11 @@
     						<input type='text' name='title' id='title1' value='<?php echo $title;?>' class='form-control'  required>
     					</div> 
         	      <?php } else {?>
-                  <?php echo strlen($title) > 50 ? ucwords(substr($title,0,50))."..." : ucwords($title);?>
-          <?php } }else { echo strlen($title) > 50 ? ucwords(substr($title,0,50))."..." : ucwords($title); } ?>
+                  <?php echo strlen($title) > 20 ? ucwords(substr($title,0,20))."..." : ucwords($title);?>
+          <?php } }else { echo strlen($title) > 20 ? ucwords(substr($title,0,20))."..." : ucwords($title); } ?>
           </td>
           <td class="text-center"><img src="<?php getYoutubeImage($URL)?>" height="50px" width="50px" /></td>
-          <td> <?php echo strlen($URL) > 50 ? substr($URL,0,50)."..." : $URL; ?> </td>
+          <td> <?php echo strlen($URL) > 20 ? substr($URL,0,20)."..." : $URL; ?> </td>
           <td>
               <span class="pull-left">
                   <?php echo $created;?>

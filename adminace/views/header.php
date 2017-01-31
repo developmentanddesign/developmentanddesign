@@ -106,7 +106,7 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="addalbum.php"><i class="fa fa-circle-o"></i>Albums</a></li>
+            <li><a href="addalbum.php"><i class="fa fa-circle-o"></i>All Albums</a></li>
             <li><a href="addimages.php"><i class="fa fa-circle-o"></i>Images</a></li>
           </ul>
         </li>
@@ -121,17 +121,6 @@
             <i class="fa fa-laptop"></i>
             <span>Videos</span>
           </a>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>Advertisement</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="addbanner.php"><i class="fa fa-circle-o"></i>New Advertisement</a></li>
-            <li><a href="allbanners.php"><i class="fa fa-circle-o"></i>All Advertisements</a></li>
-          </ul>
         </li>
         <li class="treeview">
           <a href="about.php">

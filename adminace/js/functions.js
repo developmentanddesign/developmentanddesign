@@ -59,7 +59,6 @@
     
     //cancle update on click
     function cancle(href,resultfield){
-        var href1=href;
         //get all albums 
         $.ajax({
                 url: href,
