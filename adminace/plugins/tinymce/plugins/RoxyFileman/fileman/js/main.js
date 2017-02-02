@@ -259,32 +259,49 @@ function addFileClick(){
   showUploadList(new Array());
   addFile();
 }
-function addFile(){
-  clickFirstOnEnter('dlgAddFile');
-  $('#uploadResult').html('');
-  clearFileField();
-  var dialogButtons = {};
-  dialogButtons[t('Upload')] = {id:'btnUpload', text: t('Upload'), disabled:true, click:function(){
-    if(!$('#fileUploads').val() && (!uploadFileList || uploadFileList.length == 0))
-      alert(t('E_SelectFiles'));
-    else{
-      if(!RoxyFilemanConf.UPLOAD){
-        alert(t('E_ActionDisabled'));
-        //$('#dlgAddFile').dialog('close');
-      }
-      else{
-        if(window.FormData && window.XMLHttpRequest && window.FileList && uploadFileList && uploadFileList.length > 0){
-          for(i = 0; i < uploadFileList.length; i++){
-            fileUpload(uploadFileList[i], i);
-          } 
-        }
-        else{
-          document.forms['addfile'].action = RoxyFilemanConf.UPLOAD;
-          document.forms['addfile'].submit();
-        }
-      }
-    }
-  }};
+function addFile() {
+clickFirstOnEnter('dlgAddFile');
+
+var dialogButtons = {};
+dialogButtons[t('Upload')] = function () {
+var maxtotal = RoxyFilemanConf.MAXTOTAL;
+var maxfilesize = RoxyFilemanConf.MAXFILESIZE;
+var fileoversize = "";
+var totalsize = 0;
+if (!$('#fileUploads').val())
+alert(t('E_SelectFiles'));
+else {
+if (!RoxyFilemanConf.UPLOAD) {
+alert(t('E_ActionDisabled'));
+//$('#dlgAddFile').dialog('close');
+}
+else {
+var files = $('#fileUploads')[0].files;
+for (var i = 0; i < files.length; i++) {
+//alert(files[i].name);
+totalsize += files[i].size;
+if ((files[i].size / 1024) > maxfilesize) {
+fileoversize = files[i].name + '\n';
+}
+}
+
+if ((totalsize / 1024 / 1024) > maxtotal) {
+alert(t('E_MAXSIZE') + ". Set to " + maxsize + "MB.");
+}
+else if (fileoversize != "") {
+alert("Max total upload : "+ maxfilesize +"KB. Oversized files:\n" + fileoversize);
+}
+else {
+document.forms['addfile'].action = RoxyFilemanConf.UPLOAD;
+document.forms['addfile'].submit();
+}
+}
+}
+};
+dialogButtons[t('Cancel')] = function () { $('#dlgAddFile').dialog('close'); };
+
+$('#dlgAddFile').dialog({ title: t('T_AddFile'), modal: true, buttons: dialogButtons });
+}
   
   dialogButtons[t('Cancel')] = function(){$('#dlgAddFile').dialog('close');};
   $('#dlgAddFile').dialog({title:t('T_AddFile'),modal:true,buttons:dialogButtons,width:400});

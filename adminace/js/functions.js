@@ -46,6 +46,8 @@
     function edit(id,href,resultfield){
         var id1= id;
         var href1=href;
+         $('.cssload-whirlpool3').show();
+         $('.video-box').fadeTo(0,0.1);
         $.ajax({
             url: href1,
             type: "GET",
@@ -53,6 +55,8 @@
             success: function(data) {
              $(resultfield).html(data);
              disablesubmit();
+             $('.cssload-whirlpool3').delay(2000).fadeOut();
+             $('.video-box').delay(2000).fadeTo(0, 1);
             }
         });
     }
@@ -60,6 +64,17 @@
     //cancle update on click
     function cancle(href,resultfield){
         //get all albums 
+         $('.cssload-whirlpool').show();
+         $('.album-box').fadeTo(0,0.1);
+         $('.cssload-whirlpool1').show();
+         $('.aboutform').fadeTo(0,0.1);
+         $('.addform').fadeTo(0,0.1);
+         $('.termsform').fadeTo(0,0.1);
+         $('.disclaimerform').fadeTo(0,0.1);
+         $('.contactform').fadeTo(0,0.1);
+         $('.policiesform').fadeTo(0,0.1);
+         $('.cssload-whirlpool3').show();
+         $('.video-box').fadeTo(0,0.1);
         $.ajax({
                 url: href,
                 type: "POST",
@@ -67,6 +82,17 @@
                 success: function(data) {
                 $("#result").html('');
                  $(resultfield).html(data);
+                 $('.cssload-whirlpool1').delay(2000).fadeOut();
+                 $('.aboutform').delay(2000).fadeTo(0, 1);
+                 $('.termsform').delay(2000).fadeTo(0, 1);
+                 $('.disclaimerform').delay(2000).fadeTo(0, 1);
+                 $('.contactform').delay(2000).fadeTo(0, 1);
+                 $('.policiesform').delay(2000).fadeTo(0, 1);
+                 $('.cssload-whirlpool').delay(2000).fadeOut();
+                 $('.album-box').delay(2000).fadeTo(0, 1);
+                 $('.addform').delay(2000).fadeTo(0, 1);
+                 $('.cssload-whirlpool3').delay(2000).fadeOut();
+                 $('.video-box').delay(2000).fadeTo(0, 1);
                 }
             });
         //cancle update on click

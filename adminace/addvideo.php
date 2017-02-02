@@ -29,7 +29,7 @@
     
     <!-- Main content -->
     <section class="content">
-      <div class="col-xs-12">
+      <div class="col-xs-12 form-box">
           <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">Add Video URL</h3>
@@ -88,7 +88,8 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <div class="box-body videodata">
+            <div class="cssload-whirlpool3"></div>
+            <div class="box-body videodata video-box">
                 
             </div>
           </div>
@@ -103,7 +104,10 @@
   
 <?php include_once('views/footer.php');?>
 <script>
-  //get all videos 
+  //get all videos
+  
+     $('.cssload-whirlpool3').show();
+     $('.video-box').fadeTo(0,0.1);
     $.ajax({
         url: "views/allvideoajax.php",
         type: "POST",
@@ -111,6 +115,8 @@
         success: function(data) {
         $("#result").html('');
          $('.videodata').html(data);
+        $('.cssload-whirlpool3').delay(2000).fadeOut();
+        $('.video-box').delay(2000).fadeTo(0, 1);
         }
     });
 //get all videos

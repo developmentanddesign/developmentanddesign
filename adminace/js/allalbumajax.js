@@ -47,12 +47,12 @@
             data: {edit : id},
             beforeSend: function(){
                  $('.cssload-whirlpool1').show();
-                 $('.form-box').fadeTo(0,0.1);
+                 $('.addform').fadeTo(0,0.1);
              },
             success: function(data) {
              $('.form-box').html(data);
              $('.cssload-whirlpool1').delay(2000).fadeOut();
-             $('.form-box').delay(2000).fadeTo(0, 1);
+             $('.addform').delay(2000).fadeTo(0, 1);
              disablesubmit();
             }
         });

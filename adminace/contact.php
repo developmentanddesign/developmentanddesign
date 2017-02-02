@@ -33,7 +33,7 @@
         <div class="cssload-whirlpool"></div>
         <div class="alldiv">
         <div class="contact col-xs-12 no-padding">
-          <div class="cssload-whirlpool1"></div>
+          <div class="cssload-whirlpool4"></div>
           <div class="col-xs-12 contactform">
             <div class="box box-info">
                   <div class="box-header with-border">

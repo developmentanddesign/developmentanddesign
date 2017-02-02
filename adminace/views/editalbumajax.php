@@ -93,7 +93,7 @@ if(isset($_POST['edit'])){
                      $('.cssload-whirlpool').show();
                      $('.album-box').fadeTo(0,0.1);
                      $('.cssload-whirlpool1').show();
-                     $('.form-box').fadeTo(0,0.1);
+                     $('.addform').fadeTo(0,0.1);
                  }
             }).done(function(response){ //
                 $("#result").html(response);
@@ -106,7 +106,7 @@ if(isset($_POST['edit'])){
                      $('.cssload-whirlpool').delay(2000).fadeOut();
                      $('.album-box').delay(2000).fadeTo(0, 1);
                     $('.cssload-whirlpool1').delay(2000).fadeOut();
-                    $('.form-box').delay(2000).fadeTo(0, 1);
+                    $('.addform').delay(2000).fadeTo(0, 1);
                     }
                 });
                 $.ajax({
@@ -120,7 +120,26 @@ if(isset($_POST['edit'])){
             
             });
         });
-    // form submition for adding about details
+    // form submition for updating album details
+    
+    $('.edit-btn').click(function(){
+        var id= $(this).attr('id');
+        $.ajax({
+                url: "views/editalbumajax.php",
+                type: "POST",
+                data: {edit:id},
+                beforeSend: function(){
+                     $('.cssload-whirlpool1').show();
+                     $('.addform').fadeTo(0,0.1);
+                 },
+                success: function(data) {
+                 $('.form-box').html(data);
+                 $('.cssload-whirlpool1').delay(2000).fadeOut();
+                 $('.addform').delay(2000).fadeTo(0, 1);
+                 
+                }
+            });
+    });
     
      //Image preview in table row field while album update
     $(document).on('click', '#close-preview', function(){ 
@@ -301,12 +320,12 @@ if(isset($_POST['edit'])){
                 data: {edit:id},
                 beforeSend: function(){
                      $('.cssload-whirlpool1').show();
-                     $('.form-box').fadeTo(0,0.1);
+                     $('.addform').fadeTo(0,0.1);
                  },
                 success: function(data) {
                  $('.form-box').html(data);
                  $('.cssload-whirlpool1').delay(2000).fadeOut();
-                 $('.form-box').delay(2000).fadeTo(0, 1);
+                 $('.addform').delay(2000).fadeTo(0, 1);
                  
                 }
             });

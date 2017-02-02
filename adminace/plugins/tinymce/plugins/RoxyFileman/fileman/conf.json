@@ -8,6 +8,8 @@
 "PREVIEW_THUMB_HEIGHT":"100",
 "MAX_IMAGE_WIDTH":     "1000",
 "MAX_IMAGE_HEIGHT":    "1000",
+"MAXTOTAL":            "2500000",
+"MAXFILESIZE":         "250000",
 "INTEGRATION":         "tinymce4",
 "DIRLIST":             "php/dirtree.php",
 "CREATEDIR":           "php/createdir.php",

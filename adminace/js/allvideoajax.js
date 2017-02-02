@@ -46,7 +46,11 @@
                 type: 'post',
                 data :dataimg,
                 processData: false,
-                contentType: false
+                contentType: false,
+            beforeSend: function(){
+                 $('.cssload-whirlpool3').show();
+                 $('.video-box').fadeTo(0,0.1);
+             }
             }).done(function(response){ //
                 $("#result").html(response);
                 $.ajax({
@@ -56,6 +60,8 @@
                     success: function(data) {
                      $('.videodata').html(data);
                         disablesubmit();
+                     $('.cssload-whirlpool3').delay(2000).fadeOut();
+                     $('.video-box').delay(2000).fadeTo(0, 1);
                     }
                 });
             });

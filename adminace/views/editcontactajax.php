@@ -145,7 +145,7 @@ echo '<script>
             processData: false,
             contentType: false,
             beforeSend: function(){
-                 $(".cssload-whirlpool1").show();
+                 $(".cssload-whirlpool4").show();
                  $(".contactform").fadeTo(0,0.1);
                  $(".cssload-whirlpool2").show();
                  $(".album-box").fadeTo(0,0.1);
@@ -158,7 +158,7 @@ echo '<script>
                 data: "data",
                 success: function(data) {
                  $(".contactdata").html(data);
-                 $(".cssload-whirlpool1").delay(2000).fadeOut();
+                 $(".cssload-whirlpool4").delay(2000).fadeOut();
                  $(".contactform").delay(2000).fadeTo(0, 1);
                  $(".cssload-whirlpool2").delay(2000).fadeOut();
                  $(".album-box").delay(2000).fadeTo(0, 1);
@@ -319,7 +319,7 @@ echo '<script>
             processData: false,
             contentType: false,
         beforeSend: function(){
-             $(".cssload-whirlpool1").show();
+             $(".cssload-whirlpool4").show();
              $(".contactform").fadeTo(0,0.1);
          }
         }).done(function(response){ //
@@ -330,7 +330,7 @@ echo '<script>
                 data: "data",
                 success: function(data) {
                  $(".contactdata").html(data);
-                $(".cssload-whirlpool1").delay(2000).fadeOut();
+                $(".cssload-whirlpool4").delay(2000).fadeOut();
                 $(".contactform").delay(2000).fadeTo(0, 1);
                 }
             });
@@ -343,12 +343,12 @@ echo '<script>
                 type: "POST",
                 data: {edit:edit},
                 beforeSend: function(){
-                     $(".cssload-whirlpool1").show();
+                     $(".cssload-whirlpool4").show();
                      $(".contactform").fadeTo(0,0.1);
                  },
                 success: function(data) {
                  $(".contactform").html(data);
-                 $(".cssload-whirlpool1").delay(2000).fadeOut();
+                 $(".cssload-whirlpool4").delay(2000).fadeOut();
                  $(".contactform").delay(2000).fadeTo(0, 1);
                 }
             });
