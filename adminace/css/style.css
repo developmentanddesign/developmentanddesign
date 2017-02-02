@@ -170,3 +170,10 @@
 .noresize {
   resize: none !important; 
 }
+.panel-heading {
+    background: #46584d none repeat scroll 0 0;
+    color: #fff;
+}
+.custom-body {
+	padding:0px !important;
+}

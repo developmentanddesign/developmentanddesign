@@ -37,19 +37,23 @@ if($_POST['form']=='add'){
 			e_date='".trim($e_date['2'])."-".trim($e_date['1'])."-".trim($e_date['0'])."',
 			image_title='".$_POST['image_title']."',
 			btn_text='".$_POST['btn_text']."',
-			range='".$_POST['range']."',
+			daterange='".$_POST['range']."',
 			timer='".$_POST['timer']."',
 			image_caption='".$_POST['image_caption']."',
 			status='".$_POST['status']."',
 			destination_url='".$_POST['destination_url']."'
 			";
-			echo $s_date['2']."-".$s_date['1']."-".$s_date['0'];
-			echo $e_date['2']."-".$e_date['1']."-".$e_date['0'];
 			if(move_uploaded_file($_FILES['image_name']['tmp_name'],"../../images/slides/".$_FILES['image_name']['name']))
-			{		$n=mysqli_query($conn,$p);
-				$msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-							<span class=\"bold\">Success: </span>  Slide Added Successfully. </div>";
-					
+			{		
+					if($n=mysqli_query($conn,$p))
+					{
+						$msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+									<span class=\"bold\">Success: </span>  Slide Added Successfully. </div>";
+					}else
+					{
+						$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+						<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
+					}
 			 }
 			else{$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
 							<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; }
@@ -125,9 +129,15 @@ elseif($_POST['form']=='update'){
 				destination_url='".$_POST['destination_url']."'
 				";
 				if(move_uploaded_file($_FILES['image_name']['tmp_name'],"../../images/slides/".$_FILES['image_name']['name']))
-				{		$n=mysqli_query($conn,$p);
-					$msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
-								<span class=\"bold\">Success: </span>  Slide Updated Successfully. </div>";
+				{		if($n=mysqli_query($conn,$p))
+						{
+							$msg="<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+										<span class=\"bold\">Success: </span>  Slide Added Successfully. </div>";
+						}else
+						{
+							$msg="<div class=\"alert alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">x</button>
+							<span class=\"bold\">Error: </span>  Sorry Failed. </div>"; 
+						}
 						
 				 }
 				else

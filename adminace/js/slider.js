@@ -43,8 +43,8 @@ $("#sliderform").submit(function(event){
         processData: false,
         contentType: false,
         beforeSend: function(){
-             $('.cssload-whirlpool1').show();
-             $('.slidersform').fadeTo(0,0.1);
+            $('.cssload-whirlpool').show();
+            $('.album-box').fadeTo(0,0.1);
          }
     }).done(function(response){ 
         $("#result").html(response);
@@ -53,9 +53,26 @@ $("#sliderform").submit(function(event){
             type: "POST",
             data: 'data',
             success: function(data) {
-             $('.sliderdata').html(data);
-            $('.cssload-whirlpool1').delay(2000).fadeOut();
-            $('.slidersform').delay(2000).fadeTo(0, 1);
+            $('.sliderdata').html(data);
+            $('.cssload-whirlpool').delay(2000).fadeOut();
+            $('.album-box').delay(2000).fadeTo(0, 1);
+            $('#collapseOne').removeClass('in');
+            $('#collapseOne').attr('aria-expanded','false');
+            $('#collapseThree').addClass('in');
+            $('#collapseThree').attr('aria-expanded','true');
+            $("[aria-controls=collapseOne]").addClass('collapsed');
+            $("[aria-controls=collapseOne]").attr('aria-expanded','false');
+            $("[aria-controls=collapseThree]").attr('aria-expanded','true');
+            $('#collapseThree').attr('style','');
+            $("[aria-controls=collapseThree]").removeClass('collapsed');
+            $.ajax({
+                url: 'views/editsliderajax.php',
+                type: "POST",
+                data: 'data',
+                success: function(data) {
+                 $('.slidersform').html(data);
+                 }
+            });
             }
         });
     
@@ -95,6 +112,15 @@ $('.timerbtn2').click(function(){
 // slide timer
 
 function editslider(id,href){
+    $('#collapseThree').removeClass('in');
+    $('#collapseThree').attr('aria-expanded','false');
+    $('#collapseOne').addClass('in');
+    $('#collapseOne').attr('aria-expanded','true');
+    $("[aria-controls=collapseThree]").addClass('collapsed');
+    $("[aria-controls=collapseThree]").attr('aria-expanded','false');
+    $("[aria-controls=collapseOne]").attr('aria-expanded','true');
+    $('#collapseOne').attr('style','');
+    $("[aria-controls=collapseOne]").removeClass('collapsed');
         $.ajax({
                 url: href,
                 type: "POST",
@@ -107,6 +133,7 @@ function editslider(id,href){
                  $('.slidersform').html(data);
                  $('.cssload-whirlpool1').delay(2000).fadeOut();
                  $('.slidersform').delay(2000).fadeTo(0, 1);
+                 $("[aria-controls=collapseOne]").html('<div class="panel-heading" role="tab" id="headingOne"><h4 class="panel-title">Update Slide</h4></div>');
                  // html Editor
                 }
             });

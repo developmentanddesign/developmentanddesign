@@ -35,15 +35,11 @@
     <section class="content">
       <div class="form-box col-xs-12 no-padding">
           <div class="cssload-whirlpool1"></div>
-          <div class="col-xs-12">
-          <div class="box box-info">
-              <div class="box-header with-border">
-                <h3 class="box-title">Sliders</h3>
+            <div>
                 <div id="result"><?php global $msg; echo $msg;?></div>
-              </div>
               <!-- /.box-header -->
               <!-- form start -->
-                <div class="box-body">
+                <div class="box-body custom-body">
                   
                   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                   <div class="panel panel-default">
@@ -56,9 +52,9 @@
                     </a>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                       <div class="panel-body slidersform">
-                        <div class="box box-info">
+                        <div>
                           <form id="sliderform" action="ajax/sliderajax.php" method="POST" enctype="multipart/form-data">
-                            <div class="box-body">
+                            <div class="box-body custom-body">
                            <div class="col-sm-6">
                   					<div Class="form-group">
                                 <label for="desc">Slide Image *</label>
@@ -169,30 +165,24 @@
                     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                       <div class="panel-body">
                         <div class="col-xs-12">
-                          <div class="box box-info">
-                            <div class="box-header with-border">
-                              <h3 class="box-title">All Slides</h3>
-                            </div>
                             <!-- /.box-header -->
                             <div class="cssload-whirlpool"></div>
                             
-                            <div class="box-body sliderdata album-box">
+                            <div class="box-body custom-body sliderdata album-box">
                               
                             </div>
                                 
-                          </div>
                         </div> 
                       </div>
                     </div>
                   </div>
                 </div>
   
-                </div>
-                      <!-- /.box-body -->
-                
               </div>
+              <!-- /.box-body -->
+                
           </div>
-      </div>
+        </div>
               
          <!-- Modal -->
         		<div class="modal modal-primary" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

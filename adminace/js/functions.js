@@ -95,9 +95,10 @@
                  $('.video-box').delay(2000).fadeTo(0, 1);
                 }
             });
-        //cancle update on click
     }
     
+    //cancle update on click
+        
     // countries data for contact page
      function countrydata(a,name,id,href,resultfield){
         if($(a).value!=''){
